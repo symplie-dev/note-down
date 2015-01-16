@@ -1,0 +1,50 @@
+.symplie-wrapper-outer {
+  height: 580px;
+  overflow: hidden;
+  position: relative;
+  width: 450px;
+}
+
+.symplie-wrapper {
+  background: rgba(245, 245, 245, 0.8);
+  height: 554px;
+  position: relative;
+  -webkit-perspective:800px;
+          perspective: 800px;
+  width: 100%;
+}
+
+.symplie-note-pnl {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: transform 0.5s;
+          transition: transform 0.5s;
+}
+
+.symplie-note-pnl figure {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.symplie-note-pnl .front { }
+
+.symplie-note-pnl .back {
+  -webkit-transform: rotateY( 180deg );
+          transform: rotateY( 180deg );
+}
+
+.symplie-note-pnl.flipped {
+  -webkit-transform: rotateY( 180deg );
+          transform: rotateY( 180deg );
+}
+
+.symplie-note-pnl .front { z-index: 1; }
+.symplie-note-pnl .back { z-index: 0; }
+.symplie-note-pnl.flipped .front { z-index: 0; }
+.symplie-note-pnl.flipped .back { z-index: 1; }

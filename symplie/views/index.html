@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app='SymplieApp' ng-csp>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+    <title>Symplie</title>
+    <!-- Styles -->
+    <link href='/dist/bundle.min.css' rel='stylesheet'>
+    <!-- Scripts -->
+    <script src='/dist/lib/jquery.min.js'></script>
+    <script src='/dist/lib/angular.min.js'></script>
+    <script src='/dist/lib/angular-sanitize.min.js'></script>
+    <script src='/dist/bundle.js'></script>
+  </head>
+  <body>
+    <div class='symplie-wrapper-outer' ng-controller='NoteCtrl'>
+      <div class='header-wrapper'>
+        <div class='header-title'>SYMPLIE</div>
+        <div class='header-back-btn'>
+          <span class="octicon octicon-chevron-left"></span>
+        </div>
+      </div>
+      <div class='symplie-wrapper'>
+        <div class='symplie-note-pnl {{(state == "markdown") ? "flipped" : ""}}'>
+          <figure class='front'>
+            <div md-viewer note='note'
+              selected-element='selectedElement'
+              create-element='createElement'></div>
+          </figure>
+          <figure class='back'>
+            <md-editor note='note'></md-editor>
+          </figure>
+        </div>
+      </div>
+      <div symplie-input state='state' note='note'></div>
+      <div symplie-btn state='state'
+        selected-element='selectedElement'
+        create-element='createElement'></div>
+    </div>
+  </body>
+</html>

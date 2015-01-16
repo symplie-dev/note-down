@@ -1,0 +1,70 @@
+.md-viewer-wrapper {
+  background: #fff;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  width: 100%;
+}
+
+.md-viewer {
+  box-sizing: border-box;
+  background: #fff;
+  padding: 10px 10px 100px 10px;
+  width: 100%;
+}
+
+.markdown-body.md-viewer ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.textarea {
+  background: rgba(245,245,245,0.4);
+  border-radius: 4px;
+  min-height: 25px;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+}
+
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.bullet-gutter {
+  min-height: 25px;
+  position: absolute;
+  width: 43px;
+}
+
+.octicon.bullet {
+  font: normal normal normal 16px/1 octicons;
+  height: 25px;
+  line-height: 25px;
+  margin: 0 12px 0 22px;
+}
+
+.checkbox {
+  border: 1px solid #333;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 12px;
+  height: 14px;
+  line-height: 10px;
+  margin: 0 10px 0 18px;
+  text-align: center;
+  width: 14px;
+}
+
+.checkbox.unchecked { color: #fff; }
+
+.checkbox.octicon {
+  font: normal normal normal 14px/1 octicons;
+}
+
+.textarea.bullet-list {
+  box-sizing: border-box;
+  padding: 0 0 0 43px;
+  width: 100%;
+}

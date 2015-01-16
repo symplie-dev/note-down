@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Roboto Light';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../../fonts/Roboto-Light.ttf');
+}
+
+.header-wrapper {
+    background: #fff;
+    box-shadow: 0 5px 5px -5px rgba(0,0,0,0.4);
+    height: 26px;
+    position: relative;
+    width: 100%;
+    z-index: 20;
+}
+
+.header-title {
+    color: #333;
+    font-family: 'Roboto Light';
+    letter-spacing: 0.5em;
+    line-height: 26px;
+    text-align: center;
+}
+
+.header-back-btn {
+    cursor: pointer;
+    height: 26px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 25px;
+}
+
+.header-back-btn:hover {
+    background: rgba(245,245,245,0.8);
+}
+
+.header-back-btn .octicon {
+    color: #333;
+    font-size: 20px;
+    line-height: 26px;
+    padding-right: 2px;
+}
