@@ -1402,56 +1402,28 @@ function ctrl($scope) {
 
   $scope.createBulletInput = function () {
     var newList = [
-        '<div class="textarea-wrapper">',
-          '<div class="bullet-gutter">',
-            '<div class="octicon octicon-primitive-dot bullet"></div>',
-          '</div>',
-          '<div class="textarea bullet-list" contentEditable="true"></div>',
+        '<div class="textarea">',
+          '<ul contentEditable="true">',
+            '<li class="bullet first"><br/></li>',
+          '</ul>',
         '</div>'].join(Constants.EMPTY_STRING);
 
     $('.md-viewer').append(newList);
 
-    $('.textarea').on('keyup', function (evt) {
-      var code =  evt.keyCode ? evt.keyCode : evt.which;
-
-      if(code == 13) {
-        $('.bullet-gutter').append('<div class="octicon octicon-primitive-dot bullet"></div>');
-      } else if (code == 8 || code == 46) {
-        console.log('backspace')
-        console.log($('.bullet-gutter').children().length + ' -- ' + $('.textarea').children().length)
-        if ($('.bullet-gutter').children().length - 1 > $('.textarea').children().length) {
-          $('.bullet-gutter .bullet:last-child').remove();
-        }
-      }
-    });
-
-    $('.textarea').focus();
+    $('.textarea ul').focus();
   };
 
   $scope.createToDoInput = function () {
     var newList = [
-        '<div class="textarea-wrapper">',
-          '<div class="bullet-gutter">',
-            '<div class="checkbox"></div>',
-          '</div>',
-          '<div class="textarea bullet-list" contentEditable="true"></div>',
+        '<div class="textarea">',
+          '<ul contentEditable="true">',
+            '<li class="task first"><br/></li>',
+          '</ul>',
         '</div>'].join(Constants.EMPTY_STRING);
 
     $('.md-viewer').append(newList);
 
-    $('.textarea').on('keyup', function (evt) {
-      var code =  evt.keyCode ? evt.keyCode : evt.which;
-
-      if(code == 13) {
-        $('.bullet-gutter').append('<div class="checkbox"></div>');
-      } else if (code == 8 || code == 46) {
-        if ($('.bullet-gutter').children().length - 1 > $('.textarea').children().length) {
-          $('.bullet-gutter .checkbox:last-child').remove();
-        }
-      }
-    });
-
-    $('.textarea').focus();
+    $('.textarea ul').focus();
   };
 
   $scope.createElement = function () {
@@ -1490,30 +1462,23 @@ function ctrl($scope) {
 
   $scope.addListToMd = function (markdownBulletType) {
     var txt       = Constants.EMPTY_STRING,
-        $lines    = $('.textarea').children() || [],
+        $lines    = $('.textarea ul').children() || [],
         lineItems;
 
-    // Add list items contained in the DOM elements in our .textarea div
+    // Add list items
     $.each($lines, function (index, line) {
-      var matches = $(line).text().match(/^(\s){2,}/) || [];
-
-      if (matches.length > 0) {
-        txt = txt + $(line).text() + '\n';
-      } else {
-        txt = txt + markdownBulletType + $(line).text() + '\n';
-      }
+      txt = txt + markdownBulletType + $(line).text() + '\n';
     });
-
-    // Add on first bullet that's not contained in a DOM element
-    txt = markdownBulletType + getFirstTextNode($('.textarea')) +
-      '\n' + txt;
 
     // Trim trailing newline
     txt = txt.slice(0, txt.length - 1);
 
     $('.textarea-wrapper').remove();
 
-    $scope.note.markdown += ((lastChildIsList($('.md-viewer'))) ? '\n' : Constants.MD_BREAK) + txt;
+    $scope.note.markdown += ((lastChildIsList($('.md-viewer')))
+        ? Constants.EMPTY_STRING
+        : '\n'
+      ) + txt;
     $scope.selectedElement = Constants.EMPTY_STRING;
   };
 }
@@ -1530,6 +1495,7 @@ function lastChildIsList($elem) {
   if ($elem.children().length == 0) {
     return false;
   } else {
+    console.log('it was a list')
     return $elem.children().last().prop('tagName').toLowerCase() === 'ul';
   }
 }
@@ -1628,11 +1594,11 @@ var marked   = require('marked'),
 renderer.listitem = function(text) {
   if (/^\s*\[[x ]\]\s*/.test(text)) {
       text = text
-        .replace(/^\s*\[ \]\s*/, '<span class="checkbox octicon octicon-check unchecked"></span>')
-        .replace(/^\s*\[x\]\s*/, '<span class="checkbox octicon octicon-check"></span>');
-      return '<li>' + text + '</li>';
+        .replace(/^\s*\[ \]\s*/, ' class="task">')
+        .replace(/^\s*\[x\]\s*/, ' class="task completed">');
+      return '<li' + text + '</li>';
   } else {
-      return '<li><span class="octicon octicon-primitive-dot bullet"></span>' + text + '</li>';
+      return '<li class="bullet">' + text + '</li>';
   }
 };
 

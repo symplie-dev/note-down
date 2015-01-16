@@ -6,11 +6,11 @@ var marked   = require('marked'),
 renderer.listitem = function(text) {
   if (/^\s*\[[x ]\]\s*/.test(text)) {
       text = text
-        .replace(/^\s*\[ \]\s*/, '<span class="checkbox octicon octicon-check unchecked"></span>')
-        .replace(/^\s*\[x\]\s*/, '<span class="checkbox octicon octicon-check"></span>');
-      return '<li>' + text + '</li>';
+        .replace(/^\s*\[ \]\s*/, ' class="task">')
+        .replace(/^\s*\[x\]\s*/, ' class="task completed">');
+      return '<li' + text + '</li>';
   } else {
-      return '<li><span class="octicon octicon-primitive-dot bullet"></span>' + text + '</li>';
+      return '<li class="bullet">' + text + '</li>';
   }
 };
 

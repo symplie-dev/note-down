@@ -13,58 +13,72 @@
   width: 100%;
 }
 
-.markdown-body.md-viewer ul {
-  margin-left: 0;
-  padding-left: 0;
-}
-
 .textarea {
   background: rgba(245,245,245,0.4);
   border-radius: 4px;
   min-height: 25px;
   outline: none;
-  padding: 10px;
+  padding: 0;
   width: 100%;
 }
 
-.textarea-wrapper {
-  position: relative;
-  width: 100%;
+.textarea ul {
+  outline: none;
 }
 
-.bullet-gutter {
-  min-height: 25px;
-  position: absolute;
-  width: 43px;
+.markdown-body.md-viewer ul li.task,
+.markdown-body.md-viewer ul li.bullet,
+.textarea ul li.task,
+.textarea ul li.bullet {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.octicon.bullet {
-  font: normal normal normal 16px/1 octicons;
-  height: 25px;
-  line-height: 25px;
-  margin: 0 12px 0 22px;
+.markdown-body.md-viewer ul li.task:before,
+.markdown-body.md-viewer ul li.bullet:before,
+.textarea ul li.task:before,
+.textarea ul li.bullet:before {
+    color: #333;
+    font: normal normal normal 12px/1 octicons;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 10px;
+    text-align: center;
 }
 
-.checkbox {
-  border: 1px solid #333;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 12px;
-  height: 14px;
-  line-height: 10px;
-  margin: 0 10px 0 18px;
-  text-align: center;
-  width: 14px;
+.markdown-body.md-viewer ul li.bullet:before,
+.textarea ul li.bullet:before {
+    content: '\f052';
+    margin-left:1px;
 }
 
-.checkbox.unchecked { color: #fff; }
-
-.checkbox.octicon {
-  font: normal normal normal 14px/1 octicons;
+.markdown-body.md-viewer ul li.task:before,
+.textarea ul li.task:before {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    background: #ddd;
+    color: #ddd;
+    content: '\f03a';
+    cursor: pointer;
+    font-weight: bold;
+    margin: 2px 10px 2px 0;
 }
 
-.textarea.bullet-list {
-  box-sizing: border-box;
-  padding: 0 0 0 43px;
-  width: 100%;
+.markdown-body.md-viewer ul li.task.completed:before,
+.textarea ul li.task.completed:before {
+  content: '\f03a';
+  color: #333;
+  margin: 2px 10px 2px 0;
+}
+
+/* second level lists */
+.markdown-body.md-viewer ul li ul li.bullet:before {
+  content: '\f0ca';
+}
+
+/* third level lists+ */
+.markdown-body.md-viewer ul li ul li ul li.bullet:before {
+  content: '\f053';
 }
