@@ -1,3 +1,4 @@
 # Do not add node_modules directory to source control because it breaks in 
 # Windows :(
 **/node_modules
+symplie/dist/*
