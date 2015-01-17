@@ -45,12 +45,15 @@ function ctrl($scope) {
           $scope.notepadState = Constants.NotepadState.VIEW;
           $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
           $scope.createElement();
+          $scope.currentNote.updatedDate = Date.now();
           break;
         case Constants.NotepadState.MARKDOWN:
           $scope.notepadState = Constants.NotepadState.VIEW;
           $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+          $scope.currentNote.updatedDate = Date.now();
           break;
         default:
+          console.log('ERROR: Unknown state - ' + $scope.notepadState);
           $scope.notepadState = Constants.NotepadState.VIEW;
           $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
           break;
@@ -86,8 +89,6 @@ function ctrl($scope) {
   };
 
   $scope.newNote = function () {
-    console.log('wat')
-
     $scope.notes.push({
       createdDate: Date.now(),
       updatedDate: Date.now(),

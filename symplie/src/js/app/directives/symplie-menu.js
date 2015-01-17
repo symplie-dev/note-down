@@ -18,9 +18,23 @@ module.exports = function() {
 };
 
 function ctrl($scope) {
-  $scope.viewNote = function (index) {
-    $scope.currentNote = $scope.notes[index];
+  $scope.order = 'createdDate';
+
+  $scope.viewNote = function (note) {
+    $scope.currentNote = note;
     $scope.symplieState = Constants.SymplieState.NOTEPAD;
     $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+  }
+
+  $scope.orderByCreatedDate = function () {
+    if ($scope.order !== 'createdDate') {
+      $scope.order = 'createdDate';
+    }
+  }
+
+  $scope.orderByUpdatedDate = function () {
+    if ($scope.order !== 'updatedDate') {
+      $scope.order = 'updatedDate';
+    }
   }
 }

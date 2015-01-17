@@ -5,7 +5,8 @@ var Constants = require('../constants');
 module.exports = function($scope) {
   $scope.currentNote = {
     markdown: Constants.WELCOME_NOTE,
-    createdDate: Date.now()
+    createdDate: Date.now(),
+    updatedDate: Date.now()
   };
 
   $scope.notes = [];

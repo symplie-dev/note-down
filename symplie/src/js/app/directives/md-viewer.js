@@ -141,7 +141,6 @@ function lastChildIsList($elem) {
   if ($elem.children().length == 0) {
     return false;
   } else {
-    console.log('it was a list')
     return $elem.children().last().prop('tagName').toLowerCase() === 'ul';
   }
 }
