@@ -9,56 +9,64 @@ module.exports = function() {
     replace: true,
     restrict: 'EA',
     scope: {
-      state:           '=',
+      symplieState:    '=',
+      notepadState:    '=',
+      innerBtnOcticon: '=',
       selectedElement: '=',
-      createElement:   '='
-      // createParagraph: '=',
-      // createBullet:    '=',
-      // createToDo:      '='
+      createElement:   '=',
+      notes:           '=',
+      currentNote:     '='
     },
     templateUrl: '/views/partials/symplie-btn.html'
   };
 };
 
 function ctrl($scope) {
-  $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
   /**
-   * When the center button is clicked, the state must change. The next state is
-   * dependent on the current state.
+   * When the center button is clicked, the notepadState must change. The next notepadState is
+   * dependent on the current notepadState.
    */
   $scope.centerBtnHandler = function () {
-    switch ($scope.state) {
-      case Constants.SymplieState.VIEW:
-        $scope.state = Constants.SymplieState.CHOOSE_ELEMENT;
-        $scope.innerBtnOcticon = Constants.Octicon.MARKDOWN;
-        break;
-      case Constants.SymplieState.CHOOSE_ELEMENT:
-        $scope.state = Constants.SymplieState.MARKDOWN;
-        $scope.innerBtnOcticon = Constants.Octicon.EYE;
-        break;
-      case Constants.SymplieState.NEW_ELEMENT:
-        $scope.state = Constants.SymplieState.VIEW;
-        $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
-        $scope.createElement();
-        break;
-      case Constants.SymplieState.MARKDOWN:
-        $scope.state = Constants.SymplieState.VIEW;
-        $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
-        break;
-      default:
-        $scope.state = Constants.SymplieState.VIEW;
-        $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
-        break;
+    if ($scope.symplieState == Constants.SymplieState.MENU) {
+      $scope.newNote();
+      $scope.symplieState = Constants.SymplieState.NOTEPAD;
+      $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+    } else if ($scope.symplieState == Constants.SymplieState.NOTEPAD) {
+      switch ($scope.notepadState) {
+        case Constants.NotepadState.VIEW:
+          $scope.notepadState = Constants.NotepadState.CHOOSE_ELEMENT;
+          $scope.innerBtnOcticon = Constants.Octicon.MARKDOWN;
+          break;
+        case Constants.NotepadState.CHOOSE_ELEMENT:
+          $scope.notepadState = Constants.NotepadState.MARKDOWN;
+          $scope.innerBtnOcticon = Constants.Octicon.EYE;
+          break;
+        case Constants.NotepadState.NEW_ELEMENT:
+          $scope.notepadState = Constants.NotepadState.VIEW;
+          $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+          $scope.createElement();
+          break;
+        case Constants.NotepadState.MARKDOWN:
+          $scope.notepadState = Constants.NotepadState.VIEW;
+          $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+          break;
+        default:
+          $scope.notepadState = Constants.NotepadState.VIEW;
+          $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+          break;
+      }
+    } else {
+      console.log('ERROR: unknown state - ' + $scope.symplieState);
     }
   };
 
   $scope.cancelChooseElement = function () {
-    $scope.state = Constants.SymplieState.VIEW;
+    $scope.notepadState = Constants.NotepadState.VIEW;
     $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
   };
 
   $scope.newElement = function () {
-    $scope.state = Constants.SymplieState.NEW_ELEMENT;
+    $scope.notepadState = Constants.NotepadState.NEW_ELEMENT;
     $scope.innerBtnOcticon = Constants.Octicon.PLUS;
   };
 
@@ -75,5 +83,17 @@ function ctrl($scope) {
   $scope.newToDoInput = function () {
     $scope.newElement();
     $scope.selectedElement = Constants.SymplieElement.TODO;
+  };
+
+  $scope.newNote = function () {
+    console.log('wat')
+
+    $scope.notes.push({
+      createdDate: Date.now(),
+      updatedDate: Date.now(),
+      markdown:    Constants.EMPTY_STRING
+    });
+
+    $scope.currentNote = $scope.notes[$scope.notes.length - 1];
   };
 };

@@ -14,28 +14,43 @@
   </head>
   <body>
     <div class='symplie-wrapper-outer' ng-controller='NoteCtrl'>
+      <!-- Header -->
       <div class='header-wrapper'>
         <div class='header-title'>SYMPLIE</div>
-        <div class='header-back-btn'>
-          <span class="octicon octicon-chevron-left"></span>
+        <div class='header-back-btn {{(symplieState === "menu") ? "hide" : ""}}' ng-click='backToMenu()'>
+          <span class='octicon octicon-chevron-left'></span>
         </div>
       </div>
-      <div class='symplie-wrapper'>
-        <div class='symplie-note-pnl {{(state == "markdown") ? "flipped" : ""}}'>
-          <figure class='front'>
-            <div md-viewer note='note'
-              selected-element='selectedElement'
-              create-element='createElement'></div>
-          </figure>
-          <figure class='back'>
-            <md-editor note='note'></md-editor>
-          </figure>
+      <!-- Pop-Up Content -->
+      <div class='pop-up-content-wrapper {{symplieState}}'>
+        <div class='symplie-menu-wrapper'>
+          <div sympliemenu
+            notes='notes'
+            current-note='currentNote'
+            symplie-state='symplieState'
+            inner-btn-octicon='innerBtnOcticon'></div>
+        </div>
+        <div class='symplie-note-wrapper'>
+          <div class='symplie-note-pnl {{(notepadState == "markdown") ? "flipped" : ""}}'>
+            <figure class='front'>
+              <div md-viewer note='currentNote'
+                selected-element='selectedElement'
+                create-element='createElement'></div>
+            </figure>
+            <figure class='back'>
+              <md-editor note='currentNote'></md-editor>
+            </figure>
+          </div>
         </div>
       </div>
-      <div symplie-input state='state' note='note'></div>
-      <div symplie-btn state='state'
+      <div sympliebtn
+        symplie-state='symplieState'
+        notepad-state='notepadState'
+        inner-btn-octicon='innerBtnOcticon'
         selected-element='selectedElement'
-        create-element='createElement'></div>
+        create-element='createElement'
+        notes='notes'
+        current-note='currentNote'></div>
     </div>
   </body>
 </html>

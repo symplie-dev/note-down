@@ -5,13 +5,35 @@
   width: 450px;
 }
 
-.symplie-wrapper {
-  background: rgba(245, 245, 245, 0.8);
+.pop-up-content-wrapper {
   height: 554px;
+  overflow: hidden;
+  position: absolute;
+  top: 25px;
+  -webkit-transition: left 0.4s ease-in-out;
+          transition: left 0.4s ease-in-out;
+  width: 900px;
+}
+
+.pop-up-content-wrapper.menu { left: 0%; }
+.pop-up-content-wrapper.notepad { left: -100%; }
+
+.symplie-menu-wrapper {
+  background: #fff;
+  float: left;
+  height: 100%;
+  margin: 0;
+  width: 50%;
+}
+
+.symplie-note-wrapper {
+  background: rgba(245, 245, 245, 0.8);
+  float: left;
+  height: 100%;
   position: relative;
-  -webkit-perspective:800px;
+  -webkit-perspective: 800px;
           perspective: 800px;
-  width: 100%;
+  width: 50%;
 }
 
 .symplie-note-pnl {

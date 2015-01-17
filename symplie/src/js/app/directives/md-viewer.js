@@ -11,9 +11,6 @@ module.exports = function() {
       note:            '=',
       selectedElement: '=',
       createElement:   '='
-      // createParagraph: '=',
-      // createBullet:    '=',
-      // createToDo:      '='
     },
     templateUrl: '/views/partials/md-viewer.html',
     link: function ($scope, $element) { }

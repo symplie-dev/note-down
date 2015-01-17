@@ -1,0 +1,16 @@
+<div class='list-btn-wrapper'>
+  <div class='created-dt-btn list-btn'>
+      Created Date
+  </div>
+  <div class='updated-dt-btn list-btn'>
+      Updated Date
+  </div>
+</div>
+
+<ul class='note-list'>
+  <li class='note-list-item' ng-repeat='note in notes' ng-click='viewNote($index)'>
+    <div class='note-title'>{{note.markdown | title}}</div>
+    <div class='note-date'>{{note.createdDate | date : 'MMM d, y'}}</div>
+    <div class='note-select-btn octicon octicon-chevron-right'></div>
+  </li>
+</ul>

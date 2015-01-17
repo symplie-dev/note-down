@@ -3,13 +3,25 @@
 var Constants = require('../constants');
 
 module.exports = function($scope) {
-  $scope.note = {
-    markdown: Constants.EMPTY_STRING
+  $scope.currentNote = {
+    markdown: Constants.WELCOME_NOTE,
+    createdDate: Date.now()
   };
+
+  $scope.notes = [];
+  $scope.notes.push($scope.currentNote);
   
-  $scope.state           = Constants.SymplieState.VIEW ;
+  $scope.symplieState    = Constants.SymplieState.MENU;
+  $scope.notepadState    = Constants.NotepadState.VIEW;
   $scope.inputState      = null;
   $scope.selectedElement = Constants.EMPTY_STRING;
+  $scope.innerBtnOcticon = Constants.Octicon.PLUS;
+
+  $scope.backToMenu = function () {
+    $scope.symplieState = Constants.SymplieState.MENU;
+    $scope.notepadState = Constants.NotepadState.VIEW;
+    $scope.innerBtnOcticon = Constants.Octicon.PLUS;
+  };
 
   // Declarations of functions shared across directives
   $scope.createElement = function () {};
