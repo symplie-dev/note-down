@@ -1,7 +1,8 @@
 'use strict';
 
-var marked   = require('marked'),
-    renderer = new marked.Renderer();
+var marked    = require('marked'),
+    Constants = require('../constants'),
+    renderer  = new marked.Renderer();
 
 renderer.listitem = function(text) {
   if (/^\s*\[[x ]\]\s*/.test(text)) {
@@ -15,7 +16,11 @@ renderer.listitem = function(text) {
 };
 
 module.exports = function () {
-  return function (input) {
-    return marked(input, { renderer: renderer });
+  return function (note) {
+    if (note) {
+      return marked(note.markdown, { renderer: renderer });
+    } else {
+      return Constants.EMPTY_STRING;
+    }
   }
 };

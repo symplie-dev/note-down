@@ -1,16 +1,30 @@
 'use strict';
 
-var Constants = require('../constants');
+var Constants = require('../constants'),
+    dao       = require('../database');
 
 module.exports = function($scope) {
-  $scope.currentNote = {
-    markdown: Constants.WELCOME_NOTE,
-    createdAt: Date.now(),
-    updatedAt: Date.now()
-  };
+  // $scope.currentNote = {
+  //   markdown: Constants.WELCOME_NOTE,
+  //   createdAt: Date.now(),
+  //   updatedAt: Date.now()
+  // };
 
   $scope.notes = [];
-  $scope.notes.push($scope.currentNote);
+  $scope.currentNote = null;
+
+  dao.init().then(function () {
+    dao.getNotes().then(function (notes) {
+      $scope.$apply(function () {
+        $scope.notes = notes;
+      });
+    }).catch(function (err) {
+      console.log('error: failed to get notes')
+    });
+  }).catch(function (err) {
+    console.log('init failed');
+    console.log(err);
+  });
   
   $scope.symplieState    = Constants.SymplieState.MENU;
   $scope.notepadState    = Constants.NotepadState.VIEW;

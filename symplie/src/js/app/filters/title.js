@@ -1,13 +1,20 @@
 'use strict';
 
-var marked = require('marked');
+var marked = require('marked'),
+    Constants = require('../constants');
 
 module.exports = function () {
-  return function (input) {
-    var title = input.substr(0, 25);
+  return function (note) {
 
-    title = marked(title);
+    if (note) {
+      console.log(note);
+      var title = note.markdown.substr(0, 25);
 
-    return $(title).text() + '...';
+      title = marked(title);
+
+      return $(title).text() + '...';
+    } else {
+      return Constants.EMPTY_STRING;
+    }
   }
 };

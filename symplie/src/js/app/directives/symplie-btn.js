@@ -1,6 +1,7 @@
 'use strict';
 
-var Constants = require('../constants');
+var Constants = require('../constants'),
+    database = require('../database');
 
 module.exports = function() {
   return {
@@ -32,6 +33,7 @@ function ctrl($scope) {
       $scope.symplieState = Constants.SymplieState.NOTEPAD;
       $scope.innerBtnOcticon = Constants.Octicon.MARKDOWN;
       $scope.notepadState = Constants.NotepadState.CHOOSE_ELEMENT;
+      database.getNotes();
     } else if ($scope.symplieState == Constants.SymplieState.NOTEPAD) {
       switch ($scope.notepadState) {
         case Constants.NotepadState.VIEW:
