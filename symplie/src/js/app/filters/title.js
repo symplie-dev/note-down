@@ -7,7 +7,6 @@ module.exports = function () {
   return function (note) {
 
     if (note) {
-      console.log(note);
       var title = note.markdown.substr(0, 25);
 
       title = marked(title);

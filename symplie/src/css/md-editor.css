@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('../../fonts/SourceCodePro-Regular.ttf') format('truetype')
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 .md-editor-wrapper {
   background: #fff;
   box-sizing: border-box;
@@ -11,7 +19,7 @@
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none;
-  font-family: 'Courier New', Courier, Monospace;
+  font-family: 'Source Code Pro', 'Courier New', Courier, Monospace;
   height: 100%;
   width: 100%;
   border: none;

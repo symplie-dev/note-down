@@ -51,6 +51,8 @@ SymplieDao.initSchema = function () {
   var objStore = SymplieDao.db.createObjectStore('notes', { autoIncrement: true }),
       deferred = Q.defer();
 
+  // Create an index on the unique identifier
+  objStore.createIndex('id', 'id', { unique: true });
   // Create an index to search notes by date of creation
   objStore.createIndex('createdAt', 'createdAt', { unique: false });
   // Create an index to search notes by date last updated
@@ -71,6 +73,16 @@ SymplieDao.initSchema = function () {
   return deferred.promise;
 };
 
+SymplieDao.getNote = function (id) {
+  var deferred = Q.defer();
+
+  db.transaction('notes').objectStore('notes').get(id).onsuccess = function(evt) {
+    deferred.resolve(evt.target.result);
+  };
+
+  return deferred.promise;
+};
+
 SymplieDao.insertNote = function (note) {
   var deferred = Q.defer(),
       tran     = SymplieDao.db.transaction(['notes'], SymplieDao.Constants.READ_WRITE),
@@ -78,16 +90,25 @@ SymplieDao.insertNote = function (note) {
       request;
       
   tran.oncomplete = function (evt) {
-    deferred.resolve();
+    deferred.resolve(note);
   };
 
   tran.onerror = function (evt) {
-    deferred.reject(evt)
+    deferred.reject(evt);
   };
 
   objStore = tran.objectStore('notes');
 
   request = objStore.add(note);
+
+  // Add the unique identifier ID to the newly inserted note. This id is a one
+  // to one mapping with the auto-generated key for the object store. This way
+  // we can update the notes in the future based on this key. (There is probably
+  // a better way to do this... this cannot be the right way)
+  request.onsuccess = function (evt) {
+    note.id = evt.target.result;
+    objStore.put(note, note.id);
+  };
 
   return deferred.promise;
 };
@@ -113,7 +134,22 @@ SymplieDao.getNotes = function () {
 };
 
 SymplieDao.updateNote = function (note) {
-  var deferred = Q.defer();
+  var deferred = Q.defer(),
+      tran     = SymplieDao.db.transaction(['notes'], SymplieDao.Constants.READ_WRITE),
+      objStore,
+      request;
+
+  tran.oncomplete = function (evt) {
+    deferred.resolve();
+  };
+
+  tran.onerror = function (evt) {
+    deferred.reject(evt);
+  };
+
+  objStore = tran.objectStore('notes');
+
+  objStore.put(note, note.id);
 
   return deferred.promise;
 };

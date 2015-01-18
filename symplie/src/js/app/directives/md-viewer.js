@@ -1,6 +1,7 @@
 'use strict';
 
-var Constants = require('../constants');
+var Constants = require('../constants'),
+    dao       = require('../database');
 
 module.exports = function() {
   return {
@@ -93,9 +94,11 @@ function ctrl($scope) {
     var txt = $('.textarea').text();
 
     $('.textarea').remove();
-
+    // Update in-memory variables
     $scope.note.markdown += Constants.MD_BREAK + txt;
     $scope.selectedElement = Constants.EMPTY_STRING;
+    // Update model in DB
+    dao.updateNote($scope.note);
   };
 
   $scope.addBulletListToMd = function () {
@@ -126,6 +129,8 @@ function ctrl($scope) {
         : '\n'
       ) + txt;
     $scope.selectedElement = Constants.EMPTY_STRING;
+    // Update model in DB
+    dao.updateNote($scope.note);
   };
 }
 

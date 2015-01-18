@@ -1,7 +1,7 @@
 'use strict';
 
 var Constants = require('../constants'),
-    database = require('../database');
+    dao       = require('../database');
 
 module.exports = function() {
   return {
@@ -33,7 +33,6 @@ function ctrl($scope) {
       $scope.symplieState = Constants.SymplieState.NOTEPAD;
       $scope.innerBtnOcticon = Constants.Octicon.MARKDOWN;
       $scope.notepadState = Constants.NotepadState.CHOOSE_ELEMENT;
-      database.getNotes();
     } else if ($scope.symplieState == Constants.SymplieState.NOTEPAD) {
       switch ($scope.notepadState) {
         case Constants.NotepadState.VIEW:
@@ -54,6 +53,9 @@ function ctrl($scope) {
           $scope.notepadState = Constants.NotepadState.VIEW;
           $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
           $scope.currentNote.updatedAt = Date.now();
+          // Update model in DB (TODO: Better logic to find out when there is a change)
+          $scope.currentNote.updatedAt = Date.now();
+          dao.updateNote($scope.currentNote);
           break;
         default:
           console.log('ERROR: Unknown state - ' + $scope.notepadState);
@@ -92,11 +94,16 @@ function ctrl($scope) {
   };
 
   $scope.newNote = function () {
-    $scope.notes.push({
+    var note = {
+      markdown:  Constants.EMPTY_STRING,
       createdAt: Date.now(),
-      updatedAt: Date.now(),
-      markdown:    Constants.EMPTY_STRING
-    });
+      updatedAt: Date.now()
+      
+    };
+
+    dao.insertNote(note);
+
+    $scope.notes.push(note);
 
     $scope.currentNote = $scope.notes[$scope.notes.length - 1];
   };

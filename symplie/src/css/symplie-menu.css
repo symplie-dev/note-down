@@ -20,6 +20,22 @@
     width: 50%;
 }
 
+.list-btn .octicon.octicon-primitive-dot.tiny {
+    color: #5cb85c;
+    display: inline-block;
+    font-size: 10px;
+    opacity: 0.0;
+    padding-right: 5px;
+    position: relative;
+    top: -2px;
+    -webkit-transition: opacity 0.2s linear;
+            transition: opacity 0.2s linear;
+}
+
+.list-btn .octicon.octicon-primitive-dot.tiny.active {
+    opacity: 1.0
+}
+
 .list-btn:hover {
     background: rgba(245,245,245,0.8);
 }
