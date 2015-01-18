@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "highlight.js": "^8.4.0",
     "marked": "^0.3.2",
     "q": "^1.1.2"
   },

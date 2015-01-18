@@ -19,6 +19,7 @@ module.exports = function (grunt) {
       combine: {
         files: {
           'symplie/dist/bundle.min.css': ['symplie/src/css/reset/reset.css'
+                                         ,'symplie/src/css/highlightjs/*.css'
                                          ,'symplie/src/css/*.css']
         }
       }

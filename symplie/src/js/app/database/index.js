@@ -154,4 +154,21 @@ SymplieDao.updateNote = function (note) {
   return deferred.promise;
 };
 
+SymplieDao.deleteNote = function (note) {
+  var deferred = Q.defer(),
+      request = SymplieDao.db.transaction(['notes'], SymplieDao.Constants.READ_WRITE)
+                .objectStore('notes')
+                .delete(note.id);
+
+  request.onsuccess = function(event) {
+    deferred.resolve(note);
+  };
+
+  request.onerror = function (event) {
+    deferred.reject(event);
+  };
+
+  return deferred.promise;
+};
+
 module.exports = SymplieDao;
