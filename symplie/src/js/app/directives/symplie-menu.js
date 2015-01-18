@@ -18,7 +18,7 @@ module.exports = function() {
 };
 
 function ctrl($scope) {
-  $scope.order = 'createdDate';
+  $scope.order = 'createdAt';
 
   $scope.viewNote = function (note) {
     $scope.currentNote = note;
@@ -27,14 +27,14 @@ function ctrl($scope) {
   }
 
   $scope.orderByCreatedDate = function () {
-    if ($scope.order !== 'createdDate') {
-      $scope.order = 'createdDate';
+    if ($scope.order !== 'createdAt') {
+      $scope.order = 'createdAt';
     }
   }
 
   $scope.orderByUpdatedDate = function () {
-    if ($scope.order !== 'updatedDate') {
-      $scope.order = 'updatedDate';
+    if ($scope.order !== 'updatedAt') {
+      $scope.order = 'updatedAt';
     }
   }
 }

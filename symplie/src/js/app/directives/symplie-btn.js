@@ -30,7 +30,8 @@ function ctrl($scope) {
     if ($scope.symplieState == Constants.SymplieState.MENU) {
       $scope.newNote();
       $scope.symplieState = Constants.SymplieState.NOTEPAD;
-      $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+      $scope.innerBtnOcticon = Constants.Octicon.MARKDOWN;
+      $scope.notepadState = Constants.NotepadState.CHOOSE_ELEMENT;
     } else if ($scope.symplieState == Constants.SymplieState.NOTEPAD) {
       switch ($scope.notepadState) {
         case Constants.NotepadState.VIEW:
@@ -45,12 +46,12 @@ function ctrl($scope) {
           $scope.notepadState = Constants.NotepadState.VIEW;
           $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
           $scope.createElement();
-          $scope.currentNote.updatedDate = Date.now();
+          $scope.currentNote.updatedAt = Date.now();
           break;
         case Constants.NotepadState.MARKDOWN:
           $scope.notepadState = Constants.NotepadState.VIEW;
           $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
-          $scope.currentNote.updatedDate = Date.now();
+          $scope.currentNote.updatedAt = Date.now();
           break;
         default:
           console.log('ERROR: Unknown state - ' + $scope.notepadState);
@@ -90,8 +91,8 @@ function ctrl($scope) {
 
   $scope.newNote = function () {
     $scope.notes.push({
-      createdDate: Date.now(),
-      updatedDate: Date.now(),
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
       markdown:    Constants.EMPTY_STRING
     });
 

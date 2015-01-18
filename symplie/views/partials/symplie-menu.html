@@ -10,7 +10,7 @@
 <ul class='note-list'>
   <li class='note-list-item' ng-repeat='note in notes | orderBy : order : true' ng-click='viewNote(note)'>
     <div class='note-title'>{{note.markdown | title}}</div>
-    <div class='note-date'>{{note.createdDate | date : 'MMM d, y'}}</div>
+    <div class='note-date'>{{note.createdAt | date : 'MMM d, y'}}</div>
     <div class='note-select-btn octicon octicon-chevron-right'></div>
   </li>
 </ul>
