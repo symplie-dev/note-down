@@ -116,17 +116,21 @@ function ctrl($scope) {
 
     // Add list items
     $.each($lines, function (index, line) {
-      txt = txt + markdownBulletType + $(line).text() + '\n';
+      if ($(line).text().trim() !== Constants.EMPTY_STRING) {
+        txt = txt + markdownBulletType + $(line).text() + '\n';
+      }
     });
 
     // Trim trailing newline
-    txt = txt.slice(0, txt.length - 1);
+    if (txt.length > 0) {
+      txt = txt.slice(0, txt.length - 1);
+    }
 
-    $('.textarea-wrapper').remove();
+    $('.textarea').remove();
 
     $scope.note.markdown += ((lastChildIsList($('.md-viewer')))
-        ? Constants.EMPTY_STRING
-        : '\n'
+        ? Constants.NEW_LINE
+        : Constants.MD_BREAK
       ) + txt;
     $scope.selectedElement = Constants.EMPTY_STRING;
     // Update model in DB
