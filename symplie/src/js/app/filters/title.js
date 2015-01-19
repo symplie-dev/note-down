@@ -1,7 +1,8 @@
 'use strict';
 
 var marked = require('marked'),
-    Constants = require('../constants');
+    Constants = require('../constants'),
+    renderer  = require('./renderer');
 
 module.exports = function () {
   return function (note) {
@@ -9,7 +10,7 @@ module.exports = function () {
     if (note) {
       var title = note.markdown.substr(0, 25);
 
-      title = marked(title);
+      title = marked(title, { renderer: renderer });
 
       return $(title).text() + '...';
     } else {
