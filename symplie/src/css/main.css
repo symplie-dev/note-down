@@ -66,6 +66,10 @@
           transform: rotateY( 180deg );
 }
 
+.symplie-note-pnl.flipped .md-editor {
+  display: block;
+}
+
 .symplie-note-pnl .front { z-index: 1; }
 .symplie-note-pnl .back { z-index: 0; }
 .symplie-note-pnl.flipped .front { z-index: 0; }
