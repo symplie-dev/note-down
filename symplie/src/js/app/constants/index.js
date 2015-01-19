@@ -45,11 +45,11 @@ Constants.EMPTY_STRING,
 'give quick access to common note taking elements (task',
 'lists, bulleted lists and plain old text)',
 Constants.EMPTY_STRING,
-'![Quick edit button](https://nt1plw-bn1305.files.1drv.com/y2poDgzkak3AbDer58gnnicgtAw1JTuqMmUm2IgSfvoM2UYuOZJ_rbfV3lEH0fo9ladHWSWKCtwK0lTlvnEYLHclwhXeoJnnM1qKxBQuGRxAKm-NHi0fQ4ydYUDu0hvznjG2d4FqGeVAe6rU6VJVTwfTg/quick-edit.gif?psid=1)',
+'![Quick edit button][3]',
 Constants.EMPTY_STRING,
 '---',
 Constants.EMPTY_STRING,
-'* **Create beautiful notes:** Symplie uses [GitHub\'s][3]',
+'* **Create beautiful notes:** Symplie uses [GitHub\'s][4]',
 '  clean and modern markdown styling.',
 '* **Visually consistent:** Symplie organizes your notes',
 '  in a consistent manner so you can focus on content.',
@@ -80,7 +80,8 @@ Constants.EMPTY_STRING,
 Constants.EMPTY_STRING,
 '[1]: http://daringfireball.net/projects/markdown/ "Markdown"',
 '[2]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Cheatsheet"',
-'[3]: https://github.com/ "GitHub"'
+'[3]: https://33.media.tumblr.com/d6292b80f0f96d7dbd6fd520028cc183/tumblr_nifuyiUflw1tpna2go1_250.gif "Quick Edit"',
+'[4]: https://github.com/ "GitHub"'
 ].join(Constants.NEW_LINE);
 
 module.exports = Constants;
