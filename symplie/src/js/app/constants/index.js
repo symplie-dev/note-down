@@ -6,6 +6,9 @@ Constants.EMPTY_STRING = '';
 Constants.NEW_LINE = '\n';
 Constants.MD_BREAK = '\n\n';
 
+Constants.Regex = {};
+Constants.Regex.TASK = /^\s*\[[x ]\]\s*/gm;
+
 Constants.SymplieState         = {};
 Constants.SymplieState.MENU    = 'menu';
 Constants.SymplieState.NOTEPAD = 'notepad';
