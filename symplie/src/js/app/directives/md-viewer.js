@@ -11,7 +11,8 @@ module.exports = function() {
     scope: {
       note:            '=',
       selectedElement: '=',
-      createElement:   '='
+      createElement:   '=',
+      unsaved:         '='
     },
     templateUrl: '/views/partials/md-viewer.html',
     link: function ($scope, $element) { }
@@ -45,6 +46,7 @@ function ctrl($scope) {
 
     $('.md-viewer').append(newParagraph);
     $('.textarea').focus();
+    $scope.unsaved = true;
   };
 
   $scope.createBulletInput = function () {
@@ -58,6 +60,7 @@ function ctrl($scope) {
     $('.md-viewer').append(newList);
 
     $('.textarea ul').focus();
+    $scope.unsaved = true;
   };
 
   $scope.createToDoInput = function () {
@@ -71,6 +74,7 @@ function ctrl($scope) {
     $('.md-viewer').append(newList);
 
     $('.textarea ul').focus();
+    $scope.unsaved = true;
   };
 
   $scope.createElement = function () {
@@ -99,6 +103,7 @@ function ctrl($scope) {
     $scope.selectedElement = Constants.EMPTY_STRING;
     // Update model in DB
     dao.updateNote($scope.note);
+    $scope.unsaved = false;
   };
 
   $scope.addBulletListToMd = function () {
@@ -135,6 +140,7 @@ function ctrl($scope) {
     $scope.selectedElement = Constants.EMPTY_STRING;
     // Update model in DB
     dao.updateNote($scope.note);
+    $scope.unsaved = false;
   };
 }
 

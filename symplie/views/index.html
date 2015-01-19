@@ -16,7 +16,7 @@
     <div class='symplie-wrapper-outer' ng-controller='NoteCtrl'>
       <!-- Header -->
       <div class='header-wrapper'>
-        <div class='header-title'>SYMPLIE</div>
+        <div class='header-title'><span class='octicon octicon-primitive-dot unsaved-indicator hide'></span>SYMPLIE<span class='octicon octicon-primitive-dot unsaved-indicator {{(unsaved) ? "" : "hide"}}'></span></div>
         <div class='header-back-btn {{(symplieState === "menu") ? "hide" : ""}}' ng-click='backToMenu()'>
           <span class='octicon octicon-chevron-left'></span>
         </div>
@@ -28,14 +28,16 @@
             notes='notes'
             current-note='currentNote'
             symplie-state='symplieState'
-            inner-btn-octicon='innerBtnOcticon'></div>
+            inner-btn-octicon='innerBtnOcticon'
+            old-note-content='oldNoteContent'></div>
         </div>
         <div class='symplie-note-wrapper'>
           <div class='symplie-note-pnl {{(notepadState == "markdown") ? "flipped" : ""}}'>
             <figure class='front'>
               <div md-viewer note='currentNote'
                 selected-element='selectedElement'
-                create-element='createElement'></div>
+                create-element='createElement'
+                unsaved='unsaved'></div>
             </figure>
             <figure class='back'>
               <md-editor note='currentNote'></md-editor>
@@ -50,7 +52,9 @@
         selected-element='selectedElement'
         create-element='createElement'
         notes='notes'
-        current-note='currentNote'></div>
+        current-note='currentNote'
+        unsaved='unsaved'
+        old-note-content='oldNoteContent'></div>
     </div>
   </body>
 </html>

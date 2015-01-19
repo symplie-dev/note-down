@@ -4,12 +4,6 @@ var Constants = require('../constants'),
     dao       = require('../database');
 
 module.exports = function($scope) {
-  // $scope.currentNote = {
-  //   markdown: Constants.WELCOME_NOTE,
-  //   createdAt: Date.now(),
-  //   updatedAt: Date.now()
-  // };
-
   $scope.notes = [];
   $scope.currentNote = null;
 
@@ -31,11 +25,23 @@ module.exports = function($scope) {
   $scope.inputState      = null;
   $scope.selectedElement = Constants.EMPTY_STRING;
   $scope.innerBtnOcticon = Constants.Octicon.PLUS;
+  $scope.unsaved         = false;
+  $scope.oldNoteContent  = Constants.EMPTY_STRING;
 
   $scope.backToMenu = function () {
+    // Went back before saving, reset markdown content
+    if ($scope.notepadState = Constants.NotepadState.MARKDOWN) {
+      $scope.currentNote.markdown = $scope.oldNoteContent;
+    }
+
     $scope.symplieState = Constants.SymplieState.MENU;
     $scope.notepadState = Constants.NotepadState.VIEW;
     $scope.innerBtnOcticon = Constants.Octicon.PLUS;
+    $scope.selectedElement = Constants.EMPTY_STRING;
+    $scope.unsaved = false;
+
+    // Make sure we haven't left any element inputs on the viewing panel
+    $('.textarea').remove();
   };
 
   // Declarations of functions shared across directives

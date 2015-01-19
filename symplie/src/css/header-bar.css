@@ -9,6 +9,7 @@
     background: #fff;
     box-shadow: 0 5px 5px -5px rgba(0,0,0,0.4);
     height: 26px;
+    overflow: hidden;
     position: relative;
     width: 100%;
     z-index: 20;
@@ -17,9 +18,23 @@
 .header-title {
     color: #333;
     font-family: 'Roboto Light';
+    height: 25px;
     letter-spacing: 0.5em;
     line-height: 26px;
     text-align: center;
+}
+
+.header-title .unsaved-indicator {
+    color: #f2992e;
+    display: inline-block;
+    font-size: 10px;
+    height: 25px;
+    position: relative;
+    top: -3px;
+}
+
+.header-title .unsaved-indicator.hide {
+    visibility: hidden;
 }
 
 .header-back-btn {

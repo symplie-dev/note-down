@@ -16,7 +16,9 @@ module.exports = function() {
       selectedElement: '=',
       createElement:   '=',
       notes:           '=',
-      currentNote:     '='
+      currentNote:     '=',
+      unsaved:         '=',
+      oldNoteContent:  '='
     },
     templateUrl: '/views/partials/symplie-btn.html'
   };
@@ -42,12 +44,14 @@ function ctrl($scope) {
         case Constants.NotepadState.CHOOSE_ELEMENT:
           $scope.notepadState = Constants.NotepadState.MARKDOWN;
           $scope.innerBtnOcticon = Constants.Octicon.EYE;
+          $scope.unsaved = true;
           break;
         case Constants.NotepadState.NEW_ELEMENT:
           $scope.notepadState = Constants.NotepadState.VIEW;
           $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
           $scope.createElement();
           $scope.currentNote.updatedAt = Date.now();
+          $scope.oldNoteContent = $scope.currentNote.markdown;
           break;
         case Constants.NotepadState.MARKDOWN:
           $scope.notepadState = Constants.NotepadState.VIEW;
@@ -56,6 +60,9 @@ function ctrl($scope) {
           // Update model in DB (TODO: Better logic to find out when there is a change)
           $scope.currentNote.updatedAt = Date.now();
           dao.updateNote($scope.currentNote);
+          // Update old note content
+          $scope.oldNoteContent = $scope.currentNote.markdown;
+          $scope.unsaved = false;
           break;
         default:
           console.log('ERROR: Unknown state - ' + $scope.notepadState);

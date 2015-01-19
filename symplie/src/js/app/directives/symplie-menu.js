@@ -10,7 +10,8 @@ module.exports = function() {
       notes:           '=',
       currentNote:     '=',
       symplieState:    '=',
-      innerBtnOcticon: '='
+      innerBtnOcticon: '=',
+      oldNoteContent:  '='
     },
     templateUrl: '/views/partials/symplie-menu.html',
     controller: ctrl,
@@ -26,6 +27,7 @@ function ctrl($scope) {
     $scope.currentNote = note;
     $scope.symplieState = Constants.SymplieState.NOTEPAD;
     $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+    $scope.oldNoteContent = $scope.currentNote.markdown;
   }
 
   $scope.orderByCreatedDate = function () {
