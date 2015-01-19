@@ -140,6 +140,10 @@
     width: 10%;
 }
 
+.note-list-item .note-delete button:hover {
+    background: #ddd;
+}
+
 .note-list-item .note-delete button {
     background: inherit;
     border: none;

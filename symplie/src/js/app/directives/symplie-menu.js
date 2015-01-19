@@ -19,7 +19,7 @@ module.exports = function() {
   };
 };
 
-function ctrl($scope) {
+function ctrl($scope, $rootScope) {
   $scope.order = 'createdAt';
 
   $scope.viewNote = function (note) {
@@ -84,5 +84,10 @@ function ctrl($scope) {
         break;
       }
     }
+
+    // Force angular digest to avoid weird rendering issue where the list item
+    // was only removed after moving the mouse. (Again probably a better way
+    // to accomplish this.)
+    $rootScope.$digest();
   };
 }
