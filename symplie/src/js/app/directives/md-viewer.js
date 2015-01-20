@@ -13,10 +13,13 @@ module.exports = function() {
       selectedElement: '=',
       createElement:   '=',
       unsaved:         '=',
-      oldNoteContent:  '='
+      oldNoteContent:  '=',
+      innerBtnOcticon: '=',
+      notepadState:    '='
     },
     templateUrl: '/views/partials/md-viewer.html',
     link: function ($scope, $element) {
+      $scope.enterPressed = false;
       // TODO: Known defect - if you have multiple identical tasks you will
       // run into issues because javascript .replace replaces first occurrence.
 
@@ -57,6 +60,25 @@ module.exports = function() {
           $scope.oldNoteContent = $scope.note.markdown;
         });
         dao.updateNote($scope.note);
+      });
+
+      $('.md-viewer').on('keyup', '.textarea', function (evt) {
+        if (evt.which == 13) {
+          if ($scope.enterPressed) {
+            $scope.$apply(function () {
+              $scope.notepadState = Constants.NotepadState.VIEW;
+              $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+              $scope.createElement();
+              $scope.note.updatedAt = Date.now();
+              $scope.oldNoteContent = $scope.note.markdown;
+              $scope.enterPressed = false;
+            });
+          } else {
+            $scope.enterPressed = true;
+          }
+        } else {
+          $scope.enterPressed = false;
+        }
       });
     }
   };
