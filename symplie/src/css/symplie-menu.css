@@ -140,11 +140,11 @@
     width: 10%;
 }
 
-.note-list-item .note-delete button:hover {
+.note-list-item .note-delete div:hover {
     background: #ddd;
 }
 
-.note-list-item .note-delete button {
+.note-list-item .note-delete div {
     background: inherit;
     border: none;
     box-sizing: border-box;
@@ -155,8 +155,13 @@
     outline: none;
 }
 
-.note-list-item .note-delete.show button {
+.note-list-item .note-delete.show div {
     display: block;
+}
+
+.note-list-item .note-delete.show div span {
+    display: inline-block;
+    padding: 10px 5px;
 }
 
 .note-list-item .note-select-btn {

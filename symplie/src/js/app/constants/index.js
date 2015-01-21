@@ -3,8 +3,9 @@
 var Constants = {};
 
 Constants.EMPTY_STRING = '';
-Constants.NEW_LINE = '\n';
-Constants.MD_BREAK = '\n\n';
+Constants.NEW_LINE     = '\n';
+Constants.MD_BREAK     = '\n\n';
+Constants.SPACE        = ' ';
 
 Constants.Regex = {};
 Constants.Regex.TASK = /^\s*\[[x ]\]\s*/gm;

@@ -45,6 +45,9 @@ function ctrl($scope) {
           $scope.notepadState = Constants.NotepadState.MARKDOWN;
           $scope.innerBtnOcticon = Constants.Octicon.EYE;
           $scope.unsaved = true;
+          setTimeout(function () {
+            $('textarea.md-editor').focus();
+          }, 400);
           break;
         case Constants.NotepadState.NEW_ELEMENT:
           $scope.notepadState = Constants.NotepadState.VIEW;

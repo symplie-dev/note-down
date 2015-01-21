@@ -17,7 +17,7 @@
       <div class='note-title'>{{note | title}}</div>
       <div class='note-date'>{{note.createdAt | date : 'MMM d, y'}}</div>
       <div class='note-delete'>&nbsp;
-        <button ng-click='deleteNoteFirst($event)'><span class='octicon octicon-trashcan'></span></button>
+        <div ng-click='deleteNoteFirst($event)'><span class='octicon octicon-trashcan'></span></div>
       </div>
       <div class='note-select-btn octicon octicon-chevron-right'></div>
     </div>

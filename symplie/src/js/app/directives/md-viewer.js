@@ -178,11 +178,22 @@ function ctrl($scope) {
   };
 
   $scope.addParagraphToMd = function () {
-    var txt = $('.textarea').text();
+    var $lines = $('.textarea').children(),
+        txt = Constants.EMPTY_STRING;
+
+    txt += getFirstTextNode($('.textarea'));
+
+    $.each($lines, function (index, line) {
+      txt += Constants.NEW_LINE + $(line).text();
+    });
 
     $('.textarea').remove();
     // Update in-memory variables
-    $scope.note.markdown += Constants.MD_BREAK + txt;
+    if ($scope.note.markdown.trim() !== Constants.EMPTY_STRING) {
+      $scope.note.markdown += txt;
+    } else {
+      $scope.note.markdown += Constants.MD_BREAK + txt;
+    }
     $scope.selectedElement = Constants.EMPTY_STRING;
     // Update model in DB
     dao.updateNote($scope.note);
@@ -217,8 +228,10 @@ function ctrl($scope) {
     $('.textarea').remove();
 
     $scope.note.markdown += ((lastChildIsList($('.md-viewer')))
-        ? Constants.NEW_LINE
-        : Constants.MD_BREAK
+        ? Constants.NEW_LINE        // Add current list to existing list
+        : ($scope.note.markdown.trim() !== Constants.EMPTY_STRING)
+          ? Constants.MD_BREAK      // Separate list from previous block element
+          : Constants.EMPTY_STRING  // There is no previous element
       ) + txt;
     $scope.selectedElement = Constants.EMPTY_STRING;
     // Update model in DB
@@ -227,11 +240,21 @@ function ctrl($scope) {
   };
 
   $scope.addHeaderToMd = function () {
-    var txt = $('.textarea').text();
+    var $lines = $('.textarea h3').children(),
+        txt = Constants.EMPTY_STRING;
+
+    txt += getFirstTextNode($('.textarea h3'));
+
+    $.each($lines, function (index, line) {
+      txt += Constants.SPACE + $(line).text();
+    });
 
     $('.textarea').remove();
     // Update in-memory variables
-    $scope.note.markdown += Constants.MD_BREAK + '### ' + txt;
+    $scope.note.markdown += 
+      (($scope.note.markdown.trim() !== Constants.EMPTY_STRING)
+        ? Constants.MD_BREAK      // Separate list from previous block element
+        : Constants.EMPTY_STRING) + '### ' + txt;
     $scope.selectedElement = Constants.EMPTY_STRING;
     // Update model in DB
     dao.updateNote($scope.note);
