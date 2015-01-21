@@ -100,6 +100,11 @@ function ctrl($scope) {
     $scope.selectedElement = Constants.SymplieElement.TODO;
   };
 
+  $scope.newHeaderInput = function () {
+    $scope.newElement();
+    $scope.selectedElement = Constants.SymplieElement.HEADER;
+  };
+
   $scope.newNote = function () {
     var note = {
       markdown:  Constants.EMPTY_STRING,

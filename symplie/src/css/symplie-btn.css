@@ -2,7 +2,7 @@
   bottom: 10px;
   height: 48px;
   position: absolute;
-  right: 10px;
+  left: 201px;
   width: 48px;
   z-index: 10;
 }
@@ -56,14 +56,16 @@
   border: none;
   box-shadow: 0 0 6px rgba(0,0,0,.3);
   color: #fff;
-  font-size: 16px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
   font-weight: bold;
-  height: 32px;
+  height: 30px;
   line-height: 30px;
-  -webkit-transition: left 0.15s linear, top  0.15s linear;
-     -moz-transition: left 0.15s linear, top  0.15s linear;
-          transition: left 0.15s linear, top  0.15s linear;
-  width: 32px;
+  margin: 2px;
+  -webkit-transition: left 0.15s linear, top  0.15s linear, height 0.15s linear;
+     -moz-transition: left 0.15s linear, top  0.15s linear, height 0.15s linear;
+          transition: left 0.15s linear, top  0.15s linear, height 0.15s linear;
+  width: 30px;
   z-index: 5;
 }
 
@@ -79,6 +81,16 @@
   font-size: 14px;
   line-height: 28px;
   width: 31px;
+}
+
+.symplie-btn-wrapper.choose-element .symplie-btn.radial.thirty {
+  left: 80.74652px;
+  top: -34px;
+}
+
+.symplie-btn-wrapper.choose-element .symplie-btn.radial.sixty {
+  left: 50px;
+  top: -64.74652px;
 }
 
 .symplie-btn-wrapper.choose-element .symplie-btn.radial.ninety {
@@ -102,7 +114,7 @@
 }
 
 #header-btn { background: #555; }
-#paragraph-btn { background: #aaa; }
+#paragraph-btn { background: #529ecc; }
 #bullet-btn { background: #f2992e; }
 #todo-btn { background: #56bc8a; }
 #cancel-btn { background: #d95e40; }

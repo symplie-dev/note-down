@@ -26,6 +26,10 @@
   outline: none;
 }
 
+.textarea h3 {
+  outline: none;
+}
+
 .markdown-body.md-viewer ul li.task,
 .markdown-body.md-viewer ul li.bullet,
 .textarea ul li.task,

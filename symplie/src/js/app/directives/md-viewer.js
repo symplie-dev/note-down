@@ -100,6 +100,9 @@ function ctrl($scope) {
       case Constants.SymplieElement.TODO:
         $scope.createToDoInput();
         break;
+      case Constants.SymplieElement.HEADER:
+        $scope.createHeaderInput();
+        break;
       default:
         break;
     }
@@ -142,6 +145,18 @@ function ctrl($scope) {
     $scope.unsaved = true;
   };
 
+  $scope.createHeaderInput = function () {
+    var newHeader = [
+      '<div class="textarea">',
+        '<h3 contentEditable="true"></h3>',
+      '</div>'].join(Constants.EMPTY_STRING);
+
+    $('.md-viewer').append(newHeader);
+
+    $('.textarea h3').focus();
+    $scope.unsaved = true;
+  };
+
   $scope.createElement = function () {
     switch ($scope.selectedElement) {
       case Constants.SymplieElement.PARAGRAPH:
@@ -152,6 +167,9 @@ function ctrl($scope) {
         break;
       case Constants.SymplieElement.TODO:
         $scope.addToDoListToMd();
+        break;
+      case Constants.SymplieElement.HEADER:
+        $scope.addHeaderToMd();
         break;
       default:
         console.log('ERROR: unknown state');
@@ -202,6 +220,18 @@ function ctrl($scope) {
         ? Constants.NEW_LINE
         : Constants.MD_BREAK
       ) + txt;
+    $scope.selectedElement = Constants.EMPTY_STRING;
+    // Update model in DB
+    dao.updateNote($scope.note);
+    $scope.unsaved = false;
+  };
+
+  $scope.addHeaderToMd = function () {
+    var txt = $('.textarea').text();
+
+    $('.textarea').remove();
+    // Update in-memory variables
+    $scope.note.markdown += Constants.MD_BREAK + '### ' + txt;
     $scope.selectedElement = Constants.EMPTY_STRING;
     // Update model in DB
     dao.updateNote($scope.note);

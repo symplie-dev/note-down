@@ -20,6 +20,7 @@ Constants.NotepadState.NEW_ELEMENT    = 'new-element';
 Constants.NotepadState.MARKDOWN       = 'markdown';
 
 Constants.SymplieElement           = {};
+Constants.SymplieElement.HEADER    = 'header';
 Constants.SymplieElement.TODO      = 'to-do';
 Constants.SymplieElement.PARAGRAPH = 'paragraph';
 Constants.SymplieElement.BULLET    = 'bullet';
