@@ -52,69 +52,85 @@
   font-size: 28px;
 }
 
-.symplie-btn.radial {
+.symplie-btn.element-btn {
   border: none;
   box-shadow: 0 0 6px rgba(0,0,0,.3);
   color: #fff;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: bold;
-  height: 30px;
+  height: 32px;
   line-height: 30px;
-  margin: 2px;
   -webkit-transition: left 0.15s linear, top  0.15s linear, height 0.15s linear;
      -moz-transition: left 0.15s linear, top  0.15s linear, height 0.15s linear;
           transition: left 0.15s linear, top  0.15s linear, height 0.15s linear;
-  width: 30px;
+  width: 32px;
   z-index: 5;
 }
 
-.symplie-btn-wrapper.view .symplie-btn.radial,
-.symplie-btn-wrapper.new-element .symplie-btn.radial,
-.symplie-btn-wrapper.markdown .symplie-btn.radial {
+.symplie-btn-wrapper.view .symplie-btn.element-btn,
+.symplie-btn-wrapper.new-element .symplie-btn.element-btn,
+.symplie-btn-wrapper.markdown .symplie-btn.element-btn {
   left: 8px;
   top: 8px;
 }
 
-.symplie-btn-wrapper.choose-element .symplie-btn.radial:active {
+.symplie-btn-wrapper.markdown .symplie-btn.element-btn.one   { left: -126px; }
+.symplie-btn-wrapper.markdown .symplie-btn.element-btn.two   { left: -84px;  }
+.symplie-btn-wrapper.markdown .symplie-btn.element-btn.three { left: -42px;  }
+.symplie-btn-wrapper.markdown .symplie-btn.element-btn.four  { left: 58px;   }
+.symplie-btn-wrapper.markdown .symplie-btn.element-btn.five  { left: 100px;  }
+.symplie-btn-wrapper.markdown .symplie-btn.element-btn.six   { left: 142px;  }
+
+.symplie-btn-wrapper.choose-element .symplie-btn.element-btn:active {
   height: 31px;
   font-size: 14px;
   line-height: 28px;
   width: 31px;
 }
 
-.symplie-btn-wrapper.choose-element .symplie-btn.radial.thirty {
-  left: 80.74652px;
-  top: -34px;
-}
-
-.symplie-btn-wrapper.choose-element .symplie-btn.radial.sixty {
-  left: 50px;
-  top: -64.74652px;
-}
-
-.symplie-btn-wrapper.choose-element .symplie-btn.radial.ninety {
-  left: 8px;
-  top: -74px;
-}
-
-.symplie-btn-wrapper.choose-element .symplie-btn.radial.one-twenty {
-  left: -34px;
-  top: -64.74652px;
-}
-
-.symplie-btn-wrapper.choose-element .symplie-btn.radial.one-fifty {
-  left: -64.74652px;
-  top: -34px;
-}
-
-.symplie-btn-wrapper.choose-element .symplie-btn.radial.one-eighty {
-  left: -76px;
-  top: 8px;
-}
-
-#header-btn { background: #555; }
-#paragraph-btn { background: #529ecc; }
+#header-btn { background: #555;    }
+#link-btn   { background: #529ecc; }
 #bullet-btn { background: #f2992e; }
-#todo-btn { background: #56bc8a; }
-#cancel-btn { background: #d95e40; }
+#task-btn   { background: #56bc8a; }
+#link-btn   { background: #529ecc; }
+#quote-btn  { background: #aaa;    }
+#code-btn   { background: #a77dc2; }
+
+
+/* Pulled and modified from:
+
+Animate.css - http://daneden.me/animate
+Licensed under the MIT license - http://opensource.org/licenses/MIT
+Copyright (c) 2014 Daniel Eden
+*/
+@-webkit-keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transition-timing-function: cubic-bezier(0.0, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    transform: translate3d(0,-4px,0);
+  }
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+  transform-origin: center bottom;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+}

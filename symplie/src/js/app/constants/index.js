@@ -14,17 +14,17 @@ Constants.SymplieState         = {};
 Constants.SymplieState.MENU    = 'menu';
 Constants.SymplieState.NOTEPAD = 'notepad';
 
-Constants.NotepadState                = {};
-Constants.NotepadState.VIEW           = 'view';
-Constants.NotepadState.CHOOSE_ELEMENT = 'choose-element';
-Constants.NotepadState.NEW_ELEMENT    = 'new-element';
-Constants.NotepadState.MARKDOWN       = 'markdown';
+Constants.NotepadState          = {};
+Constants.NotepadState.VIEW     = 'view';
+Constants.NotepadState.MARKDOWN = 'markdown';
 
-Constants.SymplieElement           = {};
-Constants.SymplieElement.HEADER    = 'header';
-Constants.SymplieElement.TODO      = 'to-do';
-Constants.SymplieElement.PARAGRAPH = 'paragraph';
-Constants.SymplieElement.BULLET    = 'bullet';
+Constants.SymplieElement        = {};
+Constants.SymplieElement.HEADER = 'header';
+Constants.SymplieElement.TASK   = 'task';
+Constants.SymplieElement.BULLET = 'bullet';
+Constants.SymplieElement.LINK   = 'link';
+Constants.SymplieElement.QUOTE  = 'quote';
+Constants.SymplieElement.CODE   = 'code';
 
 Constants.Octicon          = {};
 Constants.Octicon.CHECK    = 'octicon-check';
@@ -34,9 +34,13 @@ Constants.Octicon.MARKDOWN = 'octicon-markdown';
 Constants.Octicon.PENCIL   = 'octicon-pencil';
 Constants.Octicon.PLUS     = 'octicon-plus';
 
-Constants.Markdown             = {}
-Constants.Markdown.BULLET_LIST = '* ';
-Constants.Markdown.TODO_LIST   = '* [ ] ';
+Constants.Markdown        = {}
+Constants.Markdown.HEADER = '#### ';
+Constants.Markdown.BULLET = '* ';
+Constants.Markdown.TASK   = '* [ ] ';
+Constants.Markdown.QUOTE  = '> ';
+Constants.Markdown.CODE   = '```language\n\n```\n';
+Constants.Markdown.LINK   = '[text](address)';
 
 Constants.WELCOME_NOTE = [
 '#### Welcome to Symplie',
@@ -76,6 +80,12 @@ Constants.EMPTY_STRING,
 Constants.EMPTY_STRING,
 '---',
 Constants.EMPTY_STRING,
+'#### Editing an Example Note',
+Constants.EMPTY_STRING,
+'![Editing Note][5]',
+Constants.EMPTY_STRING,
+'---',
+Constants.EMPTY_STRING,
 '* [x] Download Symplie',
 '* [ ] Write your first note with Symplie',
 Constants.EMPTY_STRING,
@@ -85,8 +95,9 @@ Constants.EMPTY_STRING,
 Constants.EMPTY_STRING,
 '[1]: http://daringfireball.net/projects/markdown/ "Markdown"',
 '[2]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Cheatsheet"',
-'[3]: https://33.media.tumblr.com/d6292b80f0f96d7dbd6fd520028cc183/tumblr_nifuyiUflw1tpna2go1_250.gif "Quick Edit"',
-'[4]: https://github.com/ "GitHub"'
+'[3]: https://31.media.tumblr.com/27e6735c01e1b534a10dc70fb0f3501a/tumblr_inline_nir9kqKlNJ1sx0sfq.gif "Quick Edit"',
+'[4]: https://github.com/ "GitHub"',
+'[5]: https://31.media.tumblr.com/444d12729dc6a5e814253ea6a44aa79c/tumblr_inline_nira1bnOjt1sx0sfq.gif "Example Edit"'
 ].join(Constants.NEW_LINE);
 
 module.exports = Constants;

@@ -26,19 +26,18 @@ module.exports = function($scope) {
   $scope.selectedElement = Constants.EMPTY_STRING;
   $scope.innerBtnOcticon = Constants.Octicon.PLUS;
   $scope.unsaved         = false;
-  $scope.oldNoteContent  = Constants.EMPTY_STRING;
 
   $scope.backToMenu = function () {
     // Went back before saving, reset markdown content
-    if ($scope.notepadState = Constants.NotepadState.MARKDOWN) {
-      $scope.currentNote.markdown = $scope.oldNoteContent;
-    }
-
     $scope.symplieState = Constants.SymplieState.MENU;
     $scope.notepadState = Constants.NotepadState.VIEW;
     $scope.innerBtnOcticon = Constants.Octicon.PLUS;
     $scope.selectedElement = Constants.EMPTY_STRING;
     $scope.unsaved = false;
+
+    $scope.currentNote.updatedAt = Date.now();
+    $scope.currentNote.updatedAt = Date.now();
+    dao.updateNote($scope.currentNote);
 
     // Make sure we haven't left any element inputs on the viewing panel
     $('.textarea').remove();
@@ -46,4 +45,5 @@ module.exports = function($scope) {
 
   // Declarations of functions shared across directives
   $scope.createElement = function () {};
+  $scope.addMarkdownElement = function () {};
 };

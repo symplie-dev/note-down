@@ -10,8 +10,7 @@ module.exports = function() {
       notes:           '=',
       currentNote:     '=',
       symplieState:    '=',
-      innerBtnOcticon: '=',
-      oldNoteContent:  '='
+      innerBtnOcticon: '='
     },
     templateUrl: '/views/partials/symplie-menu.html',
     controller: ctrl,

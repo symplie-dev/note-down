@@ -3,19 +3,28 @@
     <span class='octicon large {{innerBtnOcticon}}'></span>
   </button>
 
-  <button id='paragraph-btn' class='symplie-btn radial one-twenty' ng-click='newParagraphInput()'>
-    Aa
+  <button id='header-btn' class='symplie-btn element-btn one'
+      ng-click='bounceBtn($event); addMarkdownElement("header")'>
+    H
   </button>
-  <button id='todo-btn' class='symplie-btn radial ninety' ng-click='newToDoInput()'>
-    <span class="octicon octicon-check"></span>
-  </button>
-  <button id='bullet-btn' class='symplie-btn radial sixty' ng-click='newBulletInput()'>
+  <button id='bullet-btn' class='symplie-btn element-btn two'
+      ng-click='bounceBtn($event); addMarkdownElement("bullet")'>
     <span class="octicon octicon-primitive-dot"></span>
   </button>
-  <button id='cancel-btn' class='symplie-btn radial thirty' ng-click='cancelChooseElement()'>
-    <span class="octicon octicon-x"></span>
+  <button id='task-btn' class='symplie-btn element-btn three'
+      ng-click='bounceBtn($event); addMarkdownElement("task")'>
+    <span class="octicon octicon-check"></span>
   </button>
-  <button id='header-btn' class='symplie-btn radial one-fifty' ng-click='newHeaderInput()'>
-    H
+  <button id='link-btn' class='symplie-btn element-btn four'
+      ng-click='bounceBtn($event); addMarkdownElement("link")'>
+    <span class="octicon octicon-link"></span>
+  </button>
+  <button id='quote-btn' class='symplie-btn element-btn five'
+      ng-click='bounceBtn($event); addMarkdownElement("quote")'>
+    <span class="octicon octicon-quote"></span>
+  </button>
+  <button id='code-btn' class='symplie-btn element-btn six'
+      ng-click='bounceBtn($event); addMarkdownElement("code")'>
+    <span class="octicon octicon-code"></span>
   </button>
 </div>

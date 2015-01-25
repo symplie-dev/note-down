@@ -86,3 +86,12 @@
 .markdown-body.md-viewer ul li ul li ul li.bullet:before {
   content: '\f053';
 }
+
+.markdown-body.md-viewer ul {
+  margin-left: 0;
+  padding-left: 8px;
+}
+
+.markdown-body.md-viewer ul li ul {
+  padding-left: 2em;
+}

@@ -8,6 +8,7 @@
     <link href='/dist/bundle.min.css' rel='stylesheet'>
     <!-- Scripts -->
     <script src='/src/js/lib/jquery.min.js'></script>
+    <script src='/src/js/lib/jquery.caret.js'></script>
     <script src='/src/js/lib/angular.min.js'></script>
     <script src='/src/js/lib/angular-sanitize.min.js'></script>
     <script src='/dist/bundle.js'></script>
@@ -28,8 +29,7 @@
             notes='notes'
             current-note='currentNote'
             symplie-state='symplieState'
-            inner-btn-octicon='innerBtnOcticon'
-            old-note-content='oldNoteContent'></div>
+            inner-btn-octicon='innerBtnOcticon'></div>
         </div>
         <div class='symplie-note-wrapper'>
           <div class='symplie-note-pnl {{(notepadState == "markdown") ? "flipped" : ""}}'>
@@ -38,12 +38,13 @@
                 selected-element='selectedElement'
                 create-element='createElement'
                 unsaved='unsaved'
-                old-note-content='oldNoteContent'
                 inner-btn-octicon='innerBtnOcticon'
                 notepad-state='notepadState'></div>
             </figure>
             <figure class='back'>
-              <md-editor note='currentNote'></md-editor>
+              <md-editor note='currentNote'
+                add-markdown-element='addMarkdownElement'
+                unsaved='unsaved'></md-editor>
             </figure>
           </div>
         </div>
@@ -52,12 +53,10 @@
         symplie-state='symplieState'
         notepad-state='notepadState'
         inner-btn-octicon='innerBtnOcticon'
-        selected-element='selectedElement'
-        create-element='createElement'
         notes='notes'
         current-note='currentNote'
-        unsaved='unsaved'
-        old-note-content='oldNoteContent'></div>
+        add-markdown-element='addMarkdownElement'
+        unsaved='unsaved'></div>
     </div>
   </body>
 </html>

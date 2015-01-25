@@ -10,15 +10,13 @@ module.exports = function() {
     replace: true,
     restrict: 'EA',
     scope: {
-      symplieState:    '=',
-      notepadState:    '=',
-      innerBtnOcticon: '=',
-      selectedElement: '=',
-      createElement:   '=',
-      notes:           '=',
-      currentNote:     '=',
-      unsaved:         '=',
-      oldNoteContent:  '='
+      symplieState:       '=',
+      notepadState:       '=',
+      innerBtnOcticon:    '=',
+      notes:              '=',
+      currentNote:        '=',
+      addMarkdownElement: '=',
+      unsaved:            '='
     },
     templateUrl: '/views/partials/symplie-btn.html'
   };
@@ -30,41 +28,28 @@ function ctrl($scope) {
    * dependent on the current notepadState.
    */
   $scope.centerBtnHandler = function () {
-    if ($scope.symplieState == Constants.SymplieState.MENU) {
+    if ($scope.symplieState === Constants.SymplieState.MENU) {
       $scope.newNote();
       $scope.symplieState = Constants.SymplieState.NOTEPAD;
-      $scope.innerBtnOcticon = Constants.Octicon.MARKDOWN;
-      $scope.notepadState = Constants.NotepadState.CHOOSE_ELEMENT;
+      $scope.innerBtnOcticon = Constants.Octicon.EYE;
+      $scope.notepadState = Constants.NotepadState.MARKDOWN;
     } else if ($scope.symplieState == Constants.SymplieState.NOTEPAD) {
       switch ($scope.notepadState) {
         case Constants.NotepadState.VIEW:
-          $scope.notepadState = Constants.NotepadState.CHOOSE_ELEMENT;
-          $scope.innerBtnOcticon = Constants.Octicon.MARKDOWN;
-          break;
-        case Constants.NotepadState.CHOOSE_ELEMENT:
           $scope.notepadState = Constants.NotepadState.MARKDOWN;
           $scope.innerBtnOcticon = Constants.Octicon.EYE;
-          $scope.unsaved = true;
+          // Grab focus *after* the default behavior of the button click occurs
           setTimeout(function () {
-            $('textarea.md-editor').focus();
-          }, 400);
-          break;
-        case Constants.NotepadState.NEW_ELEMENT:
-          $scope.notepadState = Constants.NotepadState.VIEW;
-          $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
-          $scope.createElement();
-          $scope.currentNote.updatedAt = Date.now();
-          $scope.oldNoteContent = $scope.currentNote.markdown;
+            $('.md-editor').focus();
+          }, 200);
           break;
         case Constants.NotepadState.MARKDOWN:
           $scope.notepadState = Constants.NotepadState.VIEW;
           $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
-          $scope.currentNote.updatedAt = Date.now();
           // Update model in DB (TODO: Better logic to find out when there is a change)
           $scope.currentNote.updatedAt = Date.now();
+          $scope.currentNote.updatedAt = Date.now();
           dao.updateNote($scope.currentNote);
-          // Update old note content
-          $scope.oldNoteContent = $scope.currentNote.markdown;
           $scope.unsaved = false;
           break;
         default:
@@ -76,36 +61,6 @@ function ctrl($scope) {
     } else {
       console.log('ERROR: unknown state - ' + $scope.symplieState);
     }
-  };
-
-  $scope.cancelChooseElement = function () {
-    $scope.notepadState = Constants.NotepadState.VIEW;
-    $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
-  };
-
-  $scope.newElement = function () {
-    $scope.notepadState = Constants.NotepadState.NEW_ELEMENT;
-    $scope.innerBtnOcticon = Constants.Octicon.PLUS;
-  };
-
-  $scope.newParagraphInput = function () {
-    $scope.newElement();
-    $scope.selectedElement = Constants.SymplieElement.PARAGRAPH;
-  };
-
-  $scope.newBulletInput = function () {
-    $scope.newElement();
-    $scope.selectedElement = Constants.SymplieElement.BULLET;
-  };
-
-  $scope.newToDoInput = function () {
-    $scope.newElement();
-    $scope.selectedElement = Constants.SymplieElement.TODO;
-  };
-
-  $scope.newHeaderInput = function () {
-    $scope.newElement();
-    $scope.selectedElement = Constants.SymplieElement.HEADER;
   };
 
   $scope.newNote = function () {
@@ -122,4 +77,18 @@ function ctrl($scope) {
 
     $scope.currentNote = $scope.notes[$scope.notes.length - 1];
   };
+
+  $scope.bounceBtn = function ($event) {
+    if ($(event.target).hasClass('octicon')) {
+      $($event.target).parent().addClass('bounce animated')
+        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+          $(this).removeClass('bounce animated');
+        });
+    } else {
+      $($event.target).addClass('bounce animated')
+        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+          $(this).removeClass('bounce animated');
+        });
+    }
+  }
 };
