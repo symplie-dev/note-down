@@ -35,7 +35,7 @@ Constants.Octicon.PENCIL   = 'octicon-pencil';
 Constants.Octicon.PLUS     = 'octicon-plus';
 
 Constants.Markdown        = {}
-Constants.Markdown.HEADER = '#### ';
+Constants.Markdown.HEADER = '### ';
 Constants.Markdown.BULLET = '* ';
 Constants.Markdown.TASK   = '* [ ] ';
 Constants.Markdown.QUOTE  = '> ';

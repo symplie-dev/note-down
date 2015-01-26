@@ -19,6 +19,8 @@ module.exports = function() {
 
 function ctrl($scope) {
   $scope.addMarkdownElement = function (type) {
+    $scope.unsaved = true;
+    
     switch (type) {
       case Constants.SymplieElement.HEADER:
         $scope.addHeader();
@@ -54,23 +56,26 @@ function ctrl($scope) {
   };
 
   $scope.addHeader = function () {
-    var pos          = $('.md-editor').caret(),
-        currMarkdown = $scope.note.markdown.replace(/[ \t\f\v]/gm, '');
+    var $input       = $('.md-editor'),
+        pos          = $input.caret(),
+        currMarkdown = $scope.note.markdown.replace(/[ \t\f\v]/gm, ''),
+        txt          = $input.val(),
+        preTxt       = txt.substring(0, pos),
+        preLines     = prevLines(preTxt),
+        txtToInsert  = Constants.EMPTY_STRING;
 
-    $scope.note.markdown = $scope.note.markdown.substring(0, pos) +
-      ((pos - 1 < 0 ||
-        currMarkdown.charAt(pos - 1) === Constants.NEW_LINE)
-        ? Constants.EMPTY_STRING
-        : Constants.NEW_LINE
-      ) +
-      ((pos - 2 < 0 ||
-        currMarkdown.charAt(pos - 2) === Constants.NEW_LINE)
-        ? Constants.EMPTY_STRING
-        : Constants.NEW_LINE
-      ) +
-      Constants.Markdown.HEADER +
-      $scope.note.markdown.substring(pos, $scope.note.markdown.length);
-    $('.md-editor').focus();
+    if (preLines.currLine !== null &&
+        preLines.currLine !== Constants.EMPTY_STRING) {
+      txtToInsert += Constants.MD_BREAK;
+    } else if (preLines.prevLine !== null &&
+        preLines.prevLine !== Constants.EMPTY_STRING) {
+      txtToInsert += Constants.NEW_LINE;
+    }
+    
+    txtToInsert += Constants.Markdown.HEADER;
+
+    $input.val(txt.slice(0,pos) + txtToInsert + txt.slice(pos, txt.length));
+    $input.caret(pos + txtToInsert.length);
   };
 
   $scope.addListItem = function (type) {
