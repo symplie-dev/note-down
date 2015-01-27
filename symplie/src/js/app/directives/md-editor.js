@@ -1,6 +1,15 @@
 'use strict';
 
-var Constants = require('../constants');
+var Constants = require('../constants'),
+    cursorAlter = [Constants.KeyCode.PAGE_UP
+                  ,Constants.KeyCode.PAGE_DOWN
+                  ,Constants.KeyCode.END 
+                  ,Constants.KeyCode.HOME
+                  ,Constants.KeyCode.LEFT_ARROW
+                  ,Constants.KeyCode.RIGHT_ARROW 
+                  ,Constants.KeyCode.UP_ARROW 
+                  ,Constants.KeyCode.DOWN_ARROW
+                  ,Constants.KeyCode.INSERT];
 
 module.exports = function() {
   return {
@@ -18,6 +27,9 @@ module.exports = function() {
 };
 
 function ctrl($scope) {
+  $scope.tabAdvance     = false;
+  $scope.tabAdvanceType = '';
+
   $scope.addMarkdownElement = function (type) {
     $scope.unsaved = true;
     
@@ -132,6 +144,9 @@ function ctrl($scope) {
 
     $input.val(txt.slice(0, pos) + txtToInsert + txt.slice(pos, txt.length));
     $input.range(pos + caretIncr, pos + caretIncr + 'language'.length);
+
+     $scope.tabAdvance = true;
+    $scope.tabAdvanceType = 'code';
   };
 
   $scope.addLink = function () {
@@ -154,6 +169,9 @@ function ctrl($scope) {
 
     $input.val(txt.slice(0, pos) + txtToInsert + txt.slice(pos, txt.length));
     $input.range(pos + caretIncr, pos + caretIncr + 'text'.length);
+
+    $scope.tabAdvance = true;
+    $scope.tabAdvanceType = 'link';
   };
 
   $scope.addQuote = function () {
@@ -187,6 +205,47 @@ function ctrl($scope) {
     
     $input.val(txt.slice(0,pos) + txtToInsert + txt.slice(pos, txt.length));
     $input.caret(pos + txtToInsert.length);
+  };
+
+  $scope.handleKeyDown = function ($event) {
+    if (cursorAlter.indexOf($event.keyCode) >= 0) {
+      $scope.tabAdvance = false;
+    } else {
+      switch ($event.keyCode) {
+        case Constants.KeyCode.TAB:
+          console.log('tab')
+          $scope.tab();
+          $event.preventDefault();
+          break;
+        case Constants.KeyCode.BACKSPACE:
+          $scope.unsaved = true;
+          break;
+        case Constants.KeyCode.DELETE:
+          $scope.unsaved = true;
+          $scope.tabAdvance = false;
+          break;
+        default:
+          $scope.unsaved = true;
+          break;
+      }
+    }
+  };
+
+  $scope.tab = function () {
+    var $input = $('.md-editor'),
+        txt    = txt = $input.val(),
+        pos    = $input.range().end,
+        start  = ($scope.tabAdvanceType === 'link')
+                  ? ']('.length
+                  : '\n'.length,
+        end    = ($scope.tabAdvanceType === 'link')
+                  ? '](address'.length
+                  : start;
+
+    if ($scope.tabAdvance) {
+      $scope.tabAdvance = false;
+      $input.range(pos + start, pos + end)
+    }
   };
 }
 

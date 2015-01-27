@@ -2,10 +2,11 @@
 
 var Constants = {};
 
-Constants.EMPTY_STRING = '';
-Constants.NEW_LINE     = '\n';
-Constants.MD_BREAK     = '\n\n';
-Constants.SPACE        = ' ';
+Constants.EMPTY_STRING  = '';
+Constants.NEW_LINE      = '\n';
+Constants.MD_BREAK      = '\n\n';
+Constants.SPACE         = ' ';
+Constants.TAB_TO_SPACES = '    ';
 
 Constants.Regex = {};
 Constants.Regex.TASK = /^\s*\[[x ]\]\s*/gm;
@@ -41,6 +42,21 @@ Constants.Markdown.TASK   = '* [ ] ';
 Constants.Markdown.QUOTE  = '> ';
 Constants.Markdown.CODE   = '```language\n\n```\n';
 Constants.Markdown.LINK   = '[text](address)';
+
+Constants.KeyCode = {};
+Constants.KeyCode.BACKSPACE   = 8;
+Constants.KeyCode.TAB         = 9;
+Constants.KeyCode.ENTER       = 13;
+Constants.KeyCode.PAGE_UP     = 33;
+Constants.KeyCode.PAGE_DOWN   = 34;
+Constants.KeyCode.END         = 35;
+Constants.KeyCode.HOME        = 36;
+Constants.KeyCode.LEFT_ARROW  = 37;
+Constants.KeyCode.RIGHT_ARROW = 38;
+Constants.KeyCode.UP_ARROW    = 39;
+Constants.KeyCode.DOWN_ARROW  = 40;
+Constants.KeyCode.INSERT      = 45;
+Constants.KeyCode.DELETE      = 46;
 
 Constants.WELCOME_NOTE = [
 '#### Welcome to Symplie',
