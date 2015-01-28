@@ -33,15 +33,13 @@ function ctrl($scope) {
       $scope.symplieState = Constants.SymplieState.NOTEPAD;
       $scope.innerBtnOcticon = Constants.Octicon.EYE;
       $scope.notepadState = Constants.NotepadState.MARKDOWN;
+      $scope.focusMdEditor();
     } else if ($scope.symplieState == Constants.SymplieState.NOTEPAD) {
       switch ($scope.notepadState) {
         case Constants.NotepadState.VIEW:
           $scope.notepadState = Constants.NotepadState.MARKDOWN;
           $scope.innerBtnOcticon = Constants.Octicon.EYE;
-          // Grab focus *after* the default behavior of the button click occurs
-          setTimeout(function () {
-            $('.md-editor').focus();
-          }, 200);
+          $scope.focusMdEditor();
           break;
         case Constants.NotepadState.MARKDOWN:
           $scope.notepadState = Constants.NotepadState.VIEW;
@@ -90,5 +88,11 @@ function ctrl($scope) {
           $(this).removeClass('bounce animated');
         });
     }
-  }
+  };
+
+  $scope.focusMdEditor = function () {
+    setTimeout(function () {
+      $('.md-editor').focus();
+    }, 200);
+  };
 };
