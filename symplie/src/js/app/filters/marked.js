@@ -2,11 +2,16 @@
 
 var marked    = require('marked'),
     Constants = require('../constants'),
-    renderer  = require('./renderer');
+    renderer  = require('./renderer'),
+    hljs      = require('highlight.js');
 
 marked.setOptions({
-  highlight: function (code) {
-    return require('highlight.js').highlightAuto(code).value;
+  highlight: function (code, lang) {
+    if (hljs.listLanguages().indexOf(lang) >= 0) {
+      return hljs.highlight(lang, code, true).value;
+    }
+              
+    return code;
   }
 });
 
