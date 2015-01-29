@@ -19,7 +19,7 @@
     "https://www.googleapis.com/"
   ],
   "oauth2": {
-    "client_id": "437178975982-gjmpe35c5ac50db5m8n83um4q4339c71.apps.googleusercontent.com",
+    "client_id": "437178975982-0439jj9j5l8mvk3q6va09lr8o22ub7e0.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/plus.login",
       "https://www.googleapis.com/auth/chromewebstore.readonly"
