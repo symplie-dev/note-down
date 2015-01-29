@@ -8,6 +8,13 @@ Constants.MD_BREAK      = '\n\n';
 Constants.SPACE         = ' ';
 Constants.TAB_TO_SPACES = '    ';
 
+Constants.CwsLicense                     = {};
+Constants.CwsLicense.LICENSE_API_URL   = 'https://www.googleapis.com/chromewebstore/v1.1/userlicenses/';
+Constants.CwsLicense.FULL              = 'FULL';
+Constants.CwsLicense.FREE_TRIAL        = 'FREE_TRIAL';
+Constants.CwsLicense.NONE              = 'NONE';
+Constants.CwsLicense.FREE_TRIAL_LENGTH = 7;
+
 Constants.Regex = {};
 Constants.Regex.TASK = /^\s*\[[x ]\]\s*/gm;
 
@@ -57,6 +64,12 @@ Constants.KeyCode.UP_ARROW    = 39;
 Constants.KeyCode.DOWN_ARROW  = 40;
 Constants.KeyCode.INSERT      = 45;
 Constants.KeyCode.DELETE      = 46;
+
+Constants.LicenceCopy            = {};
+Constants.LicenceCopy.TITLE      = 'Trial Expired';
+Constants.LicenceCopy.MESSAGE    = 'Your free trial period has expired. Please purchase a license in the chrome webstore';
+Constants.LicenceCopy.OK_BTN     = 'Purchase';
+Constants.LicenceCopy.CANCEL_BTN = 'Export Notes';
 
 Constants.WELCOME_NOTE = [
 '#### Welcome to Symplie',
