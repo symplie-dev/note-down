@@ -1,7 +1,8 @@
 'use strict';
 
 var Constants = require('../constants'),
-    dao       = require('../database');
+    dao       = require('../database'),
+    Utils     = require('../utils');
 
 module.exports = function($scope) {
   $scope.notes = [];
@@ -27,6 +28,11 @@ module.exports = function($scope) {
   $scope.innerBtnOcticon = Constants.Octicon.PLUS;
   $scope.unsaved         = false;
 
+  $scope.popUpTitle     = Constants.LicenceCopy.TITLE;
+  $scope.popUpMessage   = Constants.LicenceCopy.MESSAGE;
+  $scope.popUpOkBtn     = Constants.LicenceCopy.OK_BTN;
+  $scope.popUpCancelBtn = Constants.LicenceCopy.CANCEL_BTN;
+
   $scope.backToMenu = function () {
     // Went back before saving, reset markdown content
     $scope.symplieState = Constants.SymplieState.MENU;
@@ -46,4 +52,11 @@ module.exports = function($scope) {
   // Declarations of functions shared across directives
   $scope.createElement = function () {};
   $scope.addMarkdownElement = function () {};
+
+  // Asynchronously Check License
+  Utils.getCwsLicense().then(function (license) {
+    Utils.verifyLicense(license);
+  }).catch(function (err) {
+    console.log(err);
+  });
 };

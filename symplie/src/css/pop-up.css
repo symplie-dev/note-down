@@ -1,0 +1,108 @@
+.pop-up-wrapper {
+  background: rgba(0,0,0,0.7);
+  display: none;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 500;
+}
+
+.pop-up-inner-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.pop-up {
+  background: #fff;
+  border-radius: 4px;
+  font-family: Helvetica;
+  height: 180px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  width: 230px;
+}
+
+.pop-up h2 {
+  font-size: 28px;
+  font-weight: bold;
+  padding: 20px 0;
+}
+
+.button-group {
+  margin-top: 19.92px;
+}
+
+.pop-up-btn {
+  background: none;
+  border: none;
+  border-radius: 4px;
+  -box-shadow: box-shadow: 0 0 4px rgba(0,0,0,.3);
+  box-shadow: 0 0 4px rgba(0,0,0,.3);
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  outline: none;
+  width: 100px;
+}
+
+.pop-up-btn:hover {
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+.pop-up-btn.ok-btn {
+  background: #56bc8a;
+  color: #fff;
+}
+
+.pop-up-btn.cancel-btn {
+  border: 1px solid #333;
+  color: #333;
+}
+
+/* Animate.CSS bounce-in
+------------------------------------------------------------------------------*/
+/*
+Animate.css - http://daneden.me/animate
+Licensed under the MIT license - http://opensource.org/licenses/MIT
+Copyright (c) 2014 Daniel Eden
+*/
+@-webkit-keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(.9, .9, .9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    transform: scale3d(.97, .97, .97);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.bounceIn {
+  -webkit-animation-name: bounceIn;
+  -webkit-animation-duration: .75s;
+}

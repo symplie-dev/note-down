@@ -74,3 +74,10 @@
 .symplie-note-pnl .back { z-index: 0; }
 .symplie-note-pnl.flipped .front { z-index: 0; }
 .symplie-note-pnl.flipped .back { z-index: 1; }
+
+/* Common to all animations
+------------------------------------------------------------------------------*/
+.animated {
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+}
