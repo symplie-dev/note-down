@@ -6,10 +6,12 @@
                 {{message}}
             </p>
             <div class='button-group'>
-                <button class='pop-up-btn ok-btn purchase'>
+                <button class='pop-up-btn ok-btn purchase' ng-click='okBtnAction()'>
                     {{okBtnLbl}}
                 </button>
-                <button class='pop-up-btn cancel-btn export'>{{cancelBtnLbl}}</button>
+                <button class='pop-up-btn cancel-btn export' ng-click='cancelBtnAction()'>
+                    {{cancelBtnLbl}}
+                </button>
             </div>
         </div>
     </div>

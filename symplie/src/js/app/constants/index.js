@@ -8,12 +8,16 @@ Constants.MD_BREAK      = '\n\n';
 Constants.SPACE         = ' ';
 Constants.TAB_TO_SPACES = '    ';
 
-Constants.CwsLicense                     = {};
-Constants.CwsLicense.LICENSE_API_URL   = 'https://www.googleapis.com/chromewebstore/v1.1/userlicenses/';
-Constants.CwsLicense.FULL              = 'FULL';
-Constants.CwsLicense.FREE_TRIAL        = 'FREE_TRIAL';
-Constants.CwsLicense.NONE              = 'NONE';
-Constants.CwsLicense.FREE_TRIAL_LENGTH = 7;
+Constants.CHROME_WEB_STORE = 'https://chrome.google.com/webstore/detail/symplie/kjadigajmcobihfbbhmdeljohoccbejk';
+
+Constants.CwsLicense                    = {};
+Constants.CwsLicense.LICENSE_API_URL    = 'https://www.googleapis.com/chromewebstore/v1.1/userlicenses/';
+Constants.CwsLicense.FULL               = 'FULL';
+Constants.CwsLicense.FREE_TRIAL         = 'FREE_TRIAL';
+Constants.CwsLicense.NONE               = 'NONE';
+Constants.CwsLicense.FREE_TRIAL_LENGTH  = 7;
+Constants.CwsLicense.FULL_CACHE_LENGTH  = 10;
+Constants.CwsLicense.TRIAL_CACHE_LENGTH = 0.5;
 
 Constants.Regex = {};
 Constants.Regex.TASK = /^\s*\[[x ]\]\s*/gm;

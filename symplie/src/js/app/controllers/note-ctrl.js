@@ -28,10 +28,10 @@ module.exports = function($scope) {
   $scope.innerBtnOcticon = Constants.Octicon.PLUS;
   $scope.unsaved         = false;
 
-  $scope.popUpTitle     = Constants.LicenceCopy.TITLE;
-  $scope.popUpMessage   = Constants.LicenceCopy.MESSAGE;
-  $scope.popUpOkBtn     = Constants.LicenceCopy.OK_BTN;
-  $scope.popUpCancelBtn = Constants.LicenceCopy.CANCEL_BTN;
+  $scope.popUpTitle        = Constants.LicenceCopy.TITLE;
+  $scope.popUpMessage      = Constants.LicenceCopy.MESSAGE;
+  $scope.popUpOkBtn        = Constants.LicenceCopy.OK_BTN;
+  $scope.popUpCancelBtn    = Constants.LicenceCopy.CANCEL_BTN;
 
   $scope.backToMenu = function () {
     // Went back before saving, reset markdown content
@@ -53,10 +53,26 @@ module.exports = function($scope) {
   $scope.createElement = function () {};
   $scope.addMarkdownElement = function () {};
 
+  $scope.goToChromeWebStore = function () {
+    var win = window.open(Constants.CHROME_WEB_STORE, '_blank');
+    win.focus();
+  };
+
+  $scope.exportNotesAsJson = function () {
+    var jsonStr = JSON.stringify($scope.notes),
+        // win = window.open('data:json;charset=utf-8,' + jsonStr, '_blank');
+        win = window.open('data:application/json;' +
+                (window.btoa
+                  ? 'base64,' + btoa(jsonStr)
+                  : jsonStr));
+
+    win.focus();
+  };
+
+  // Initialize pop-up actions
+  $scope.popUpOkAction     = $scope.goToChromeWebStore;
+  $scope.popUpCancelAction = $scope.exportNotesAsJson;
+
   // Asynchronously Check License
-  Utils.getCwsLicense().then(function (license) {
-    Utils.verifyLicense(license);
-  }).catch(function (err) {
-    console.log(err);
-  });
+  setTimeout(Utils.checkCwsLicense, 3000);
 };

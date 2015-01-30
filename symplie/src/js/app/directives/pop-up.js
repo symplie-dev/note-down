@@ -9,10 +9,12 @@ module.exports = function() {
     replace: true,
     restrict: 'EA',
     scope: {
-      title:        '=',
-      message:      '=',
-      okBtnLbl:     '=',
-      cancelBtnLbl: '='
+      title:           '=',
+      message:         '=',
+      okBtnLbl:        '=',
+      cancelBtnLbl:    '=',
+      okBtnAction:     '=',
+      cancelBtnAction: '='
     },
     templateUrl: '/views/partials/pop-up.html',
     link: function ($scope, $element) { }
