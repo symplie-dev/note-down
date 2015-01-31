@@ -41,6 +41,8 @@
   margin-top: 20px;
 }
 
+.button-group.hide { display: none; }
+
 .pop-up-btn {
   background: none;
   border: none;

@@ -121,15 +121,11 @@ Utils.getCachedCwsLicense = function () {
 
 Utils.signInCredentialsNotification = function ($scope) {
   $scope.$apply(function () {
-    $scope.popUpTitle     = Constants.SignInCopy.TITLE;
-    $scope.popUpMessage   = Constants.SignInCopy.INVALID_MESSAGE;
-    $scope.popUpOkBtn     = Constants.SignInCopy.OK_BTN;
-    $scope.popUpCancelBtn = Constants.SignInCopy.CANCEL_BTN;
+    $scope.popUpTitle     = Constants.InvalidCredentials.TITLE;
+    $scope.popUpMessage   = Constants.InvalidCredentials.INVALID_MESSAGE;
+    $scope.popUpOkBtn     = Constants.InvalidCredentials.OK_BTN;
+    $scope.popUpCancelBtn = Constants.InvalidCredentials.CANCEL_BTN;
     // Recheck in the license in interactive mode so that the user can sign in.
-    $scope.popUpOkAction  = function () { 
-      var win = window.open('chrome://chrome-signin/');
-      win.focus();
-    };
     $('.pop-up-wrapper').css('display', 'table');
   });
 };

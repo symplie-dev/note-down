@@ -76,10 +76,15 @@ Constants.LicenceCopy.MESSAGE    = 'Your free trial period has expired. Please p
 Constants.LicenceCopy.OK_BTN     = 'Purchase';
 Constants.LicenceCopy.CANCEL_BTN = 'Export Notes';
 
+Constants.InvalidCredentials            = {};
+Constants.InvalidCredentials.TITLE      = 'Sign In';
+Constants.InvalidCredentials.MESSAGE    = 'You must be signed into Chrome with the account you used to purchase Symplie. Go to chrome://chrome-signin to sign in.';
+Constants.InvalidCredentials.OK_BTN     = null;
+Constants.InvalidCredentials.CANCEL_BTN = null;
+
 Constants.SignInCopy            = {};
 Constants.SignInCopy.TITLE      = 'Sign In';
 Constants.SignInCopy.MESSAGE    = 'You must be signed into Chrome and connected to the internet in order to confirm your license.';
-Constants.SignInCopy.INVALID_MESSAGE = 'You must be signed into Chrome with the account you used to purchase Symplie.'
 Constants.SignInCopy.OK_BTN     = 'Sign In';
 Constants.SignInCopy.CANCEL_BTN = null;
 
