@@ -122,7 +122,7 @@ Utils.getCachedCwsLicense = function () {
 Utils.signInCredentialsNotification = function ($scope) {
   $scope.$apply(function () {
     $scope.popUpTitle     = Constants.InvalidCredentials.TITLE;
-    $scope.popUpMessage   = Constants.InvalidCredentials.INVALID_MESSAGE;
+    $scope.popUpMessage   = Constants.InvalidCredentials.MESSAGE;
     $scope.popUpOkBtn     = Constants.InvalidCredentials.OK_BTN;
     $scope.popUpCancelBtn = Constants.InvalidCredentials.CANCEL_BTN;
     // Recheck in the license in interactive mode so that the user can sign in.
