@@ -4,19 +4,21 @@ var Q         = require('q'),
     Constants = require('../constants'),
     Utils     = {};
 
-Utils.getAuthToken = function () {
+Utils.getAuthToken = function (interactive) {
   var deferred = Q.defer();
 
-  chrome.identity.getAuthToken(function (token) {
-    deferred.resolve(token);
+  chrome.identity.getAuthToken({ interactive: interactive }, function (token) {
+    if (chrome.runtime.lastError) {
+      deferred.reject(chrome.runtime.lastError);
+    } else {
+      deferred.resolve(token);
+    }
   });
 
   return deferred.promise;
 };
 
-Utils.checkCwsLicense = function () {
-  var deferred = Q.defer();
-
+Utils.checkCwsLicense = function ($scope, interactive) {
   Utils.getCachedCwsLicense().then(function (cachedLicense) {
     var daysAgoLicenseCached;
 
@@ -26,30 +28,28 @@ Utils.checkCwsLicense = function () {
 
       if (cachedLicense.accessLevel === Constants.CwsLicense.FULL &&
           daysAgoLicenseCached <= Constants.CwsLicense.FULL_CACHE_LENGTH) {
-        Utils.verifyLicense(cachedLicense);
+        Utils.verifyLicense($scope, cachedLicense);
       } else if (cachedLicense.accessLevel === Constants.CwsLicense.FREE_TRIAL &&
           daysAgoLicenseCached <= Constants.CwsLicense.TRIAL_CACHE_LENGTH) {
-        Utils.verifyLicense(cachedLicense);
+        Utils.verifyLicense($scope, cachedLicense);
       } else {
-        Utils.refreshLicense().then(function (license) {
-          Utils.verifyLicense(license);
+        Utils.refreshLicense($scope, interactive).then(function (license) {
+          Utils.verifyLicense($scope, license);
         });
       }
     } else {
-      Utils.refreshLicense().then(function (license) {
-        Utils.verifyLicense(license);
+      Utils.refreshLicense($scope, interactive).then(function (license) {
+        Utils.verifyLicense($scope, license);
       });
     }
   });
-
-  return deferred.promise;
 };
 
-Utils.refreshLicense = function () {
+Utils.refreshLicense = function ($scope, interactive) {
   var deferred = Q.defer(),
       req   = new XMLHttpRequest()
 
-  Utils.getAuthToken().then(function (token) {
+  Utils.getAuthToken(interactive).then(function (token) {
     req.open('GET', Constants.CwsLicense.LICENSE_API_URL + chrome.runtime.id);
     req.setRequestHeader('Authorization', 'Bearer ' + token);
     req.onreadystatechange = function() {
@@ -63,29 +63,31 @@ Utils.refreshLicense = function () {
     }
     req.send();
   }).catch(function (err) {
-    console.log(err);
-    deferred.reject(err);
+    Utils.signInNotification($scope);
+    deferred.reject();
   });
 
   return deferred.promise;
 };
 
-Utils.verifyLicense = function (license) {
+Utils.verifyLicense = function ($scope, license) {
   var licenseStatus,
       daysAgoLicenseIssued;
 
   if (license.result && license.accessLevel == Constants.CwsLicense.FULL) {
-    // Full license
+    console.log('Full license. Thank you!')
   } else if (license.result && license.accessLevel == Constants.CwsLicense.FREE_TRIAL) {
     daysAgoLicenseIssued = Date.now() - parseInt(license.createdTime, 10);
     daysAgoLicenseIssued = daysAgoLicenseIssued / 1000 / 60 / 60 / 24;
     if (daysAgoLicenseIssued <= Constants.CwsLicense.FREE_TRIAL_LENGTH) {
-      // Free Trial
-    } else {  // Free trial expired
-      $('.pop-up-wrapper').css('display', 'table');
+      console.log('Free trial.');
+    } else {
+      console.log('Free trial expired.');
+      Utils.trialExpiredNotification($scope);
     }
-  } else {  // No license found
-    $('.pop-up-wrapper').css('display', 'table');
+  } else {
+    console.log('No license found.');
+    Utils.trialExpiredNotification($scope);
   }
 
   return licenseStatus;
@@ -111,6 +113,30 @@ Utils.getCachedCwsLicense = function () {
   });
 
   return deferred.promise;
+};
+
+Utils.signInNotification = function ($scope) {
+  $scope.$apply(function () {
+    $scope.popUpTitle     = Constants.SignInCopy.TITLE;
+    $scope.popUpMessage   = Constants.SignInCopy.MESSAGE;
+    $scope.popUpOkBtn     = Constants.SignInCopy.OK_BTN;
+    $scope.popUpCancelBtn = Constants.SignInCopy.CANCEL_BTN;
+    // Recheck in the license in interactive mode so that the user can sign in.
+    $scope.popUpOkAction  = function () { Utils.checkCwsLicense($scope, true); };
+    $('.pop-up-wrapper').css('display', 'table');
+  });
+};
+
+Utils.trialExpiredNotification = function ($scope) {
+  $scope.$apply(function () {
+    $scope.popUpTitle        = Constants.LicenceCopy.TITLE;
+    $scope.popUpMessage      = Constants.LicenceCopy.MESSAGE;
+    $scope.popUpOkBtn        = Constants.LicenceCopy.OK_BTN;
+    $scope.popUpCancelBtn    = Constants.LicenceCopy.CANCEL_BTN;
+    $scope.popUpOkAction     = $scope.goToChromeWebStore;
+    $scope.popUpCancelAction = $scope.exportNotesAsJson;
+    $('.pop-up-wrapper').css('display', 'table');
+  });
 };
 
 module.exports = Utils;

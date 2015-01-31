@@ -71,9 +71,15 @@ Constants.KeyCode.DELETE      = 46;
 
 Constants.LicenceCopy            = {};
 Constants.LicenceCopy.TITLE      = 'Trial Expired';
-Constants.LicenceCopy.MESSAGE    = 'Your free trial period has expired. Please purchase a license in the chrome webstore';
+Constants.LicenceCopy.MESSAGE    = 'Your free trial period has expired. Please purchase a license in the Chrome Web Store.';
 Constants.LicenceCopy.OK_BTN     = 'Purchase';
 Constants.LicenceCopy.CANCEL_BTN = 'Export Notes';
+
+Constants.SignInCopy            = {};
+Constants.SignInCopy.TITLE      = 'Sign In';
+Constants.SignInCopy.MESSAGE    = 'You must be signed into Chrome and connected to the internet in order to confirm your license.';
+Constants.SignInCopy.OK_BTN     = 'Sign In';
+Constants.SignInCopy.CANCEL_BTN = null;
 
 Constants.WELCOME_NOTE = [
 '#### Welcome to Symplie',

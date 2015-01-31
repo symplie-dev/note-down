@@ -9,7 +9,7 @@
                 <button class='pop-up-btn ok-btn purchase' ng-click='okBtnAction()'>
                     {{okBtnLbl}}
                 </button>
-                <button class='pop-up-btn cancel-btn export' ng-click='cancelBtnAction()'>
+                <button class='pop-up-btn cancel-btn export {{(cancelBtnLbl) ? "" : "hide"}}' ng-click='cancelBtnAction()'>
                     {{cancelBtnLbl}}
                 </button>
             </div>

@@ -3,7 +3,7 @@
 
   "name": "Symplie",
   "description": "A lightweight notepad powered by Markdown",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "icons": {
     "16":  "img/icon16.png",
     "48":  "img/icon48.png",
@@ -15,13 +15,11 @@
   },
   "permissions": [
     "storage",
-    "identity",
-    "https://www.googleapis.com/"
+    "identity"
   ],
   "oauth2": {
     "client_id": "437178975982-0439jj9j5l8mvk3q6va09lr8o22ub7e0.apps.googleusercontent.com",
     "scopes": [
-      "https://www.googleapis.com/auth/plus.login",
       "https://www.googleapis.com/auth/chromewebstore.readonly"
     ]
   }

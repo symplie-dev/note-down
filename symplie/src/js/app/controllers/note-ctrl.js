@@ -28,11 +28,6 @@ module.exports = function($scope) {
   $scope.innerBtnOcticon = Constants.Octicon.PLUS;
   $scope.unsaved         = false;
 
-  $scope.popUpTitle        = Constants.LicenceCopy.TITLE;
-  $scope.popUpMessage      = Constants.LicenceCopy.MESSAGE;
-  $scope.popUpOkBtn        = Constants.LicenceCopy.OK_BTN;
-  $scope.popUpCancelBtn    = Constants.LicenceCopy.CANCEL_BTN;
-
   $scope.backToMenu = function () {
     // Went back before saving, reset markdown content
     $scope.symplieState = Constants.SymplieState.MENU;
@@ -69,10 +64,13 @@ module.exports = function($scope) {
     win.focus();
   };
 
-  // Initialize pop-up actions
-  $scope.popUpOkAction     = $scope.goToChromeWebStore;
-  $scope.popUpCancelAction = $scope.exportNotesAsJson;
+  $scope.popUpTitle     = Constants.EMPTY_STRING;
+  $scope.popUpMessage   = Constants.EMPTY_STRING;
+  $scope.popUpOkBtn     = Constants.EMPTY_STRING;
+  $scope.popUpCancelBtn = Constants.EMPTY_STRING;
 
   // Asynchronously Check License
-  setTimeout(Utils.checkCwsLicense, 3000);
+  setTimeout(function () {
+    Utils.checkCwsLicense($scope);
+  }, 1500);
 };

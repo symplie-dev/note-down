@@ -17,12 +17,14 @@
 .pop-up {
   background: #fff;
   border-radius: 4px;
+  -webkit-box-shadow: 0 0 6px rgba(0,0,0,.8);
+          box-shadow: 0 0 6px rgba(0,0,0,.8);
   font-family: Helvetica;
-  height: 180px;
+  /*height: 180px;*/
   margin: auto;
-  padding: 10px;
+  padding: 0 10px 20px 10px;
   text-align: center;
-  width: 230px;
+  width: 250px;
 }
 
 .pop-up h2 {
@@ -31,16 +33,20 @@
   padding: 20px 0;
 }
 
+.pop-up p {
+  line-height: 130%;
+}
+
 .button-group {
-  margin-top: 19.92px;
+  margin-top: 20px;
 }
 
 .pop-up-btn {
   background: none;
   border: none;
   border-radius: 4px;
-  -box-shadow: box-shadow: 0 0 4px rgba(0,0,0,.3);
-  box-shadow: 0 0 4px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 0 4px rgba(0,0,0,.3);
+          box-shadow: 0 0 4px rgba(0,0,0,.3);
   cursor: pointer;
   display: inline-block;
   height: 30px;
@@ -60,6 +66,10 @@
 .pop-up-btn.cancel-btn {
   border: 1px solid #333;
   color: #333;
+}
+
+.pop-up-btn.hide {
+  display: none;
 }
 
 /* Animate.CSS bounce-in
