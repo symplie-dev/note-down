@@ -60,10 +60,14 @@ Utils.refreshLicense = function ($scope, interactive) {
         Utils.cacheCwsLicense(license);
         deferred.resolve(license);
       }
-    }
+    };
     req.send();
   }).catch(function (err) {
-    Utils.signInNotification($scope);
+    if (err.message === Constants.CwsLicense.INVALID_LOGIN) {
+      Utils.signInCredentialsNotification($scope);
+    } else {
+      Utils.signInNotification($scope);
+    }
     deferred.reject();
   });
 
@@ -113,6 +117,21 @@ Utils.getCachedCwsLicense = function () {
   });
 
   return deferred.promise;
+};
+
+Utils.signInCredentialsNotification = function ($scope) {
+  $scope.$apply(function () {
+    $scope.popUpTitle     = Constants.SignInCopy.TITLE;
+    $scope.popUpMessage   = Constants.SignInCopy.INVALID_MESSAGE;
+    $scope.popUpOkBtn     = Constants.SignInCopy.OK_BTN;
+    $scope.popUpCancelBtn = Constants.SignInCopy.CANCEL_BTN;
+    // Recheck in the license in interactive mode so that the user can sign in.
+    $scope.popUpOkAction  = function () { 
+      var win = window.open('chrome://chrome-signin');
+      win.focus();
+    };
+    $('.pop-up-wrapper').css('display', 'table');
+  });
 };
 
 Utils.signInNotification = function ($scope) {

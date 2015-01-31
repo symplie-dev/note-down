@@ -18,6 +18,7 @@ Constants.CwsLicense.NONE               = 'NONE';
 Constants.CwsLicense.FREE_TRIAL_LENGTH  = 7;
 Constants.CwsLicense.FULL_CACHE_LENGTH  = 10;
 Constants.CwsLicense.TRIAL_CACHE_LENGTH = 0.5;
+Constants.CwsLicense.INVALID_LOGIN      = 'OAuth2 request failed: Invalid credentials.';
 
 Constants.Regex = {};
 Constants.Regex.TASK = /^\s*\[[x ]\]\s*/gm;
@@ -78,6 +79,7 @@ Constants.LicenceCopy.CANCEL_BTN = 'Export Notes';
 Constants.SignInCopy            = {};
 Constants.SignInCopy.TITLE      = 'Sign In';
 Constants.SignInCopy.MESSAGE    = 'You must be signed into Chrome and connected to the internet in order to confirm your license.';
+Constants.SignInCopy.INVALID_MESSAGE = 'You must be signed into Chrome with the account you used to purchase Symplie.'
 Constants.SignInCopy.OK_BTN     = 'Sign In';
 Constants.SignInCopy.CANCEL_BTN = null;
 
