@@ -127,7 +127,7 @@ Utils.signInCredentialsNotification = function ($scope) {
     $scope.popUpCancelBtn = Constants.SignInCopy.CANCEL_BTN;
     // Recheck in the license in interactive mode so that the user can sign in.
     $scope.popUpOkAction  = function () { 
-      var win = window.open('chrome://chrome-signin');
+      var win = window.open('chrome://chrome-signin/');
       win.focus();
     };
     $('.pop-up-wrapper').css('display', 'table');
