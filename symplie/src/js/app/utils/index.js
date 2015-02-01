@@ -20,7 +20,8 @@ Utils.getAuthToken = function (interactive) {
 
 Utils.checkCwsLicense = function ($scope, interactive) {
   Utils.getCachedCwsLicense().then(function (cachedLicense) {
-    var daysAgoLicenseCached;
+    var daysAgoLicenseCached,
+        status;
 
     if (cachedLicense && cachedLicense.cachedAt) {
       daysAgoLicenseCached = Date.now() - parseInt(cachedLicense.cachedAt, 10);
@@ -28,18 +29,29 @@ Utils.checkCwsLicense = function ($scope, interactive) {
 
       if (cachedLicense.accessLevel === Constants.CwsLicense.FULL &&
           daysAgoLicenseCached <= Constants.CwsLicense.FULL_CACHE_LENGTH) {
-        Utils.verifyLicense($scope, cachedLicense);
+        status = Utils.verifyLicense($scope, cachedLicense);
       } else if (cachedLicense.accessLevel === Constants.CwsLicense.FREE_TRIAL &&
           daysAgoLicenseCached <= Constants.CwsLicense.TRIAL_CACHE_LENGTH) {
-        Utils.verifyLicense($scope, cachedLicense);
+        status = Utils.verifyLicense($scope, cachedLicense);
+
+        // If the free trial has expired refresh license to make sure user hasn't
+        // made purchase after old trial license was cached.
+        if (status === Constants.CwsLicense.FREE_TRIAL_EXPIRED) {
+          Utils.refreshLicense($scope, interactive).then(function (license) {
+            status = Utils.verifyLicense($scope, license);
+            Utils.licenseNotification($scope, status);
+          });
+        }
       } else {
         Utils.refreshLicense($scope, interactive).then(function (license) {
-          Utils.verifyLicense($scope, license);
+          status = Utils.verifyLicense($scope, license);
+          Utils.licenseNotification($scope, status);
         });
       }
     } else {
       Utils.refreshLicense($scope, interactive).then(function (license) {
-        Utils.verifyLicense($scope, license);
+        status = Utils.verifyLicense($scope, license);
+        Utils.licenseNotification($scope, status);
       });
     }
   });
@@ -79,22 +91,31 @@ Utils.verifyLicense = function ($scope, license) {
       daysAgoLicenseIssued;
 
   if (license.result && license.accessLevel == Constants.CwsLicense.FULL) {
-    console.log('Full license. Thank you!')
+    console.log('Full license. Thank you!');
+    licenseStatus = Constants.CwsLicense.FULL;
   } else if (license.result && license.accessLevel == Constants.CwsLicense.FREE_TRIAL) {
     daysAgoLicenseIssued = Date.now() - parseInt(license.createdTime, 10);
     daysAgoLicenseIssued = daysAgoLicenseIssued / 1000 / 60 / 60 / 24;
     if (daysAgoLicenseIssued <= Constants.CwsLicense.FREE_TRIAL_LENGTH) {
       console.log('Free trial.');
+      licenseStatus = Constants.CwsLicense.FREE_TRIAL;
     } else {
       console.log('Free trial expired.');
-      Utils.trialExpiredNotification($scope);
+      licenseStatus = Constants.CwsLicense.FREE_TRIAL_EXPIRED;
     }
   } else {
     console.log('No license found.');
-    Utils.trialExpiredNotification($scope);
+    licenseStatus = Constants.CwsLicense.NONE;
   }
 
   return licenseStatus;
+};
+
+Utils.licenseNotification = function ($scope, status) {
+  if (status === Constants.CwsLicense.FREE_TRIAL_EXPIRED ||
+      status === Constants.CwsLicense.NONE) {
+    Utils.trialExpiredNotification($scope);
+  }
 };
 
 Utils.cacheCwsLicense = function (license) {

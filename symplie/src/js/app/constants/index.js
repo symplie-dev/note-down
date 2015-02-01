@@ -14,10 +14,11 @@ Constants.CwsLicense                    = {};
 Constants.CwsLicense.LICENSE_API_URL    = 'https://www.googleapis.com/chromewebstore/v1.1/userlicenses/';
 Constants.CwsLicense.FULL               = 'FULL';
 Constants.CwsLicense.FREE_TRIAL         = 'FREE_TRIAL';
+Constants.CwsLicense.FREE_TRIAL_EXPIRED = 'FREE_TRIAL_EXPIRED';
 Constants.CwsLicense.NONE               = 'NONE';
-Constants.CwsLicense.FREE_TRIAL_LENGTH  = 7;
-Constants.CwsLicense.FULL_CACHE_LENGTH  = 10;
-Constants.CwsLicense.TRIAL_CACHE_LENGTH = 0.5;
+Constants.CwsLicense.FREE_TRIAL_LENGTH  = 7;             // 7 days
+Constants.CwsLicense.FULL_CACHE_LENGTH  = 10;            // 10 days
+Constants.CwsLicense.TRIAL_CACHE_LENGTH = 0.5; // 5 seconds
 Constants.CwsLicense.INVALID_LOGIN      = 'OAuth2 request failed: Invalid credentials.';
 
 Constants.Regex = {};
