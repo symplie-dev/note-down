@@ -64,6 +64,10 @@ module.exports = function($scope) {
     win.focus();
   };
 
+  $scope.closePopUp = function () {
+    $('.pop-up-wrapper').css('display', 'none');
+  };
+
   $scope.popUpTitle     = Constants.EMPTY_STRING;
   $scope.popUpMessage   = Constants.EMPTY_STRING;
   $scope.popUpOkBtn     = Constants.EMPTY_STRING;

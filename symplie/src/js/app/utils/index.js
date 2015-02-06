@@ -146,6 +146,7 @@ Utils.signInCredentialsNotification = function ($scope) {
     $scope.popUpMessage   = Constants.InvalidCredentials.MESSAGE;
     $scope.popUpOkBtn     = Constants.InvalidCredentials.OK_BTN;
     $scope.popUpCancelBtn = Constants.InvalidCredentials.CANCEL_BTN;
+    $scope.popUpCancelAction = $scope.closePopUp;
     // Recheck in the license in interactive mode so that the user can sign in.
     $('.pop-up-wrapper').css('display', 'table');
   });
@@ -159,6 +160,7 @@ Utils.signInNotification = function ($scope) {
     $scope.popUpCancelBtn = Constants.SignInCopy.CANCEL_BTN;
     // Recheck in the license in interactive mode so that the user can sign in.
     $scope.popUpOkAction  = function () { Utils.checkCwsLicense($scope, true); };
+    $scope.popUpCancelAction = $scope.closePopUp;
     $('.pop-up-wrapper').css('display', 'table');
   });
 };
@@ -170,7 +172,7 @@ Utils.trialExpiredNotification = function ($scope) {
     $scope.popUpOkBtn        = Constants.LicenceCopy.OK_BTN;
     $scope.popUpCancelBtn    = Constants.LicenceCopy.CANCEL_BTN;
     $scope.popUpOkAction     = $scope.goToChromeWebStore;
-    $scope.popUpCancelAction = $scope.exportNotesAsJson;
+    $scope.popUpCancelAction = $scope.closePopUp;
     $('.pop-up-wrapper').css('display', 'table');
   });
 };
