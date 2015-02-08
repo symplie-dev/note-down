@@ -3,9 +3,8 @@
 
   "name": "Symplie",
   "description": "A lightweight notepad powered by Markdown",
-  "version": "0.7.1.1",
+  "version": "0.8.0.0",
   "minimum_chrome_version": "40.0",
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjSCaXtVbHIDmTd0xmyI9ftD4cuXT3s69d7adpOzzYxS1wnt2HZTSrK2iPXu2l9qJhnx9UOs3bNkYUca47/vsWIa9oeWqhAE+uraoX06xYP71wJlkx35c6YMQZUkwamY+89nBR1rEALtXi/zz1ZWTier/l/8F6uPh7i9waF4dSejuHgpcT0FhFfCPuTc8qI9633+ac3Ii+PsCJPlK8j6wbeP3diHrObEpnaHy5kjQ5/71sJXFgiYQM82S849oGjxiOaNyXdyVRNJrVzqcV2TzB0t9Gnd6AtI6nzyvuUIqBb+MdDfafcWgtt9bploISj3uYGTZ2vPbiNK9OwMVIFWL8QIDAQAB",
   "icons": {
     "16":  "img/icon16.png",
     "48":  "img/icon48.png",
