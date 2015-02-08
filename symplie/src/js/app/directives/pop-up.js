@@ -22,3 +22,4 @@ module.exports = function() {
 };
 
 function ctrl($scope) { }
+ctrl.$inject = ['$scope'];

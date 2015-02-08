@@ -249,6 +249,8 @@ function ctrl($scope) {
   };
 }
 
+ctrl.$inject = ['$scope'];
+
 function prevLines(str) {
   var lines = str.split(Constants.NEW_LINE),
       ret = {};

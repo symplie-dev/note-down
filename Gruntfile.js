@@ -15,6 +15,15 @@ module.exports = function (grunt) {
         options: { debug: false }
       },
     },
+    // Minify JS
+    uglify: {
+      my_target: {
+        files: {
+          'symplie/dist/bundle.js': ['symplie/dist/bundle.js']
+        }
+      }
+    },
+    // Minify CSS
     cssmin: {
       combine: {
         files: {
@@ -32,6 +41,7 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
 

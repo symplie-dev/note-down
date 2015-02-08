@@ -14,7 +14,7 @@ module.exports = function() {
     },
     templateUrl: '/views/partials/symplie-menu.html',
     controller: ctrl,
-    link: function ($scope, $element) { }
+    link: function () { }
   };
 };
 
@@ -90,3 +90,5 @@ function ctrl($scope, $rootScope) {
     $rootScope.$digest();
   };
 }
+
+ctrl.$inject = ['$scope'];

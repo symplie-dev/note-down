@@ -6,16 +6,7 @@ var Constants = require('../constants'),
 module.exports = function() {
   return {
     controller: ctrl,
-    link: function ($scope, $element) {
-      !function () {
-        $('.tooltipped').on('mouseenter', function (evt) {
-          $('.tooltipped').removeClass('active');
-          $(this).addClass('active');
-        }).on('mouseleave', function (evt) {
-          $('.tooltipped').removeClass('active');
-        });
-      }();
-    },
+    link: link,
     replace: true,
     restrict: 'EA',
     scope: {
@@ -106,3 +97,17 @@ function ctrl($scope) {
     }, 200);
   };
 };
+ctrl.$inject = ['$scope'];
+
+function link($scope, $element) {
+  !function () {
+    $('.tooltipped').on('mouseenter', function (evt) {
+      $('.tooltipped').removeClass('active');
+      $(this).addClass('active');
+    }).on('mouseleave', function (evt) {
+      $('.tooltipped').removeClass('active');
+    });
+  }();
+}
+
+link.$inject = ['$scope', '$element'];

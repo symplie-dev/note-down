@@ -15,7 +15,7 @@ module.exports = function() {
       exportNotes:     '='
     },
     templateUrl: '/views/partials/settings-pop-up.html',
-    link: function ($scope, $element) { }
+    link: function () { }
   };
 };
 
@@ -26,3 +26,4 @@ function ctrl($scope) {
     }
   });
 }
+ctrl.$inject = ['$scope'];

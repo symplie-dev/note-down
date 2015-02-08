@@ -4,7 +4,7 @@ var Constants = require('../constants'),
     dao       = require('../database'),
     Utils     = require('../utils');
 
-module.exports = function($scope, $compile) {
+var ctrl = function($scope) {
   $scope.notes       = [];
   $scope.currentNote = null;
   $scope.settings    = Constants.DEFAULT_SETTINGS;
@@ -100,3 +100,7 @@ module.exports = function($scope, $compile) {
     Utils.checkCwsLicense($scope);
   }, 1500);
 };
+
+ctrl.$inject = ['$scope'];
+
+module.exports = ctrl;
