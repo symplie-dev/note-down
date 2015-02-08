@@ -54,7 +54,7 @@
 }
 
 .header-settings-btn {
-    right: 0;
+    right: 5px;
 }
 
 .header-back-btn.hide {
@@ -65,7 +65,7 @@
 
 .header-settings-btn.hide {
     cursor: default;
-    right: 25px;
+    right: 30px;
     opacity: 0.0;
 }
 
