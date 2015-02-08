@@ -4,9 +4,10 @@ var Constants = require('../constants'),
     dao       = require('../database'),
     Utils     = require('../utils');
 
-module.exports = function($scope) {
-  $scope.notes = [];
+module.exports = function($scope, $compile) {
+  $scope.notes       = [];
   $scope.currentNote = null;
+  $scope.settings    = Constants.DEFAULT_SETTINGS;
 
   dao.init().then(function () {
     dao.getNotes().then(function (notes) {
@@ -14,7 +15,15 @@ module.exports = function($scope) {
         $scope.notes = notes;
       });
     }).catch(function (err) {
-      console.log('error: failed to get notes')
+      console.log('Error: failed to get notes');
+    });
+
+    dao.getSettings().then(function (settings) {
+      $scope.$apply(function () {
+        $scope.settings = settings;
+      });
+    }).catch(function (err) {
+      console.log('Error: failed to get settings');
     });
   }).catch(function (err) {
     console.log('init failed');
@@ -72,6 +81,18 @@ module.exports = function($scope) {
   $scope.popUpMessage   = Constants.EMPTY_STRING;
   $scope.popUpOkBtn     = Constants.EMPTY_STRING;
   $scope.popUpCancelBtn = Constants.EMPTY_STRING;
+
+  $scope.showSettingsPopUp = function () {
+    $scope.popUpTitle        = 'Settings';
+    $scope.popUpOkAction     = $scope.saveSettings;
+    $scope.popUpCancelAction = $scope.closePopUp;
+    $('.settings-pop-up.pop-up-wrapper').css('display', 'table');
+  };
+
+  $scope.saveSettings = function () {
+    dao.updateSettings($scope.settings);
+    $scope.closePopUp();
+  };
 
   // Asynchronously Check License
   setTimeout(function () {

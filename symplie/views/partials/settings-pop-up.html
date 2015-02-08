@@ -1,0 +1,28 @@
+<div class='settings-pop-up pop-up-wrapper'>
+    <div class='pop-up-inner-wrapper'>
+        <div class='pop-up bounceIn animated'>
+            <h2>Settings</h2>
+            <div class='settings-row first'>
+                Markdown helper button
+                <input type='checkbox' ng-model='settings.showMdBtns'>
+            </div>
+            <div class='settings-row {{(settings.showMdBtns) ? "" : "disabled"}}'>
+                Markdown helper button tooltips
+                <input type='checkbox' ng-disabled="!settings.showMdBtns"}}
+                    ng-model='settings.showMdBtnTooltips'>
+            </div>
+            <div class='settings-row'>
+                Export notes as JSON
+                <button class='pop-up-btn export-btn' ng-click='exportNotes()'>Export</button>
+            </div>
+            <div class='button-group'>
+                <button class='pop-up-btn ok-btn purchase' ng-click='okBtnAction()'>
+                    Save
+                </button>
+                <button class='pop-up-btn cancel-btn export' ng-click='cancelBtnAction()'>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

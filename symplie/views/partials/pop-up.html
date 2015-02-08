@@ -1,10 +1,8 @@
-<div class='pop-up-wrapper'>
+<div class='notification-pop-up pop-up-wrapper'>
     <div class='pop-up-inner-wrapper'>
         <div class='pop-up bounceIn animated'>
             <h2>{{title}}</h2>
-            <p>
-                {{message}}
-            </p>
+            <p ng-bind-html='message'></p>
             <div class='button-group {{(okBtnLbl || cancelBtnLbl) ? "" : "hide"}}'>
                 <button class='pop-up-btn ok-btn purchase {{(okBtnLbl) ? "" : "hide"}}' ng-click='okBtnAction()'>
                     {{okBtnLbl}}

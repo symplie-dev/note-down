@@ -97,6 +97,9 @@
 #quote-btn  { background: #aaa;    }
 #code-btn   { background: #a77dc2; }
 
+.hide-md-btns .symplie-btn.element-btn { display: none; }
+.hide-tooltips .tooltipped.active:after { display: none; }
+.hide-tooltips .tooltipped.active:before { display: none; }
 
 /* Pulled and modified from:
 

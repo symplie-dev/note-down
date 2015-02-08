@@ -1,4 +1,5 @@
-<div class='symplie-btn-wrapper {{notepadState}} {{selectedElement}}'>
+<div class='symplie-btn-wrapper {{notepadState}} {{selectedElement}}
+    {{(!settings.showMdBtns) ? "hide-md-btns" : ""}} {{(!settings.showMdBtnTooltips) ? "hide-tooltips" : ""}}'>
   <button class='symplie-btn inner' ng-click='centerBtnHandler()'>
     <span class='octicon large {{innerBtnOcticon}}'></span>
   </button>

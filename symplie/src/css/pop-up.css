@@ -70,8 +70,42 @@
   color: #333;
 }
 
+.pop-up-btn.export-btn {
+  background: #529ecc;
+  color: #fff;
+  float: right;
+  width: 50px;
+}
+
 .pop-up-btn.hide {
   display: none;
+}
+
+.settings-row.first {
+  border-top: 1px solid #ddd;
+}
+
+.settings-row {
+  border-bottom: 1px solid #ddd;
+  font-size: 13px;
+  height: 30px;
+  line-height: 30px;
+  padding: 8px 0;
+  text-align: left;
+}
+
+.settings-row.disabled {
+  color: #aaa;
+}
+
+.settings-row input {
+  float: right;
+  margin: 0;
+  padding: 0;
+}
+
+.settings-row input[type='checkbox'] {
+  margin-top: 8px;
 }
 
 /* Animate.CSS bounce-in

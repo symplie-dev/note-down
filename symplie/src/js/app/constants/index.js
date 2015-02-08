@@ -10,6 +10,8 @@ Constants.TAB_TO_SPACES = '    ';
 
 Constants.CHROME_WEB_STORE = 'https://chrome.google.com/webstore/detail/symplie/kjadigajmcobihfbbhmdeljohoccbejk';
 
+Constants.DB_VERSION = 2;
+
 Constants.CwsLicense                    = {};
 Constants.CwsLicense.LICENSE_API_URL    = 'https://www.googleapis.com/chromewebstore/v1.1/userlicenses/';
 Constants.CwsLicense.FULL               = 'FULL';
@@ -88,6 +90,15 @@ Constants.SignInCopy.TITLE      = 'Sign In';
 Constants.SignInCopy.MESSAGE    = 'You\'re not signed into Chrome. Although the trial period is unlimited, please purchase Symplie in the Chrome Web Store for continued use.';
 Constants.SignInCopy.OK_BTN     = 'Sign In';
 Constants.SignInCopy.CANCEL_BTN = 'Cancel';
+
+Constants.DEFAULT_SETTINGS = {
+  'sort':              'updatedAt',
+  'showMdBtns':        true,
+  'showMdBtnTooltips': true,
+  'editorFont':        'Source Code Pro',
+  'theme':             Constants.EMPTY_STRING,
+  'currentNoteId':     -1
+}
 
 Constants.WELCOME_NOTE = [
 '#### Welcome to Symplie',

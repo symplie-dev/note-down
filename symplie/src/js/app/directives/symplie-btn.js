@@ -25,7 +25,8 @@ module.exports = function() {
       notes:              '=',
       currentNote:        '=',
       addMarkdownElement: '=',
-      unsaved:            '='
+      unsaved:            '=',
+      settings:           '='
     },
     templateUrl: '/views/partials/symplie-btn.html'
   };

@@ -18,8 +18,11 @@
       <!-- Header -->
       <div class='header-wrapper'>
         <div class='header-title'><span class='octicon octicon-primitive-dot unsaved-indicator hide'></span>SYMPLIE<span class='octicon octicon-primitive-dot unsaved-indicator {{(unsaved) ? "" : "hide"}}'></span></div>
-        <div class='header-back-btn {{(symplieState === "menu") ? "hide" : ""}}' ng-click='backToMenu()'>
+        <div class='header-btn header-back-btn {{(symplieState === "menu") ? "hide" : ""}}' ng-click='backToMenu()'>
           <span class='octicon octicon-chevron-left'></span>
+        </div>
+        <div class='header-btn header-settings-btn {{(symplieState === "menu") ? "" : "hide"}}' ng-click='showSettingsPopUp()'>
+          <span class='octicon octicon-gear'></span>
         </div>
       </div>
       <!-- Pop-Up Content -->
@@ -56,7 +59,8 @@
         notes='notes'
         current-note='currentNote'
         add-markdown-element='addMarkdownElement'
-        unsaved='unsaved'></div>
+        unsaved='unsaved'
+        settings='settings'></div>
       <div pop-up
         title='popUpTitle'
         message='popUpMessage'
@@ -64,6 +68,11 @@
         cancel-btn-lbl='popUpCancelBtn'
         ok-btn-action='popUpOkAction'
         cancel-btn-action='popUpCancelAction'></div>
+      <div settings-pop-up
+        ok-btn-action='saveSettings'
+        cancel-btn-action='popUpCancelAction'
+        settings='settings'
+        export-notes='exportNotesAsJson'></div>
     </div>
   </body>
 </html>
