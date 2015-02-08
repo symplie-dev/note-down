@@ -30,68 +30,10 @@
   outline: none;
 }
 
-.markdown-body.md-viewer ul li.task,
-.markdown-body.md-viewer ul li.bullet,
-.textarea ul li.task,
-.textarea ul li.bullet {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.markdown-body.md-viewer ul li.task.uncompleted {
+  list-style-image: url('../../img/uncompleted-task.svg');
 }
 
-.markdown-body.md-viewer ul li.task:before,
-.markdown-body.md-viewer ul li.bullet:before,
-.textarea ul li.task:before,
-.textarea ul li.bullet:before {
-    color: #333;
-    font: normal normal normal 12px/1 octicons;
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 10px;
-    text-align: center;
-}
-
-.markdown-body.md-viewer ul li.bullet:before,
-.textarea ul li.bullet:before {
-    content: '\f052';
-    margin-left:1px;
-}
-
-.markdown-body.md-viewer ul li.task:before,
-.textarea ul li.task:before {
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    background: #ddd;
-    color: #ddd;
-    content: '\f03a';
-    cursor: pointer;
-    font-weight: bold;
-    margin: 2px 10px 2px 0;
-}
-
-.markdown-body.md-viewer ul li.task.completed:before,
-.textarea ul li.task.completed:before {
-  content: '\f03a';
-  color: #333;
-  margin: 2px 10px 2px 0;
-}
-
-/* second level lists */
-.markdown-body.md-viewer ul li ul li.bullet:before {
-  content: '\f0ca';
-}
-
-/* third level lists+ */
-.markdown-body.md-viewer ul li ul li ul li.bullet:before {
-  content: '\f053';
-}
-
-.markdown-body.md-viewer ul {
-  margin-left: 0;
-  padding-left: 8px;
-}
-
-.markdown-body.md-viewer ul li ul {
-  padding-left: 2em;
+.markdown-body.md-viewer ul li.task.completed {
+  list-style-image: url('../../img/completed-task.svg');
 }
