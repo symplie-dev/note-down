@@ -31,14 +31,16 @@ module.exports = function() {
             matches;
 
         matches = $scope.note.markdown.match(/^\s*[*+-]\s+\[[x ]\]\s*.*/gm) || [];
-        completed = matches[taskNum].replace(/(^\s*[*+-]\s+)(\[[x ]\])(\s*.*)/, function ($1, $2, $3, $4) {
-          return $2 + '[x]' + $4;
-        });
+        if (matches[taskNum]) {
+          completed = matches[taskNum].replace(/(^\s*[*+-]\s+)(\[[x ]\])(\s*.*)/, function ($1, $2, $3, $4) {
+            return $2 + '[x]' + $4;
+          });
 
-        $scope.$apply(function () {
-          $scope.note.markdown = $scope.note.markdown.replace(matches[taskNum], completed);
-        });
-        dao.updateNote($scope.note);
+          $scope.$apply(function () {
+            $scope.note.markdown = $scope.note.markdown.replace(matches[taskNum], completed);
+          });
+          dao.updateNote($scope.note);
+        }
       });
 
       // Listen for clicks on completed tasks. Then change the underlying
@@ -49,14 +51,16 @@ module.exports = function() {
             matches;
 
         matches = $scope.note.markdown.match(/^\s*[*+-]\s+\[[x ]\]\s*.*/gm) || [];
-        completed = matches[taskNum].replace(/(^\s*[*+-]\s+)(\[[x ]\])(\s*.*)/, function ($1, $2, $3, $4) {
-          return $2 + '[ ]' + $4;
-        });
+        if (matches[taskNum]) {
+          completed = matches[taskNum].replace(/(^\s*[*+-]\s+)(\[[x ]\])(\s*.*)/, function ($1, $2, $3, $4) {
+            return $2 + '[ ]' + $4;
+          });
 
-        $scope.$apply(function () {
-          $scope.note.markdown = $scope.note.markdown.replace(matches[taskNum], completed);
-        });
-        dao.updateNote($scope.note);
+          $scope.$apply(function () {
+            $scope.note.markdown = $scope.note.markdown.replace(matches[taskNum], completed);
+          });
+          dao.updateNote($scope.note);
+        }
       });
     }
   };
