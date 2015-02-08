@@ -54,7 +54,7 @@ window.IDBKeyRange    = window.IDBKeyRange    || window.webkitIDBKeyRange;
 
     SymplieDao.db = evt.target.result;
 
-    if (evt.oldVersion < 1 || SymplieDao.db.version < 1) {        // Create all stores
+    if (evt.oldVersion < 1) {        // Create all stores
       SymplieDao.initSchema().then(function () {
         deferred.resolve();
       }).catch(function (err) {
@@ -62,7 +62,7 @@ window.IDBKeyRange    = window.IDBKeyRange    || window.webkitIDBKeyRange;
         console.log(err);
         deferred.reject(err);
       });
-    } else if (evt.oldVersion < 2 || SymplieDao.db.version < 2) { // Create settings store
+    } else if (SymplieDao.db.version < 2) { // Create settings store
       SymplieDao.initSettingsStore().then(function () {
         deferred.resolve();
       }).catch(function (err) {
