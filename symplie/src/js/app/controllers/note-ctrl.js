@@ -95,6 +95,17 @@ var ctrl = function($scope) {
     $scope.closePopUp();
   };
 
+  $scope.cancelSettingsUpdate = function () {
+    dao.getSettings().then(function (settings) {
+      $scope.$apply(function () {
+        $scope.settings = settings;
+      });
+    }).catch(function (err) {
+      console.log('Error: failed to get settings');
+    });
+    $scope.closePopUp();
+  };
+
   // Asynchronously Check License
   setTimeout(function () {
     Utils.checkCwsLicense($scope);
