@@ -50,7 +50,9 @@ window.IDBKeyRange    = window.IDBKeyRange    || window.webkitIDBKeyRange;
   };
 
   SymplieDao.onUpgradeNeeded = function (evt) {
-    var deferred = Q.defer();
+    var deferred = Q.defer(),
+        dbVersion,
+        request;
 
     SymplieDao.db = evt.target.result;
 
@@ -63,13 +65,21 @@ window.IDBKeyRange    = window.IDBKeyRange    || window.webkitIDBKeyRange;
         deferred.reject(err);
       });
     } else if (SymplieDao.db.version < 2) { // Create settings store
-      SymplieDao.initSettingsStore().then(function () {
-        deferred.resolve();
-      }).catch(function (err) {
-        console.log('Error migrating DB to version 2:');
-        console.log(err);
-        deferred.reject(err);
-      });
+      dbVersion = parseInt(SymplieDao.db.version);
+      SymplieDao.db.close();
+      request = indexedDB.open('symplie', 2);
+
+      request.onupgradeneeded = function (evt) {
+        SymplieDao.db = evt.target.result;
+        
+        SymplieDao.initSettingsStore().then(function () {
+          deferred.resolve();
+        }).catch(function (err) {
+          console.log('Error migrating DB to version 2:');
+          console.log(err);
+          deferred.reject(err);
+        });
+      }
     } else {
       deferred.resolve();
     }
