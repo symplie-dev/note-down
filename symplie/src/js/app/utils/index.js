@@ -153,6 +153,7 @@ var Q         = require('q'),
       $scope.popUpCancelAction = $scope.closePopUp;
       // Recheck in the license in interactive mode so that the user can sign in.
       $('.notification-pop-up.pop-up-wrapper').css('display', 'table');
+      Utils.deblurPopUp();
     });
   };
 
@@ -166,6 +167,7 @@ var Q         = require('q'),
       $scope.popUpOkAction  = function () { Utils.checkCwsLicense($scope, true); };
       $scope.popUpCancelAction = $scope.closePopUp;
       $('.notification-pop-up.pop-up-wrapper').css('display', 'table');
+      Utils.deblurPopUp();
     });
   };
 
@@ -178,7 +180,17 @@ var Q         = require('q'),
       $scope.popUpOkAction     = $scope.goToChromeWebStore;
       $scope.popUpCancelAction = $scope.closePopUp;
       $('.notification-pop-up.pop-up-wrapper').css('display', 'table');
+      Utils.deblurPopUp();
     });
+  };
+
+  Utils.deblurPopUp = function () {
+    setTimeout(function () {
+      $('.pop-up-wrapper').css('-webkit-transform' , 'translate3d(0,0,0)')
+                          .css('transform', 'translate3d(0,0,0)');
+      $('.pop-up-wrapper *').css('-webkit-transform' , 'translate3d(0,0,0)')
+                            .css('transform', 'translate3d(0,0,0)');
+    }, 1000);
   };
 
 module.exports = Utils;

@@ -87,6 +87,7 @@ module.exports = function($scope, $compile) {
     $scope.popUpOkAction     = $scope.saveSettings;
     $scope.popUpCancelAction = $scope.closePopUp;
     $('.settings-pop-up.pop-up-wrapper').css('display', 'table');
+    Utils.deblurPopUp();
   };
 
   $scope.saveSettings = function () {
