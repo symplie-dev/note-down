@@ -1,108 +1,161 @@
-.symplie-btn-wrapper {
-  bottom: 10px;
-  height: 48px;
-  position: absolute;
-  right: 10px;
-  width: 48px;
-  z-index: 10;
-}
+/* Symplie Button
+------------------------------------------------------------------------------*/
+  .symplie-btn-wrapper {
+    bottom: 10px;
+    height: 48px;
+    position: absolute;
+    left: 201px;
+    width: 48px;
+    z-index: 10;
+  }
 
-.symplie-btn-wrapper.hide { display: none; }
+  .symplie-btn-wrapper.hide { display: none; }
 
-.symplie-btn {
+  .symplie-btn {
     border-radius: 50%;
     cursor: pointer;
     outline: none;
     position: absolute;
     text-align: center;
     text-shadow: 0 2px rgba(0,0,0,0.2);
-}
+  }
 
-.symplie-btn:active { outline: none; }
-.symplie-btn:focus { outline: none; }
+  .symplie-btn:active { outline: none; }
+  .symplie-btn:focus { outline: none; }
 
-.symplie-btn.inner {
-  background: #fff; /*#68be79;*/
-  border: 2px solid #333;
-  box-shadow: 0 0 6px rgba(0,0,0,.3);
-  color: #333;
-  display: block;
-  height: 46px;
-  line-height: 52px;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  width: 46px;
-  z-index: 15;
-}
+  .symplie-btn.inner {
+    background: #fff;
+    border: 2px solid #333;
+    box-shadow: 0 0 6px rgba(0,0,0,.3);
+    color: #333;
+    display: block;
+    height: 46px;
+    line-height: 52px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 46px;
+    z-index: 15;
+  }
 
-.symplie-btn.inner {
-  color: #333;
-}
+  .symplie-btn.inner:hover {
+    /*background: #eee;*/
+    box-shadow: 0 0 10px rgba(0,0,0,.375);
+  }
 
-.symplie-btn.inner:active {
-  box-shadow: 0 0 3px rgba(0,0,0,.3);
-  height: 46px;
-  left: 1px;
-  top: 1px;
-  width: 46px;
-}
+  .symplie-btn.inner:active {
+    box-shadow: 0 0 3px rgba(0,0,0,.3);
+    height: 46px;
+    width: 46px;
+  }
 
-.octicon.large {
-  font-size: 28px;
-}
+  .octicon.large {
+    font-size: 28px;
+  }
 
-.symplie-btn.radial {
-  border: none;
-  box-shadow: 0 0 6px rgba(0,0,0,.3);
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  height: 32px;
-  line-height: 30px;
-  -webkit-transition: left 0.15s linear, top  0.15s linear;
-     -moz-transition: left 0.15s linear, top  0.15s linear;
-          transition: left 0.15s linear, top  0.15s linear;
-  width: 32px;
-  z-index: 5;
-}
+  .symplie-btn.element-btn {
+    border: none;
+    box-shadow: 0 0 6px rgba(0,0,0,.3);
+    color: #fff;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    height: 32px;
+    line-height: 30px;
+    -webkit-transition: left 0.15s linear, top  0.15s linear, height 0.15s linear;
+       -moz-transition: left 0.15s linear, top  0.15s linear, height 0.15s linear;
+            transition: left 0.15s linear, top  0.15s linear, height 0.15s linear;
+    width: 32px;
+    z-index: 5;
+  }
 
-.symplie-btn-wrapper.view .symplie-btn.radial,
-.symplie-btn-wrapper.new-element .symplie-btn.radial,
-.symplie-btn-wrapper.markdown .symplie-btn.radial {
-  left: 8px;
-  top: 8px;
-}
+  .symplie-btn-wrapper.view .symplie-btn.element-btn,
+  .symplie-btn-wrapper.new-element .symplie-btn.element-btn,
+  .symplie-btn-wrapper.markdown .symplie-btn.element-btn {
+    left: 8px;
+    top: 8px;
+  }
 
-.symplie-btn-wrapper.choose-element .symplie-btn.radial:active {
-  height: 31px;
-  font-size: 14px;
-  line-height: 28px;
-  width: 31px;
-}
+  .symplie-btn-wrapper.markdown .symplie-btn.element-btn.one   { left: -126px; }
+  .symplie-btn-wrapper.markdown .symplie-btn.element-btn.two   { left: -84px;  }
+  .symplie-btn-wrapper.markdown .symplie-btn.element-btn.three { left: -42px;  }
+  .symplie-btn-wrapper.markdown .symplie-btn.element-btn.four  { left: 58px;   }
+  .symplie-btn-wrapper.markdown .symplie-btn.element-btn.five  { left: 100px;  }
+  .symplie-btn-wrapper.markdown .symplie-btn.element-btn.six   { left: 142px;  }
 
-.symplie-btn-wrapper.choose-element .symplie-btn.radial.ninety {
-  left: 8px;
-  top: -74px;
-}
+  .symplie-btn-wrapper.choose-element .symplie-btn.element-btn:active {
+    height: 31px;
+    font-size: 14px;
+    line-height: 28px;
+    width: 31px;
+  }
 
-.symplie-btn-wrapper.choose-element .symplie-btn.radial.one-twenty {
-  left: -34px;
-  top: -64.74652px;
-}
+  #header-btn { background: #555;    }
+  #link-btn   { background: #529ecc; }
+  #bullet-btn { background: #f2992e; }
+  #task-btn   { background: #56bc8a; }
+  #link-btn   { background: #529ecc; }
+  #quote-btn  { background: #aaa;    }
+  #code-btn   { background: #a77dc2; }
 
-.symplie-btn-wrapper.choose-element .symplie-btn.radial.one-fifty {
-  left: -64.74652px;
-  top: -34px;
-}
+  .hide-md-btns .symplie-btn.element-btn { display: none; }
+  .hide-tooltips .tooltipped.active:after { display: none; }
+  .hide-tooltips .tooltipped.active:before { display: none; }
 
-.symplie-btn-wrapper.choose-element .symplie-btn.radial.one-eighty {
-  left: -76px;
-  top: 8px;
-}
+  /* Pulled and modified from:
 
-#header-btn { background: #555; }
-#paragraph-btn { background: #aaa; }
-#bullet-btn { background: #f2992e; }
-#todo-btn { background: #56bc8a; }
-#cancel-btn { background: #d95e40; }
+  Animate.css - http://daneden.me/animate
+  Licensed under the MIT license - http://opensource.org/licenses/MIT
+  Copyright (c) 2014 Daniel Eden
+  */
+  @-webkit-keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+      transition-timing-function: cubic-bezier(0.0, 0.610, 0.355, 1.000);
+      transform: translate3d(0,0,0);
+    }
+
+    40%, 43% {
+      transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      transform: translate3d(0, -30px, 0);
+    }
+
+    70% {
+      transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      transform: translate3d(0, -15px, 0);
+    }
+
+    90% {
+      transform: translate3d(0,-4px,0);
+    }
+  }
+
+  .bounce {
+    -webkit-animation-name: bounce;
+    transform-origin: center bottom;
+  }
+
+/* New Note Button
+------------------------------------------------------------------------------*/
+  .new-note-btn-wrapper {
+    bottom: 10px;
+    height: 48px;
+    position: absolute;
+    left: 201px;
+    width: 48px;
+  }
+
+  @media (max-width: 749px) {
+    .new-note-btn-wrapper {
+      display: none;
+    }
+  }
+
+  .new-note-btn-wrapper.menu {
+    display: block;
+  }
+
+  .symplie-btn.inner.new-note-btn  {
+    box-sizing: border-box;
+    line-height: 48px;
+    z-index: 16
+  }

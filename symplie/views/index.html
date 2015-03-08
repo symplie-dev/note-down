@@ -4,38 +4,90 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
     <title>Symplie</title>
+    <!-- Open Links in new tab -->
+    <base target="_blank">
     <!-- Styles -->
     <link href='/dist/bundle.min.css' rel='stylesheet'>
     <!-- Scripts -->
-    <script src='/dist/lib/jquery.min.js'></script>
-    <script src='/dist/lib/angular.min.js'></script>
-    <script src='/dist/lib/angular-sanitize.min.js'></script>
+    <script src='/src/js/lib/jquery.min.js'></script>
+    <script src='/src/js/lib/jquery.caret.js'></script>
+    <script src='/src/js/lib/angular.min.js'></script>
+    <script src='/src/js/lib/angular-sanitize.min.js'></script>
     <script src='/dist/bundle.js'></script>
   </head>
   <body>
     <div class='symplie-wrapper-outer' ng-controller='NoteCtrl'>
+      <!-- Header -->
       <div class='header-wrapper'>
-        <div class='header-title'>SYMPLIE</div>
-        <div class='header-back-btn'>
-          <span class="octicon octicon-chevron-left"></span>
+        <div class='header-title'><span class='octicon octicon-primitive-dot unsaved-indicator hide'></span>SYMPLIE<span class='octicon octicon-primitive-dot unsaved-indicator {{(unsaved) ? "" : "hide"}}'></span></div>
+        <div class='header-btn header-full-screen-btn {{(symplieState === "menu") ? "" : "hide"}}' ng-click='fullScreen()'>
+          <span class='octicon octicon-screen-full'></span>
+        </div>
+        <div class='header-btn header-back-btn {{(symplieState === "menu") ? "hide" : ""}}' ng-click='backToMenu()'>
+          <span class='octicon octicon-chevron-left'></span>
+        </div>
+        <div class='header-btn header-settings-btn {{(symplieState === "menu") ? "" : "hide"}}' ng-click='showSettingsPopUp()'>
+          <span class='octicon octicon-gear'></span>
         </div>
       </div>
-      <div class='symplie-wrapper'>
-        <div class='symplie-note-pnl {{(state == "markdown") ? "flipped" : ""}}'>
-          <figure class='front'>
-            <div md-viewer note='note'
-              selected-element='selectedElement'
-              create-element='createElement'></div>
-          </figure>
-          <figure class='back'>
-            <md-editor note='note'></md-editor>
-          </figure>
+      <!-- Pop-Up Content -->
+      <div class='pop-up-content-wrapper {{symplieState}}'>
+        <div class='symplie-menu-wrapper'>
+          <div sympliemenu class='symplie-menu'
+            notes='notes'
+            current-note='currentNote'
+            symplie-state='symplieState'
+            notepad-state='notepadState'
+            inner-btn-octicon='innerBtnOcticon'></div>
+        </div>
+        <div class='symplie-note-wrapper'>
+          <div class='symplie-note-pnl {{(notepadState == "markdown") ? "flipped" : ""}}'>
+            <figure class='front'>
+              <div md-viewer note='currentNote'
+                selected-element='selectedElement'
+                create-element='createElement'
+                unsaved='unsaved'
+                inner-btn-octicon='innerBtnOcticon'
+                notepad-state='notepadState'></div>
+            </figure>
+            <figure class='back'>
+              <md-editor note='currentNote'
+                add-markdown-element='addMarkdownElement'
+                unsaved='unsaved'></md-editor>
+            </figure>
+          </div>
         </div>
       </div>
-      <div symplie-input state='state' note='note'></div>
-      <div symplie-btn state='state'
-        selected-element='selectedElement'
-        create-element='createElement'></div>
+      <div newnotebtn
+        symplie-state='symplieState'
+        notepad-state='notepadState'
+        inner-btn-octicon='innerBtnOcticon'
+        notes='notes'
+        current-note='currentNote'
+        add-markdown-element='addMarkdownElement'
+        unsaved='unsaved'
+        settings='settings'></div>
+      <div sympliebtn
+        symplie-state='symplieState'
+        notepad-state='notepadState'
+        inner-btn-octicon='innerBtnOcticon'
+        notes='notes'
+        current-note='currentNote'
+        add-markdown-element='addMarkdownElement'
+        unsaved='unsaved'
+        settings='settings'></div>
+      <div pop-up
+        title='popUpTitle'
+        message='popUpMessage'
+        ok-btn-lbl='popUpOkBtn'
+        cancel-btn-lbl='popUpCancelBtn'
+        ok-btn-action='popUpOkAction'
+        cancel-btn-action='popUpCancelAction'></div>
+      <div settings-pop-up
+        ok-btn-action='saveSettings'
+        cancel-btn-action='cancelSettingsUpdate'
+        settings='settings'
+        export-notes='exportNotesAsJson'></div>
     </div>
   </body>
 </html>

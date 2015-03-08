@@ -1,0 +1,176 @@
+.list-btn-wrapper {
+    border-bottom: 1px solid #ddd;
+    height: 40px;
+    width: 100%;
+}
+
+.list-btn {
+    background: #fff;
+    box-sizing: border-box;
+    color: #333;
+    cursor: pointer;
+    float: left;
+    font-family: 'Roboto Light', Helvetica, Arial, sans-serif;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+            user-select: none;
+    width: 50%;
+}
+
+.list-btn .octicon.octicon-primitive-dot.tiny {
+    color: #5cb85c;
+    display: inline-block;
+    font-size: 10px;
+    opacity: 0.0;
+    padding-right: 5px;
+    position: relative;
+    top: -2px;
+    -webkit-transition: opacity 50ms linear;
+            transition: opacity 50ms linear;
+}
+
+.list-btn .octicon.octicon-primitive-dot.tiny.active {
+    opacity: 1.0
+}
+
+.list-btn:hover {
+    background: rgba(245,245,245,0.8);
+}
+
+.created-dt-btn {
+    border-right: 1px solid #ddd;
+}
+
+.note-list {
+    border-style: none;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+}
+
+.note-list-item {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    height: 40px;
+    line-height: 20px;
+    padding: 10px;
+    position: relative;
+}
+
+.note-list-item-layer1 {
+    background: inherit;
+    height: 39px;
+    left: 0px;
+    position: absolute;
+    top: 0;
+    -webkit-transition: left 0.2s ease;
+            transition: left 0.2s ease;
+    width: 100%;
+    z-index: 2;
+}
+
+.note-list-item-layer1.reveal {
+    left: -80px;
+}
+
+.note-list-item-layer1:hover {
+    background: rgb(245,245,245);
+}
+
+.note-list-item-layer2 {
+    height: 40px;
+    left: 0px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.note-list-item-layer2 .layer2-btn {
+    color: #fff;
+    float: right;
+    font-weight: bold;
+    height: 39px;
+    line-height: 39px;
+    text-align: center;
+    width: 40px;
+}
+
+.note-list-item-layer2 .cancel-btn {
+    background: #aaa;
+}
+
+.note-list-item-layer2 .final-delete-btn {
+    background: #d95e40;
+}
+
+.note-list-item .note-title {
+    box-sizing: border-box;
+    color: #333;
+    float: left;
+    height: 100%;
+    line-height: 39px;
+    padding-left: 10px;
+    width: 50%;
+}
+
+.note-list-item .note-date {
+    color: #aaa;
+    float: left;
+    font-size: 12px;
+    height: 100%;
+    line-height: 39px;
+    text-align: center;
+    width: 30%;
+}
+
+.note-list-item .note-delete {
+    color: #333;
+    float: left;
+    font-size: 20px;
+    height: 100%;
+    line-height: 39px;
+    width: 10%;
+}
+
+.note-list-item .note-delete div:hover {
+    background: #ddd;
+}
+
+.note-list-item .note-delete div {
+    background: inherit;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: none;
+    float: left;
+    height: 39px;
+    outline: none;
+}
+
+.note-list-item .note-delete.show div {
+    display: block;
+}
+
+.note-list-item .note-delete.show div span {
+    display: inline-block;
+    padding: 10px 5px;
+}
+
+.note-list-item .note-select-btn {
+    box-sizing: border-box;
+    color: #333;
+    float: left;
+    font-size: 20px;
+    height: 100%;
+    line-height: 39px;
+    padding-right: 10px;
+    text-align: right;
+    width: 10%;
+}

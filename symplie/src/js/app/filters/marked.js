@@ -1,21 +1,26 @@
 'use strict';
 
-var marked   = require('marked'),
-    renderer = new marked.Renderer();
+var marked    = require('marked'),
+    Constants = require('../constants'),
+    renderer  = require('./renderer'),
+    hljs      = require('highlight.js');
 
-renderer.listitem = function(text) {
-  if (/^\s*\[[x ]\]\s*/.test(text)) {
-      text = text
-        .replace(/^\s*\[ \]\s*/, '<span class="checkbox octicon octicon-check unchecked"></span>')
-        .replace(/^\s*\[x\]\s*/, '<span class="checkbox octicon octicon-check"></span>');
-      return '<li>' + text + '</li>';
-  } else {
-      return '<li><span class="octicon octicon-primitive-dot bullet"></span>' + text + '</li>';
+marked.setOptions({
+  highlight: function (code, lang) {
+    if (hljs.listLanguages().indexOf(lang) >= 0) {
+      return hljs.highlight(lang, code, true).value;
+    }
+              
+    return code;
   }
-};
+});
 
 module.exports = function () {
-  return function (input) {
-    return marked(input, { renderer: renderer });
+  return function (note) {
+    if (note) {
+      return marked(note.markdown, { renderer: renderer });
+    } else {
+      return Constants.EMPTY_STRING;
+    }
   }
 };

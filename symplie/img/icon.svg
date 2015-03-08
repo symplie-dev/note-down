@@ -15,9 +15,9 @@
    version="1.1"
    inkscape:version="0.48.5 r10040"
    sodipodi:docname="icon.svg"
-   inkscape:export-filename="C:\Users\Benjamin\projects\symplie\symplie-ext\symplie\img\icon.png"
-   inkscape:export-xdpi="87.267914"
-   inkscape:export-ydpi="87.267914">
+   inkscape:export-filename="C:\Users\Benjamin\projects\symplie\symplie-ext\symplie\img\icon16.png"
+   inkscape:export-xdpi="11.25"
+   inkscape:export-ydpi="11.25">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -27,11 +27,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.5795454"
-     inkscape:cx="33.000004"
-     inkscape:cy="33.000002"
+     inkscape:zoom="1.2897727"
+     inkscape:cx="-38.91658"
+     inkscape:cy="86.518513"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g3759"
      showgrid="false"
      inkscape:window-width="1440"
      inkscape:window-height="898"
@@ -56,36 +56,38 @@
      id="layer1">
     <g
        id="g3759"
-       transform="matrix(1.4545454,0,0,1.4545454,-188.96266,309.78821)">
-      <path
-         transform="matrix(0.20363637,0,0,0.20363637,116.89365,386.62041)"
-         d="m 437.14285,392.36218 c 0,86.7876 -70.35525,157.14286 -157.14285,157.14286 -86.7876,0 -157.14285,-70.35526 -157.14285,-157.14286 0,-86.7876 70.35525,-157.14285 157.14285,-157.14285 86.7876,0 157.14285,70.35525 157.14285,157.14285 z"
-         sodipodi:ry="157.14285"
-         sodipodi:rx="157.14285"
-         sodipodi:cy="392.36218"
-         sodipodi:cx="280"
-         id="path2985"
-         style="fill:#ffffff;fill-opacity:0.31372549;stroke:#333333;stroke-width:9.8214283;stroke-miterlimit:4;stroke-opacity:0.94117647;stroke-dasharray:none"
-         sodipodi:type="arc" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text2987"
-         y="485.71494"
-         x="157.82785"
-         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;font-family:Roboto Light;-inkscape-font-specification:Roboto Light"
-         xml:space="preserve"><tspan
-           style="font-size:54px;fill:#333333;fill-opacity:1"
-           y="485.71494"
-           x="157.82785"
-           id="tspan2989"
-           sodipodi:role="line">S</tspan></text>
+       transform="matrix(1.4545454,0,0,1.4545454,-188.96266,309.78819)">
+      <g
+         id="g3784"
+         transform="matrix(1.3333334,0,0,1.3333334,-57.970622,-155.50656)">
+        <rect
+           ry="3.7312777"
+           y="433.51962"
+           x="140.91183"
+           height="66"
+           width="66"
+           id="rect3764"
+           style="fill:#4d4d4d;fill-opacity:1;stroke:none" />
+        <text
+           xml:space="preserve"
+           style="font-size:45.98732376px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Roboto Light;-inkscape-font-specification:Roboto Light"
+           x="155.17784"
+           y="488.58817"
+           id="text2987"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan2989"
+             x="155.17784"
+             y="488.58817"
+             style="font-size:62.08288574px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;fill-opacity:1;font-family:Roboto Medium;-inkscape-font-specification:'Roboto Medium,'">S</tspan></text>
+      </g>
     </g>
     <rect
-       style="fill:#000000;fill-opacity:0;stroke:none"
-       id="rect3772"
+       style="opacity:0;fill:#000000;fill-opacity:1;stroke:none"
+       id="rect3763"
        width="128"
        height="128"
-       x="-3.9993918e-007"
+       x="0"
        y="924.36218" />
   </g>
 </svg>

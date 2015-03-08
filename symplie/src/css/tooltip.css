@@ -1,0 +1,56 @@
+.tooltipped:before,
+.tooltipped:after {
+    border: solid transparent;
+    color: #fff;
+    display: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 13px;
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    white-space: pre;
+    word-wrap: break-word;
+}
+
+.tooltipped.active:before,
+.tooltipped.active:after {
+    display: block;
+}
+
+.tooltipped-n:after,
+.tooltipped-s:before {
+    border-width: 5px;
+    content: "";
+    height: 0;
+    width: 0;
+    z-index: 1001;
+}
+
+.tooltipped-n:before,
+.tooltipped-s:after {
+    background: rgba(0,0,0,0.9);
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.4);
+    content: attr(data-tooltip);
+    padding: 5px;
+    z-index: 1000;
+}
+
+.tooltipped-s:before {
+    border-bottom-color: rgba(0,0,0,0.9);
+    top: 100%;
+}
+.tooltipped-s:after {
+    margin-top: 10px;
+    top: 100%;
+}
+
+.tooltipped-n:before {
+    bottom: 100%;
+    margin-bottom: 10px;
+}
+.tooltipped-n:after {
+    border-top-color: rgba(0,0,0,0.9);
+    bottom: 100%;
+}

@@ -1,0 +1,33 @@
+<div class='list-btn-wrapper'>
+  <div class='created-dt-btn list-btn' ng-click='orderByCreatedDate()'>
+      <span class='octicon octicon-primitive-dot tiny {{(order === "createdAt") ? "active" : ""}}'>
+      </span>Created Date
+  </div>
+  <div class='updated-dt-btn list-btn' ng-click='orderByUpdatedDate()'>
+      <span class='octicon octicon-primitive-dot tiny  {{(order === "updatedAt") ? "active" : ""}}'></span>Updated Date
+  </div>
+</div>
+
+<ul class='note-list'>
+  <li class='note-list-item' ng-repeat='note in notes | orderBy : order : true track by $index'>
+    <div class='note-list-item-layer1'
+        ng-click='viewNote(note)'
+        ng-mouseenter='showDeleteBtn($event)'
+        ng-mouseleave='hideDeleteBtn($event)'>
+      <div class='note-title'>{{note | title}}</div>
+      <div class='note-date'>{{note.createdAt | date : 'MMM d, y'}}</div>
+      <div class='note-delete'>&nbsp;
+        <div ng-click='deleteNoteFirst($event)'><span class='octicon octicon-trashcan'></span></div>
+      </div>
+      <div class='note-select-btn octicon octicon-chevron-right'></div>
+    </div>
+    <div class='note-list-item-layer2'>
+      <div class='layer2-btn final-delete-btn' ng-click='finalDeleteNote(note, $event)'>
+        <span class='octicon octicon-trashcan'></span>
+      </div>
+      <div class='layer2-btn cancel-btn' ng-click='cancelDeleteNote()'>
+        <span class='octicon octicon-x'></span>
+      </div>
+    </div>
+  </li>
+</ul>

@@ -1,17 +1,37 @@
-<div class='symplie-btn-wrapper {{state}} {{selectedElement}}'>
+<div class='symplie-btn-wrapper {{notepadState}} {{selectedElement}}
+    {{(!settings.showMdBtns) ? "hide-md-btns" : ""}} {{(!settings.showMdBtnTooltips) ? "hide-tooltips" : ""}}'>
   <button class='symplie-btn inner' ng-click='centerBtnHandler()'>
     <span class='octicon large {{innerBtnOcticon}}'></span>
   </button>
-  <button id='paragraph-btn' class='symplie-btn radial ninety' ng-click='newParagraphInput()'>
-    Aa
+
+  <button id='header-btn' class='symplie-btn element-btn one tooltipped tooltipped-n'
+      data-tooltip="Header"
+      ng-click='bounceBtn($event); addMarkdownElement("header")'>
+    H
   </button>
-  <button id='bullet-btn' class='symplie-btn radial one-twenty' ng-click='newBulletInput()'>
+  <button id='bullet-btn' class='symplie-btn element-btn two tooltipped tooltipped-n'
+      data-tooltip="List item"
+      ng-click='bounceBtn($event); addMarkdownElement("bullet")'>
     <span class="octicon octicon-primitive-dot"></span>
   </button>
-  <button id='todo-btn' class='symplie-btn radial one-fifty' ng-click='newToDoInput()'>
+  <button id='task-btn' class='symplie-btn element-btn three  tooltipped tooltipped-n'
+      data-tooltip="Task"
+      ng-click='bounceBtn($event); addMarkdownElement("task")'>
     <span class="octicon octicon-check"></span>
   </button>
-  <button id='cancel-btn' class='symplie-btn radial one-eighty' ng-click='cancelChooseElement()'>
-    <span class="octicon octicon-x"></span>
+  <button id='link-btn' class='symplie-btn element-btn four tooltipped tooltipped-n'
+      data-tooltip="Link"
+      ng-click='bounceBtn($event); addMarkdownElement("link")'>
+    <span class="octicon octicon-link"></span>
+  </button>
+  <button id='quote-btn' class='symplie-btn element-btn five tooltipped tooltipped-n'
+      data-tooltip="Block quote"
+      ng-click='bounceBtn($event); addMarkdownElement("quote")'>
+    <span class="octicon octicon-quote"></span>
+  </button>
+  <button id='code-btn' class='symplie-btn element-btn six tooltipped tooltipped-n'
+      data-tooltip="Code block"
+      ng-click='bounceBtn($event); addMarkdownElement("code")'>
+    <span class="octicon octicon-code"></span>
   </button>
 </div>

@@ -1,23 +1,32 @@
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('../../fonts/SourceCodePro-Regular.ttf') format('truetype')
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 .md-editor-wrapper {
   background: #fff;
   box-sizing: border-box;
   height: 100%;
-  padding: 10px;
   width: 100%;
 }
 
 .md-editor {
   background-color: #fff;
+  border: none;
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none;
-  font-family: 'Courier New', Courier, Monospace;
+  box-sizing: border-box;
+  display: none;
+  font-family: 'Source Code Pro', 'Courier New', Courier, Monospace;
   height: 100%;
-  width: 100%;
-  border: none;
-  overflow: auto;
   outline: none;
+  padding: 10px 10px 68px 10px;
   resize: none;
+  width: 100%;
 }
 
 .md-editor:focus {

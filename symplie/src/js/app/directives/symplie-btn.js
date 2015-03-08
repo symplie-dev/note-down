@@ -1,79 +1,117 @@
 'use strict';
 
-var Constants = require('../constants');
+var Constants = require('../constants'),
+    dao       = require('../database');
 
 module.exports = function() {
   return {
     controller: ctrl,
-    link: function ($scope, $element) { },
+    link: link,
     replace: true,
     restrict: 'EA',
     scope: {
-      state:           '=',
-      selectedElement: '=',
-      createElement:   '='
-      // createParagraph: '=',
-      // createBullet:    '=',
-      // createToDo:      '='
+      symplieState:       '=',
+      notepadState:       '=',
+      innerBtnOcticon:    '=',
+      notes:              '=',
+      currentNote:        '=',
+      addMarkdownElement: '=',
+      unsaved:            '=',
+      settings:           '='
     },
     templateUrl: '/views/partials/symplie-btn.html'
   };
 };
 
 function ctrl($scope) {
-  $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
   /**
-   * When the center button is clicked, the state must change. The next state is
-   * dependent on the current state.
+   * When the center button is clicked, the notepadState must change. The next notepadState is
+   * dependent on the current notepadState.
    */
   $scope.centerBtnHandler = function () {
-    switch ($scope.state) {
-      case Constants.SymplieState.VIEW:
-        $scope.state = Constants.SymplieState.CHOOSE_ELEMENT;
-        $scope.innerBtnOcticon = Constants.Octicon.MARKDOWN;
-        break;
-      case Constants.SymplieState.CHOOSE_ELEMENT:
-        $scope.state = Constants.SymplieState.MARKDOWN;
+    switch ($scope.notepadState) {
+      case Constants.NotepadState.VIEW:
+        $scope.notepadState = Constants.NotepadState.MARKDOWN;
         $scope.innerBtnOcticon = Constants.Octicon.EYE;
+        $scope.focusMdEditor();
         break;
-      case Constants.SymplieState.NEW_ELEMENT:
-        $scope.state = Constants.SymplieState.VIEW;
+      case Constants.NotepadState.MARKDOWN:
+        $scope.notepadState = Constants.NotepadState.VIEW;
         $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
-        $scope.createElement();
-        break;
-      case Constants.SymplieState.MARKDOWN:
-        $scope.state = Constants.SymplieState.VIEW;
-        $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+        $('.md-editor').focusout();
+        // Update model in DB (TODO: Better logic to find out when there is a change)
+        $scope.currentNote.updatedAt = Date.now();
+        $scope.currentNote.updatedAt = Date.now();
+        dao.updateNote($scope.currentNote);
+        $scope.unsaved = false;
         break;
       default:
-        $scope.state = Constants.SymplieState.VIEW;
+        console.log('ERROR: Unknown state - ' + $scope.notepadState);
+        $scope.notepadState = Constants.NotepadState.VIEW;
         $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
         break;
     }
   };
 
-  $scope.cancelChooseElement = function () {
-    $scope.state = Constants.SymplieState.VIEW;
-    $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+  $scope.bounceBtn = function ($event) {
+    if ($(event.target).hasClass('octicon')) {
+      $($event.target).parent().addClass('bounce animated')
+        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+          $(this).removeClass('bounce animated');
+        });
+    } else {
+      $($event.target).addClass('bounce animated')
+        .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+          $(this).removeClass('bounce animated');
+        });
+    }
   };
 
-  $scope.newElement = function () {
-    $scope.state = Constants.SymplieState.NEW_ELEMENT;
-    $scope.innerBtnOcticon = Constants.Octicon.PLUS;
+  $scope.focusMdEditor = function () {
+    setTimeout(function () {
+      $('.md-editor').focus();
+    }, 200);
   };
+}
+ctrl.$inject = ['$scope'];
 
-  $scope.newParagraphInput = function () {
-    $scope.newElement();
-    $scope.selectedElement = Constants.SymplieElement.PARAGRAPH;
-  };
+function link($scope, $element) {
+  centerSymplieBtn();
 
-  $scope.newBulletInput = function () {
-    $scope.newElement();
-    $scope.selectedElement = Constants.SymplieElement.BULLET;
-  };
+  !function () {
+    $('.tooltipped').on('mouseenter', function (evt) {
+      $('.tooltipped').removeClass('active');
+      $(this).addClass('active');
+    }).on('mouseleave', function (evt) {
+      $('.tooltipped').removeClass('active');
+    });
 
-  $scope.newToDoInput = function () {
-    $scope.newElement();
-    $scope.selectedElement = Constants.SymplieElement.TODO;
-  };
-};
+    $(window).on('resize', function () {
+      centerSymplieBtn();
+
+      console.log($scope.symplieState)
+
+      if ($(window).width() > 749 &&
+          $scope.symplieState === Constants.SymplieState.MENU) {
+        $scope.$apply(function () {
+          $scope.symplieState = Constants.SymplieState.NOTEPAD;
+          $scope.notepadState = Constants.NotepadState.VIEW;
+          $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+        });
+      }
+    });
+  }();
+}
+link.$inject = ['$scope', '$element'];
+
+function centerSymplieBtn() {
+  var $btnWrapper = $('.symplie-btn-wrapper'),
+      left        = ($('.symplie-note-pnl').width() / 2) -
+                      ($btnWrapper.width() / 2);
+
+  if ($(window).width() > 749) {
+    left += $('.symplie-menu-wrapper').width()
+  }
+  
+  $btnWrapper.css('left', left + 'px');
+}

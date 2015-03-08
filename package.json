@@ -1,11 +1,14 @@
 {
   "dependencies": {
-    "marked": "^0.3.2"
+    "highlight.js": "^8.4.0",
+    "marked": "^0.3.2",
+    "q": "^1.1.2"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.2.1",
     "grunt-contrib-cssmin": "^0.11.0",
+    "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1"
   }
 }
