@@ -9,8 +9,10 @@
     background: #fff;
     box-shadow: 0 5px 5px -5px rgba(0,0,0,0.4);
     height: 26px;
+    left: 0;
     overflow: hidden;
-    position: relative;
+    position: absolute;
+    top: 0;
     width: 100%;
     z-index: 20;
 }
@@ -63,10 +65,18 @@
     opacity: 0.0;
 }
 
-.header-settings-btn.hide {
+.header-full-screen-btn {
+    left: 5px;
+}
+
+.header-full-screen-btn.hide {
     cursor: default;
-    right: 30px;
+    left: -25px;
     opacity: 0.0;
+}
+
+.fullscreen .header-full-screen-btn {
+    display: none;
 }
 
 .header-btn:hover {
@@ -82,4 +92,18 @@
     font-size: 20px;
     line-height: 26px;
     padding-right: 2px;
+}
+
+/* Don't actually hide the settings button in full screen mode */
+@media (max-width: 749px) {
+    .header-settings-btn.hide {
+        cursor: default;
+        right: 30px;
+        opacity: 0.0;
+    }
+}
+
+@media (min-width: 750px) {
+    /* Never show the back button in full screen mode */
+    .header-back-btn { display: none; }
 }

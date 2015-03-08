@@ -97,7 +97,8 @@ Constants.DEFAULT_SETTINGS = {
   'showMdBtnTooltips': true,
   'editorFont':        'Source Code Pro',
   'theme':             Constants.EMPTY_STRING,
-  'currentNoteId':     -1
+  'currentNoteId':     -1,
+  'fullScreen':        false
 }
 
 Constants.WELCOME_NOTE = [

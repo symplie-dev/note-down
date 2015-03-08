@@ -1,3 +1,6 @@
+html { height: 100%; width: 100%; }
+body { height: 100%; width: 100%; }
+
 .symplie-wrapper-outer {
   height: 580px;
   overflow: hidden;
@@ -6,13 +9,15 @@
 }
 
 .pop-up-content-wrapper {
-  height: 554px;
+  box-sizing: border-box;
+  height: 100%;
   overflow: hidden;
+  padding-top: 26px;
   position: absolute;
-  top: 25px;
+  top: 0;
   -webkit-transition: left 0.4s ease-in-out;
           transition: left 0.4s ease-in-out;
-  width: 900px;
+  width: 200%;
 }
 
 .pop-up-content-wrapper.menu { left: 0%; }
@@ -20,14 +25,18 @@
 
 .symplie-menu-wrapper {
   background: #fff;
+  box-sizing: border-box;
   float: left;
   height: 100%;
   margin: 0;
+  position: relative;
   width: 50%;
+  z-index: 2;
 }
 
 .symplie-note-wrapper {
   background: rgba(245, 245, 245, 0.8);
+  
   float: left;
   height: 100%;
   position: relative;
@@ -37,16 +46,18 @@
 }
 
 .symplie-note-pnl {
-  width: 100%;
+  box-sizing: border-box;
   height: 100%;
   position: absolute;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
   -webkit-transition: transform 0.5s;
           transition: transform 0.5s;
+  width: 100%;
 }
 
 .symplie-note-pnl figure {
+  box-sizing: border-box;
   display: block;
   position: absolute;
   width: 100%;
@@ -80,4 +91,50 @@
 .animated {
   -webkit-animation-duration: 1s;
   -webkit-animation-fill-mode: both;
+}
+
+/* Full Screen
+------------------------------------------------------------------------------*/
+
+/*.full-screen .symplie-menu-wrapper {
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+  }
+*/
+
+.fullscreen .symplie-wrapper-outer { height: 100%; width: 100%; }
+
+@media (min-width: 750px) {
+  .pop-up-content-wrapper { height: 100%; width: 100%; }
+  .pop-up-content-wrapper.menu { left: 0; }
+  .pop-up-content-wrapper.notepad { left: 0; }
+
+  .symplie-wrapper-outer {
+    height: 100%;
+    width: 100%;
+  }
+
+  .symplie-menu-wrapper {
+    border-right: 1px solid #ddd;
+    width: 45%;
+  }
+
+  .symplie-note-wrapper {
+    width: 55%;
+  }
+}
+
+@media (min-width: 1100px) {
+  .symplie-wrapper-outer {
+    height: 100%;
+    width: 100%;
+  }
+
+  .symplie-menu-wrapper {
+    width: 30%;
+  }
+
+  .symplie-note-wrapper {
+    width: 70%;
+  }
 }

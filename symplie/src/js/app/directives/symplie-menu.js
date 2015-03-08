@@ -10,11 +10,12 @@ module.exports = function() {
       notes:           '=',
       currentNote:     '=',
       symplieState:    '=',
+      notepadState:    '=',
       innerBtnOcticon: '='
     },
     templateUrl: '/views/partials/symplie-menu.html',
     controller: ctrl,
-    link: function () { }
+    link: link
   };
 };
 
@@ -25,6 +26,7 @@ function ctrl($scope, $rootScope) {
     $scope.cancelDeleteNote();
     $scope.currentNote = note;
     $scope.symplieState = Constants.SymplieState.NOTEPAD;
+    $scope.notepadState = Constants.NotepadState.VIEW;
     $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
     $scope.oldNoteContent = $scope.currentNote.markdown;
   }
@@ -90,5 +92,26 @@ function ctrl($scope, $rootScope) {
     $rootScope.$digest();
   };
 }
-
 ctrl.$inject = ['$scope'];
+
+function link($scope, $element) {
+  !function () {
+    setMenuListHeight();
+
+    $(window).on('resize', function () {
+      setMenuListHeight();
+    });
+  }()
+}
+link.$inject = ['$scope', '$element'];
+
+function setMenuListHeight() {
+  var height = $(window).height() - $('.header-wrapper').height() - 
+        $('.list-btn-wrapper').height();
+
+  if (height < 50) {
+    height = 50;
+  }
+
+  $('.note-list').css('height', height + 'px');
+}

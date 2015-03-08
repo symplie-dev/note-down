@@ -4,7 +4,7 @@ var Constants = require('../constants'),
     dao       = require('../database'),
     Utils     = require('../utils');
 
-var ctrl = function($scope) {
+var ctrl = function($scope, $location) {
   $scope.notes       = [];
   $scope.currentNote = null;
   $scope.settings    = Constants.DEFAULT_SETTINGS;
@@ -13,6 +13,8 @@ var ctrl = function($scope) {
     dao.getNotes().then(function (notes) {
       $scope.$apply(function () {
         $scope.notes = notes;
+        // Default to the newest note
+        $scope.currentNote = $scope.notes[$scope.notes.length - 1];
       });
     }).catch(function (err) {
       console.log('Error: failed to get notes');
@@ -21,6 +23,15 @@ var ctrl = function($scope) {
     dao.getSettings().then(function (settings) {
       $scope.$apply(function () {
         $scope.settings = settings;
+        
+        var fullscreen = $location.search()['fullscreen'];
+
+        console.log(fullscreen);
+
+        if (fullscreen == 'true') {
+          $('body').addClass('fullscreen');
+        };
+        
       });
     }).catch(function (err) {
       console.log('Error: failed to get settings');
@@ -34,7 +45,7 @@ var ctrl = function($scope) {
   $scope.notepadState    = Constants.NotepadState.VIEW;
   $scope.inputState      = null;
   $scope.selectedElement = Constants.EMPTY_STRING;
-  $scope.innerBtnOcticon = Constants.Octicon.PLUS;
+  $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
   $scope.unsaved         = false;
 
   $scope.backToMenu = function () {
@@ -60,6 +71,10 @@ var ctrl = function($scope) {
   $scope.goToChromeWebStore = function () {
     var win = window.open(Constants.CHROME_WEB_STORE, '_blank');
     win.focus();
+  };
+
+  $scope.fullScreen = function () {
+    chrome.tabs.create({ url: chrome.extension.getURL('views/index.html#/?fullscreen=true') });
   };
 
   $scope.exportNotesAsJson = function () {
@@ -112,6 +127,6 @@ var ctrl = function($scope) {
   }, 1500);
 };
 
-ctrl.$inject = ['$scope'];
+ctrl.$inject = ['$scope', '$location'];
 
 module.exports = ctrl;

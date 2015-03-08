@@ -29,52 +29,28 @@ function ctrl($scope) {
    * dependent on the current notepadState.
    */
   $scope.centerBtnHandler = function () {
-    if ($scope.symplieState === Constants.SymplieState.MENU) {
-      $scope.newNote();
-      $scope.symplieState = Constants.SymplieState.NOTEPAD;
-      $scope.innerBtnOcticon = Constants.Octicon.EYE;
-      $scope.notepadState = Constants.NotepadState.MARKDOWN;
-      $scope.focusMdEditor();
-    } else if ($scope.symplieState == Constants.SymplieState.NOTEPAD) {
-      switch ($scope.notepadState) {
-        case Constants.NotepadState.VIEW:
-          $scope.notepadState = Constants.NotepadState.MARKDOWN;
-          $scope.innerBtnOcticon = Constants.Octicon.EYE;
-          $scope.focusMdEditor();
-          break;
-        case Constants.NotepadState.MARKDOWN:
-          $scope.notepadState = Constants.NotepadState.VIEW;
-          $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
-          // Update model in DB (TODO: Better logic to find out when there is a change)
-          $scope.currentNote.updatedAt = Date.now();
-          $scope.currentNote.updatedAt = Date.now();
-          dao.updateNote($scope.currentNote);
-          $scope.unsaved = false;
-          break;
-        default:
-          console.log('ERROR: Unknown state - ' + $scope.notepadState);
-          $scope.notepadState = Constants.NotepadState.VIEW;
-          $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
-          break;
-      }
-    } else {
-      console.log('ERROR: unknown state - ' + $scope.symplieState);
+    switch ($scope.notepadState) {
+      case Constants.NotepadState.VIEW:
+        $scope.notepadState = Constants.NotepadState.MARKDOWN;
+        $scope.innerBtnOcticon = Constants.Octicon.EYE;
+        $scope.focusMdEditor();
+        break;
+      case Constants.NotepadState.MARKDOWN:
+        $scope.notepadState = Constants.NotepadState.VIEW;
+        $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+        $('.md-editor').focusout();
+        // Update model in DB (TODO: Better logic to find out when there is a change)
+        $scope.currentNote.updatedAt = Date.now();
+        $scope.currentNote.updatedAt = Date.now();
+        dao.updateNote($scope.currentNote);
+        $scope.unsaved = false;
+        break;
+      default:
+        console.log('ERROR: Unknown state - ' + $scope.notepadState);
+        $scope.notepadState = Constants.NotepadState.VIEW;
+        $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+        break;
     }
-  };
-
-  $scope.newNote = function () {
-    var note = {
-      markdown:  Constants.EMPTY_STRING,
-      createdAt: Date.now(),
-      updatedAt: Date.now()
-      
-    };
-
-    dao.insertNote(note);
-
-    $scope.notes.push(note);
-
-    $scope.currentNote = $scope.notes[$scope.notes.length - 1];
   };
 
   $scope.bounceBtn = function ($event) {
@@ -96,10 +72,12 @@ function ctrl($scope) {
       $('.md-editor').focus();
     }, 200);
   };
-};
+}
 ctrl.$inject = ['$scope'];
 
 function link($scope, $element) {
+  centerSymplieBtn();
+
   !function () {
     $('.tooltipped').on('mouseenter', function (evt) {
       $('.tooltipped').removeClass('active');
@@ -107,7 +85,33 @@ function link($scope, $element) {
     }).on('mouseleave', function (evt) {
       $('.tooltipped').removeClass('active');
     });
+
+    $(window).on('resize', function () {
+      centerSymplieBtn();
+
+      console.log($scope.symplieState)
+
+      if ($(window).width() > 749 &&
+          $scope.symplieState === Constants.SymplieState.MENU) {
+        $scope.$apply(function () {
+          $scope.symplieState = Constants.SymplieState.NOTEPAD;
+          $scope.notepadState = Constants.NotepadState.VIEW;
+          $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
+        });
+      }
+    });
   }();
 }
-
 link.$inject = ['$scope', '$element'];
+
+function centerSymplieBtn() {
+  var $btnWrapper = $('.symplie-btn-wrapper'),
+      left        = ($('.symplie-note-pnl').width() / 2) -
+                      ($btnWrapper.width() / 2);
+
+  if ($(window).width() > 749) {
+    left += $('.symplie-menu-wrapper').width()
+  }
+  
+  $btnWrapper.css('left', left + 'px');
+}
