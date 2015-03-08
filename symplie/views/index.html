@@ -20,6 +20,9 @@
       <!-- Header -->
       <div class='header-wrapper'>
         <div class='header-title'><span class='octicon octicon-primitive-dot unsaved-indicator hide'></span>SYMPLIE<span class='octicon octicon-primitive-dot unsaved-indicator {{(unsaved) ? "" : "hide"}}'></span></div>
+        <div class='header-btn header-full-screen-btn {{(symplieState === "menu") ? "" : "hide"}}' ng-click='fullScreen()'>
+          <span class='octicon octicon-screen-full'></span>
+        </div>
         <div class='header-btn header-back-btn {{(symplieState === "menu") ? "hide" : ""}}' ng-click='backToMenu()'>
           <span class='octicon octicon-chevron-left'></span>
         </div>
@@ -30,10 +33,11 @@
       <!-- Pop-Up Content -->
       <div class='pop-up-content-wrapper {{symplieState}}'>
         <div class='symplie-menu-wrapper'>
-          <div sympliemenu
+          <div sympliemenu class='symplie-menu'
             notes='notes'
             current-note='currentNote'
             symplie-state='symplieState'
+            notepad-state='notepadState'
             inner-btn-octicon='innerBtnOcticon'></div>
         </div>
         <div class='symplie-note-wrapper'>
@@ -54,6 +58,15 @@
           </div>
         </div>
       </div>
+      <div newnotebtn
+        symplie-state='symplieState'
+        notepad-state='notepadState'
+        inner-btn-octicon='innerBtnOcticon'
+        notes='notes'
+        current-note='currentNote'
+        add-markdown-element='addMarkdownElement'
+        unsaved='unsaved'
+        settings='settings'></div>
       <div sympliebtn
         symplie-state='symplieState'
         notepad-state='notepadState'
