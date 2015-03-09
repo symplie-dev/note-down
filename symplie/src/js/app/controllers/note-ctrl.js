@@ -26,8 +26,6 @@ var ctrl = function($scope, $location) {
         
         var fullscreen = $location.search()['fullscreen'];
 
-        console.log(fullscreen);
-
         if (fullscreen == 'true') {
           $('body').addClass('fullscreen');
         };

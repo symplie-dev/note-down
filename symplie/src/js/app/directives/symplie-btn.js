@@ -89,8 +89,6 @@ function link($scope, $element) {
     $(window).on('resize', function () {
       centerSymplieBtn();
 
-      console.log($scope.symplieState)
-
       if ($(window).width() > 749 &&
           $scope.symplieState === Constants.SymplieState.MENU) {
         $scope.$apply(function () {
