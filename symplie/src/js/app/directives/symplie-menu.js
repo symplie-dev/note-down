@@ -92,7 +92,7 @@ function ctrl($scope, $rootScope) {
     $rootScope.$digest();
   };
 }
-ctrl.$inject = ['$scope'];
+ctrl.$inject = ['$scope', '$rootScope'];
 
 function link($scope, $element) {
   !function () {
