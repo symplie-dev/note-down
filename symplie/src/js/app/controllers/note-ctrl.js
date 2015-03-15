@@ -47,16 +47,15 @@ var ctrl = function($scope, $location) {
   $scope.unsaved         = false;
 
   $scope.backToMenu = function () {
-    // Went back before saving, reset markdown content
     $scope.symplieState = Constants.SymplieState.MENU;
     $scope.notepadState = Constants.NotepadState.VIEW;
     $scope.innerBtnOcticon = Constants.Octicon.PLUS;
     $scope.selectedElement = Constants.EMPTY_STRING;
     $scope.unsaved = false;
 
-    $scope.currentNote.updatedAt = Date.now();
-    $scope.currentNote.updatedAt = Date.now();
-    dao.updateNote($scope.currentNote);
+    // $scope.currentNote.updatedAt = Date.now();
+    // $scope.currentNote.updatedAt = Date.now();
+    // dao.updateNote($scope.currentNote);
 
     // Make sure we haven't left any element inputs on the viewing panel
     $('.textarea').remove();

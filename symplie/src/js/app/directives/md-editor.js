@@ -1,6 +1,7 @@
 'use strict';
 
-var Constants = require('../constants'),
+var Constants   = require('../constants'),
+    dao         = require('../database'),
     cursorAlter = [Constants.KeyCode.PAGE_UP
                   ,Constants.KeyCode.PAGE_DOWN
                   ,Constants.KeyCode.END 
@@ -246,6 +247,21 @@ function ctrl($scope) {
       $scope.tabAdvance = false;
       $input.range(pos + start, pos + end)
     }
+  };
+
+  $scope.keyupHandler = function ($event) {
+    if ($scope.saveTimeoutId) {
+      clearTimeout($scope.saveTimeoutId);
+    }
+
+    $scope.saveTimeoutId = setTimeout(function () {
+      $scope.$apply(function () {
+        $scope.note.updatedAt = Date.now();
+        $scope.note.updatedAt = Date.now();
+        dao.updateNote($scope.note);
+        $scope.unsaved = false;
+      });
+    }, 1000);
   };
 }
 
