@@ -53,10 +53,6 @@ var ctrl = function($scope, $location) {
     $scope.selectedElement = Constants.EMPTY_STRING;
     $scope.unsaved = false;
 
-    // $scope.currentNote.updatedAt = Date.now();
-    // $scope.currentNote.updatedAt = Date.now();
-    // dao.updateNote($scope.currentNote);
-
     // Make sure we haven't left any element inputs on the viewing panel
     $('.textarea').remove();
   };

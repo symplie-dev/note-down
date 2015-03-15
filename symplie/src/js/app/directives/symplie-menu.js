@@ -11,7 +11,8 @@ module.exports = function() {
       currentNote:     '=',
       symplieState:    '=',
       notepadState:    '=',
-      innerBtnOcticon: '='
+      innerBtnOcticon: '=',
+      unsaved:         '='
     },
     templateUrl: '/views/partials/symplie-menu.html',
     controller: ctrl,
@@ -23,6 +24,16 @@ function ctrl($scope, $rootScope) {
   $scope.order = 'createdAt';
 
   $scope.viewNote = function (note) {
+    console.log($scope.unsaved)
+    // Save previous note if user tries to select another note before the
+    // autosave kicks in
+    if ($scope.unsaved) {
+      $scope.currentNote.updatedAt = Date.now();
+      $scope.currentNote.updatedAt = Date.now();
+      dao.updateNote($scope.currentNote);
+      $scope.unsaved = false;
+    }
+
     $scope.cancelDeleteNote();
     $scope.currentNote = note;
     $scope.symplieState = Constants.SymplieState.NOTEPAD;
