@@ -9,7 +9,7 @@
 </div>
 
 <ul class='note-list'>
-  <li class='note-list-item' ng-repeat='note in notes | orderBy : order : true track by $index'>
+  <li class='note-list-item order-{{$index}}' ng-repeat='note in notes | orderBy : order : true track by $index' note-id="{{note.id}}">
     <div class='note-list-item-layer1'
         ng-click='viewNote(note)'
         ng-mouseenter='showDeleteBtn($event)'

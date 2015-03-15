@@ -265,7 +265,7 @@ function ctrl($scope) {
           $scope.unsaved = false;
         });
       }
-    }, 1000);
+    }, 500);
   };
 }
 

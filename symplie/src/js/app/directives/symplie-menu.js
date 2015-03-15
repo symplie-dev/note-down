@@ -1,7 +1,8 @@
 'use strict';
 
 var Constants = require('../constants'),
-    dao       = require('../database');
+    dao       = require('../database'),
+    Utils     = require('../utils');
 
 module.exports = function() {
   return {
@@ -24,7 +25,6 @@ function ctrl($scope, $rootScope) {
   $scope.order = 'createdAt';
 
   $scope.viewNote = function (note) {
-    console.log($scope.unsaved)
     // Save previous note if user tries to select another note before the
     // autosave kicks in
     if ($scope.unsaved) {
@@ -76,8 +76,18 @@ function ctrl($scope, $rootScope) {
 
   $scope.finalDeleteNote = function (note, $event) {
     dao.deleteNote(note).then(function () {
+      var noteIndex;
+
       $scope.removeNoteFromList(note);
       $($event.target).parent().parent().css('display', 'block');
+      if ($('.order-0').length > 0) {
+        noteIndex = Utils.getIndexOfNote(parseInt($('.order-0').attr('note-id'), 10), $scope.notes);
+        if (noteIndex >= 0) {
+          $scope.currentNote = $scope.notes[noteIndex];
+        } else {
+
+        }
+      }
     }).catch(function (err) {
       console.log('ERROR');
       console.log(err);
