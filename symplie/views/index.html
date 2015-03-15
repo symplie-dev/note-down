@@ -9,10 +9,10 @@
     <!-- Styles -->
     <link href='/dist/bundle.min.css' rel='stylesheet'>
     <!-- Scripts -->
-    <script src='/src/js/lib/jquery.min.js'></script>
-    <script src='/src/js/lib/jquery.caret.js'></script>
-    <script src='/src/js/lib/angular.min.js'></script>
-    <script src='/src/js/lib/angular-sanitize.min.js'></script>
+    <script src='/dist/jquery.min.js'></script>
+    <script src='/dist/jquery.caret.js'></script>
+    <script src='/dist/angular.min.js'></script>
+    <script src='/dist/angular-sanitize.min.js'></script>
     <script src='/dist/bundle.js'></script>
   </head>
   <body>
@@ -38,7 +38,8 @@
             current-note='currentNote'
             symplie-state='symplieState'
             notepad-state='notepadState'
-            inner-btn-octicon='innerBtnOcticon'></div>
+            inner-btn-octicon='innerBtnOcticon'
+            unsaved='unsaved'></div>
         </div>
         <div class='symplie-note-wrapper'>
           <div class='symplie-note-pnl {{(notepadState == "markdown") ? "flipped" : ""}}'>
@@ -72,7 +73,6 @@
         notepad-state='notepadState'
         inner-btn-octicon='innerBtnOcticon'
         notes='notes'
-        current-note='currentNote'
         add-markdown-element='addMarkdownElement'
         unsaved='unsaved'
         settings='settings'></div>

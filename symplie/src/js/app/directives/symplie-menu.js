@@ -1,7 +1,8 @@
 'use strict';
 
 var Constants = require('../constants'),
-    dao       = require('../database');
+    dao       = require('../database'),
+    Utils     = require('../utils');
 
 module.exports = function() {
   return {
@@ -11,7 +12,8 @@ module.exports = function() {
       currentNote:     '=',
       symplieState:    '=',
       notepadState:    '=',
-      innerBtnOcticon: '='
+      innerBtnOcticon: '=',
+      unsaved:         '='
     },
     templateUrl: '/views/partials/symplie-menu.html',
     controller: ctrl,
@@ -23,6 +25,15 @@ function ctrl($scope, $rootScope) {
   $scope.order = 'createdAt';
 
   $scope.viewNote = function (note) {
+    // Save previous note if user tries to select another note before the
+    // autosave kicks in
+    if ($scope.unsaved) {
+      $scope.currentNote.updatedAt = Date.now();
+      $scope.currentNote.updatedAt = Date.now();
+      dao.updateNote($scope.currentNote);
+      $scope.unsaved = false;
+    }
+
     $scope.cancelDeleteNote();
     $scope.currentNote = note;
     $scope.symplieState = Constants.SymplieState.NOTEPAD;
@@ -65,8 +76,20 @@ function ctrl($scope, $rootScope) {
 
   $scope.finalDeleteNote = function (note, $event) {
     dao.deleteNote(note).then(function () {
+      var noteIndex;
+
       $scope.removeNoteFromList(note);
       $($event.target).parent().parent().css('display', 'block');
+      if ($('.order-0').length > 0) {
+        noteIndex = Utils.getIndexOfNote(parseInt($('.order-0').attr('note-id'), 10), $scope.notes);
+        if (noteIndex >= 0) {
+          $scope.currentNote = $scope.notes[noteIndex];
+        } else {
+          $scope.currentNote = { markdown: '' };
+        }
+      } else {
+        $scope.currentNote = { markdown: '' };
+      }
     }).catch(function (err) {
       console.log('ERROR');
       console.log(err);

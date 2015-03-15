@@ -1,6 +1,7 @@
 <div class='md-editor-wrapper'>
   <textarea class='md-editor' ng-model='note.markdown'
     ng-keydown='handleKeyDown($event)'
+    ng-keyup='keyupHandler($event)'
     ng-click='tabAdvance = false'
     ng-blur = 'tabAdvance = false'></textarea>
 </div>
