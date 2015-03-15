@@ -85,8 +85,10 @@ function ctrl($scope, $rootScope) {
         if (noteIndex >= 0) {
           $scope.currentNote = $scope.notes[noteIndex];
         } else {
-
+          $scope.currentNote = { markdown: '' };
         }
+      } else {
+        $scope.currentNote = { markdown: '' };
       }
     }).catch(function (err) {
       console.log('ERROR');
