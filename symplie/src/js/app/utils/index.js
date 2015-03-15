@@ -193,4 +193,23 @@ var Q         = require('q'),
     }, 1000);
   };
 
+/* Misc
+------------------------------------------------------------------------------*/
+  /**
+   * Return the indexs in the notes array of the note with the given id.
+   *
+   * @param {Number} id The id of the note
+   */
+  Utils.getIndexOfNote = function (id, notes) {
+    var noteIndex = -1;
+
+    notes.forEach(function (note, index) {
+      if (note.id === id) {
+        noteIndex = index;
+        return;
+      }
+    });
+
+    return noteIndex;
+  };
 module.exports = Utils;

@@ -14,7 +14,6 @@ module.exports = function() {
       notepadState:       '=',
       innerBtnOcticon:    '=',
       notes:              '=',
-      currentNote:        '=',
       addMarkdownElement: '=',
       unsaved:            '=',
       settings:           '='
@@ -39,11 +38,6 @@ function ctrl($scope) {
         $scope.notepadState = Constants.NotepadState.VIEW;
         $scope.innerBtnOcticon = Constants.Octicon.PENCIL;
         $('.md-editor').focusout();
-        // Update model in DB (TODO: Better logic to find out when there is a change)
-        $scope.currentNote.updatedAt = Date.now();
-        $scope.currentNote.updatedAt = Date.now();
-        dao.updateNote($scope.currentNote);
-        $scope.unsaved = false;
         break;
       default:
         console.log('ERROR: Unknown state - ' + $scope.notepadState);
