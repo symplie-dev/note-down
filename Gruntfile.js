@@ -33,16 +33,27 @@ module.exports = function (grunt) {
         }
       }
     },
+    // Copy lib files to the dist directory
+    copy: {
+      main: {
+        expand: true,
+        src: 'symplie/src/js/lib/*',
+        dest: 'symplie/dist/',
+        flatten: true,
+        filter: 'isFile'
+      }
+    },
     // Watch for changes
     watch: {
       files: ['symplie/src/js/**/*.js', 'symplie/src/css/**/*.css'],
-      tasks: ['dev', 'cssmin']
+      tasks: ['dev', 'cssmin', 'copy']
     }
   });
 
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['browserify:dev']);
