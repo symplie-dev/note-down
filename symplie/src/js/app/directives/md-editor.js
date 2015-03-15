@@ -250,17 +250,21 @@ function ctrl($scope) {
   };
 
   $scope.keyupHandler = function ($event) {
+    var tmpId = $scope.note.id;
+
     if ($scope.saveTimeoutId) {
       clearTimeout($scope.saveTimeoutId);
     }
 
     $scope.saveTimeoutId = setTimeout(function () {
-      $scope.$apply(function () {
-        $scope.note.updatedAt = Date.now();
-        $scope.note.updatedAt = Date.now();
-        dao.updateNote($scope.note);
-        $scope.unsaved = false;
-      });
+      if ($scope.note.id == tmpId) {
+        $scope.$apply(function () {
+          $scope.note.updatedAt = Date.now();
+          $scope.note.updatedAt = Date.now();
+          dao.updateNote($scope.note);
+          $scope.unsaved = false;
+        });
+      }
     }, 1000);
   };
 }
