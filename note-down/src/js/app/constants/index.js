@@ -75,19 +75,19 @@ Constants.KeyCode.DELETE      = 46;
 
 Constants.LicenceCopy            = {};
 Constants.LicenceCopy.TITLE      = 'Trial Expired';
-Constants.LicenceCopy.MESSAGE    = 'Although the trial period is unlimited, please purchase Symplie in the Chrome Web Store for continued use.';
+Constants.LicenceCopy.MESSAGE    = 'Although the trial period is unlimited, please purchase NoteDown in the Chrome Web Store for continued use.';
 Constants.LicenceCopy.OK_BTN     = 'Purchase';
 Constants.LicenceCopy.CANCEL_BTN = 'Cancel';
 
 Constants.InvalidCredentials            = {};
 Constants.InvalidCredentials.TITLE      = 'Sign In';
-Constants.InvalidCredentials.MESSAGE    = 'You must be signed into Chrome with the account you used to purchase Symplie. Go to chrome://chrome-signin to sign in.';
+Constants.InvalidCredentials.MESSAGE    = 'You must be signed into Chrome with the account you used to purchase NoteDown. Go to chrome://chrome-signin to sign in.';
 Constants.InvalidCredentials.OK_BTN     = null;
 Constants.InvalidCredentials.CANCEL_BTN = 'Cancel';
 
 Constants.SignInCopy            = {};
 Constants.SignInCopy.TITLE      = 'Sign In';
-Constants.SignInCopy.MESSAGE    = 'You\'re not signed into Chrome. Although the trial period is unlimited, please purchase Symplie in the Chrome Web Store for continued use.';
+Constants.SignInCopy.MESSAGE    = 'You\'re not signed into Chrome. Although the trial period is unlimited, please purchase NoteDown in the Chrome Web Store for continued use.';
 Constants.SignInCopy.OK_BTN     = 'Sign In';
 Constants.SignInCopy.CANCEL_BTN = 'Cancel';
 
@@ -102,9 +102,9 @@ Constants.DEFAULT_SETTINGS = {
 }
 
 Constants.WELCOME_NOTE = [
-'#### Welcome to Symplie',
+'#### Welcome to NoteDown',
 Constants.EMPTY_STRING,
-'_Symplie is a lightweight, distraction-free notepad',
+'_NoteDown is a lightweight, distraction-free notepad',
 'powered by [Markdown][1]._',
 Constants.EMPTY_STRING,
 'If you\'re unfamiliar with Markdown, checkout this',
@@ -117,23 +117,23 @@ Constants.EMPTY_STRING,
 Constants.EMPTY_STRING,
 '---',
 Constants.EMPTY_STRING,
-'* **Create beautiful notes:** Symplie uses [GitHub\'s][4]',
+'* **Create beautiful notes:** NoteDown uses [GitHub\'s][4]',
 '  clean and modern markdown styling.',
-'* **Visually consistent:** Symplie organizes your notes',
+'* **Visually consistent:** NoteDown organizes your notes',
 '  in a consistent manner so you can focus on content.',
 '* **Distraction free:** No ads or overly complex tool',
 '  bars; just you and a simple note-taking surface.',
 Constants.EMPTY_STRING,
 '---',
 Constants.EMPTY_STRING,
-'_Because Symplie is powered by Markdown, you also have',
+'_Because NoteDown is powered by Markdown, you also have',
 'the ability to include expressive code snippets with',
 'syntax highlighting._',
 Constants.EMPTY_STRING,
 '```javascript',
 '  !function () {',
 '    // Print to console',
-'    console.log(\'Symplie awesome!\');',
+'    console.log(\'NoteDown is awesome!\');',
 '  }',
 '```',
 Constants.EMPTY_STRING,
@@ -145,8 +145,8 @@ Constants.EMPTY_STRING,
 Constants.EMPTY_STRING,
 '---',
 Constants.EMPTY_STRING,
-'* [x] Download Symplie',
-'* [ ] Write your first note with Symplie',
+'* [x] Download NoteDown',
+'* [ ] Write your first note with NoteDown',
 Constants.EMPTY_STRING,
 '---',
 Constants.EMPTY_STRING,

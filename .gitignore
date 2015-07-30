@@ -1,6 +1,6 @@
 # Do not add node_modules directory to source control because it breaks in Windows :(
 **/node_modules
 # Do not add built files to source control
-symplie/dist/*
+note-down/dist/*
 # Do not add zipped chrome extension
-symplie.zip
+note-down.zip

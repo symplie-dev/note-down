@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (grunt) {
-  var browserifyFiles = { 'symplie/dist/bundle.js': ['symplie/src/js/app/index.js'] };
+  var browserifyFiles = { 'note-down/dist/bundle.js': ['note-down/src/js/app/index.js'] };
 
   grunt.initConfig({
     // Browserify JS
@@ -19,7 +19,7 @@ module.exports = function (grunt) {
     uglify: {
       my_target: {
         files: {
-          'symplie/dist/bundle.js': ['symplie/dist/bundle.js']
+          'note-down/dist/bundle.js': ['note-down/dist/bundle.js']
         }
       }
     },
@@ -27,9 +27,9 @@ module.exports = function (grunt) {
     cssmin: {
       combine: {
         files: {
-          'symplie/dist/bundle.min.css': ['symplie/src/css/reset/reset.css'
-                                         ,'symplie/src/css/highlightjs/*.css'
-                                         ,'symplie/src/css/*.css']
+          'note-down/dist/bundle.min.css': ['note-down/src/css/reset/reset.css'
+                                         ,'note-down/src/css/highlightjs/*.css'
+                                         ,'note-down/src/css/*.css']
         }
       }
     },
@@ -37,15 +37,15 @@ module.exports = function (grunt) {
     copy: {
       main: {
         expand: true,
-        src: 'symplie/src/js/lib/*',
-        dest: 'symplie/dist/',
+        src: 'note-down/src/js/lib/*',
+        dest: 'note-down/dist/',
         flatten: true,
         filter: 'isFile'
       }
     },
     // Watch for changes
     watch: {
-      files: ['symplie/src/js/**/*.js', 'symplie/src/css/**/*.css'],
+      files: ['note-down/src/js/**/*.js', 'note-down/src/css/**/*.css'],
       tasks: ['dev', 'cssmin', 'copy']
     }
   });
