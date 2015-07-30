@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="C:\Users\Benjamin\projects\symplie\symplie-ext\symplie\img\icon16.png"
+   inkscape:export-xdpi="11.25"
+   inkscape:export-ydpi="11.25">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.2897727"
+     inkscape:cx="-171.11042"
+     inkscape:cy="86.518513"
+     inkscape:document-units="px"
+     inkscape:current-layer="g3759"
+     showgrid="false"
+     inkscape:window-width="1600"
+     inkscape:window-height="837"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3759"
+       transform="matrix(1.4545454,0,0,1.4545454,-188.96266,309.78819)">
+      <rect
+         style="fill:#4d4d4d;fill-opacity:1;stroke:none"
+         id="rect3764"
+         width="88.000008"
+         height="88.000008"
+         x="129.91183"
+         y="422.51962"
+         ry="4.9750371" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2987"
+         y="494.3887"
+         x="131.17072"
+         style="font-style:normal;font-weight:normal;font-size:58.07477951px;line-height:125%;font-family:'Roboto Light';-inkscape-font-specification:'Roboto Light';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:78.4009552px;font-family:'Roboto Medium';-inkscape-font-specification:'Roboto Medium,';fill:#ffffff;fill-opacity:1"
+           y="494.3887"
+           x="131.17072"
+           id="tspan2989"
+           sodipodi:role="line">N</tspan></text>
+      <g
+         id="g4164"
+         transform="translate(1.3750001,0)">
+        <rect
+           ry="0"
+           y="438.65057"
+           x="194.57106"
+           height="31.202536"
+           width="8.25"
+           id="rect4142"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2.97274995;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <path
+           transform="matrix(0.9471324,0,0,1.0269648,6.9915283,-24.016127)"
+           inkscape:transform-center-y="6.2220152"
+           d="m 202.40521,504.79315 -14.42904,-24.99183 28.85808,0 z"
+           inkscape:randomized="0"
+           inkscape:rounded="0"
+           inkscape:flatsided="true"
+           sodipodi:arg2="2.6179939"
+           sodipodi:arg1="1.5707963"
+           sodipodi:r2="8.3306103"
+           sodipodi:r1="16.661221"
+           sodipodi:cy="488.13193"
+           sodipodi:cx="202.40521"
+           sodipodi:sides="3"
+           id="path4144"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4.32399988;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           sodipodi:type="star" />
+      </g>
+    </g>
+    <rect
+       style="opacity:0;fill:#000000;fill-opacity:1;stroke:none"
+       id="rect3763"
+       width="128"
+       height="128"
+       x="0"
+       y="924.36218" />
+  </g>
+</svg>
