@@ -1,3 +1,11 @@
+# NoteDown
+
+_A lightweight notepad Chrome Extension powered by Markdown_
+
+NoteDown is available in the [Chrome Web Store](https://chrome.google.com/webstore/detail/symplie/kjadigajmcobihfbbhmdeljohoccbejk)
+
+---
+
 For Testing Add the following Key to the manifest file:
 
 id: piedolohhelhigebbdeabaciibjdpbfk
